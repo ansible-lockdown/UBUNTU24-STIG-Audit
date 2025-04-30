@@ -1,0 +1,39 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_900310 }}
+command:
+  usermod_module_cnf:
+    title: UBTU-24-900310 | Ubuntu 24.04 LTS must generate audit records for successful/unsuccessful uses of the usermod command. | Config
+    exec: grep usermod /etc/audit/rules.d/*.rules
+    exit-status: 0
+    stdout:
+    - '/(.*:|)-a always,exit -F path=/usr/sbin/usermod -F perm=x -F auid>=1000 -F auid!=(unset|-1) -k privileged-usermod/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000172
+      Group_Title:
+      - SRG-OS-000064-GPOS-00033
+      NIST800-53R4: AU-12
+      Rule_ID: SV-270802r1066895_rule
+      STIG_ID: UBTU-24-900310
+      Vul_ID: V-270802
+  usermod_module_live:
+    title: UBTU-24-900310 | Ubuntu 24.04 LTS must generate audit records for successful/unsuccessful uses of the usermod command. | Live
+    exec: auditctl -l | grep usermod
+    exit-status: 0
+    stdout:
+    - '-a always,exit -S all -F path=/usr/sbin/usermod -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged-usermod'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000172
+      Group_Title:
+      - SRG-OS-000064-GPOS-00033
+      NIST800-53R4: AU-12
+      Rule_ID: SV-270802r1066895_rule
+      STIG_ID: UBTU-24-900310
+      Vul_ID: V-270802
+  {{ end }}
+{{ end }}

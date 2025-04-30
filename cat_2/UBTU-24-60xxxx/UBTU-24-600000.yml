@@ -1,0 +1,24 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_600000 }}
+file:
+  sshd_alivemax:
+    title: UBTU-24-600000 | Ubuntu 24.04 LTS must immediately terminate all network connections associated with SSH traffic after a period of inactivity.
+    path: /etc/ssh/sshd_config
+    exists: true
+    contents:
+    - '/^ClientAliveCountMax 1/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-001133
+      Group_Title:
+      - SRG-OS-000163-GPOS-00072
+      NIST800-53R4:
+      - SC-10
+      Rule_ID: SV-270742r1066715_rule
+      STIG_ID: UBTU-24-600000
+      Vul_ID: V-270742
+  {{ end }}
+{{ end }}

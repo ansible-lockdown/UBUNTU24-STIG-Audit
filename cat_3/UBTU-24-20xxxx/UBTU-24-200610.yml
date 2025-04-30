@@ -1,0 +1,48 @@
+---
+
+{{ if .Vars.ubtu24stig_cat3 }}
+  {{ if .Vars.ubtu24stig_200610 }}
+file:
+  pam_auth_faillock:
+    title: UBTU-24-200610 | Ubuntu 24.04 LTS must automatically lock an account until the locked account is released by an administrator when three unsuccessful logon attempts have been made. |pam-common-auth
+    path: /etc/pam.d/common-auth
+    exists: true
+    contents:
+    - '/^auth\s+[default=die]\s+pam_faillock.so\s+authfail/'
+    - '/^auth\s+sufficient\s+pam_faillock.so\s+authsucc/'
+    meta:
+      Cat: 3
+      CCI:
+      - CCI-000044
+      - CCI-002238
+      Group_Title:
+      - SRG-OS-000021-GPOS-00005
+      - SRG-OS-000329-GPOS-00128
+      NIST800-53R4: AC-7
+      Rule_ID: SV-270690r1067126_rule
+      STIG_ID: UBTU-24-200610
+      Vul_ID: V-270690
+  security_faillock:
+    title: UBTU-24-200610 | Ubuntu 24.04 LTS must automatically lock an account until the locked account is released by an administrator when three unsuccessful logon attempts have been made. | faillock
+    path: /etc/security/faillock.conf
+    exists: true
+    contents:
+    - '/^audit/'
+    - '/^silent/'
+    - '/^deny\s*=\s*[1-3]/'
+    - '/^fail_interval\s*=\s*(900|[1-8][0-9]{1,2}|[1-9][0-9])/'
+    - '/^unlock_time\s*=\s*0/'
+    meta:
+      Cat: 3
+      CCI:
+      - CCI-000044
+      - CCI-002238
+      Group_Title:
+      - SRG-OS-000021-GPOS-00005
+      - SRG-OS-000329-GPOS-00128
+      NIST800-53R4: AC-7
+      Rule_ID: SV-270690r1067126_rule
+      STIG_ID: UBTU-24-200610
+      Vul_ID: V-270690
+  {{ end }}
+{{ end }}

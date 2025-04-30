@@ -1,0 +1,41 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_900590 }}
+command:
+  wtmp_module_cnf:
+    title: UBTU-24-900590 | Ubuntu 24.04 LTS must generate audit records for the /var/log/wtmp file. | Config
+    exec: grep wtmp /etc/audit/rules.d/*.rules
+    exit-status: 0
+    stdout:
+    - '/(.*:|)-w /var/log/wtmp -p wa -k logins/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000172
+      Group_Title:
+      - SRG-OS-000472-GPOS-00217
+      NIST800-53R4:
+      - AU-12
+      Rule_ID: SV-270810r1066919_rule
+      STIG_ID: UBTU-24-900590
+      Vul_ID: V-270810
+  wtmp_module_live:
+    title: UBTU-24-900590 | Ubuntu 24.04 LTS must generate audit records for the /var/log/wtmp file. | Live
+    exec: auditctl -l | grep wtmp
+    exit-status: 0
+    stdout:
+    - '-w /var/log/wtmp -p wa -k logins'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000172
+      Group_Title:
+      - SRG-OS-000472-GPOS-00217
+      NIST800-53R4:
+      - AU-12
+      Rule_ID: SV-270810r1066919_rule
+      STIG_ID: UBTU-24-900590
+      Vul_ID: V-270810
+  {{ end }}
+{{ end }}

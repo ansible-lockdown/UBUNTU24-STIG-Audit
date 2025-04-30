@@ -1,0 +1,23 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_400260 }}
+file:
+  passwd_uppercase:
+    title: UBTU-24-400260 | Ubuntu 24.04 LTS must enforce password complexity by requiring at least one uppercase character be used.
+    path: /etc/security/pwquality.conf
+    exists: true
+    contents:
+    - '/^ucredit\s*=\s*-1$/'
+    meta:
+      Cat: 2
+      CCI: NA
+      Group_Title:
+      - SRG-OS-000069-GPOS-00037
+      - SRG-OS-000730-GPOS-00190
+      NIST800-53R4: NA
+      Rule_ID: SV-270726r1066667_rule
+      STIG_ID: UBTU-24-400260
+      Vul_ID: V-270726
+  {{ end }}
+{{ end }}

@@ -1,0 +1,28 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_300039 }}
+command:
+  usb-storage_blacklist:
+    title: UBTU-24-300039 | Ubuntu 24.04 LTS must disable automatic mounting of Universal Serial Bus (USB) mass storage driver.
+    exec: grep -r usb-storage /etc/modprobe.conf /etc/modprobe.d/*
+    exit-status:
+      or:
+      - 0
+      - 2
+    stdout:
+    - '/^.*:install usb-storage \/bin\/(false|true)/'
+    - '/^.*:blacklist usb-storage/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-001958
+      Group_Title:
+      - SRG-OS-000378-GPOS-00163
+      NIST800-53R4:
+      - IA-3
+      Rule_ID: SV-270718r1067128_rule
+      STIG_ID: UBTU-24-300039
+      Vul_ID: V-270718
+  {{ end }}
+{{ end }}

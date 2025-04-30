@@ -1,0 +1,39 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_900230 }}
+command:
+  setfacl_module_cnf:
+    title: UBTU-24-900230 | Ubuntu 24.04 LTS must generate audit records for successful/unsuccessful uses of the setfacl command. | Config
+    exec: grep setfacl /etc/audit/rules.d/*.rules
+    exit-status: 0
+    stdout:
+    - '/(.*:|)-a always,exit -F path=/usr/bin/setfacl -F perm=x -F auid>=1000 -F auid!=(unset|-1) -k perm_chng/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000172
+      Group_Title:
+      - SRG-OS-000064-GPOS-00033
+      NIST800-53R4: AU-12
+      Rule_ID: SV-270794r1066871_rule
+      STIG_ID: UBTU-24-900230
+      Vul_ID: V-270794
+  setfacl_module_live:
+    title: UBTU-24-900230 | Ubuntu 24.04 LTS must generate audit records for successful/unsuccessful uses of the setfacl command. | Live
+    exec: auditctl -l | grep setfacl
+    exit-status: 0
+    stdout:
+    - '-a always,exit -S all -F path=/usr/bin/setfacl -F perm=x -F auid>=1000 -F auid!=-1 -F key=perm_chng'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000172
+      Group_Title:
+      - SRG-OS-000064-GPOS-00033
+      NIST800-53R4: AU-12
+      Rule_ID: SV-270794r1066871_rule
+      STIG_ID: UBTU-24-900230
+      Vul_ID: V-270794
+  {{ end }}
+{{ end }}

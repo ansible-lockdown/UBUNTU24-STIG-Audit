@@ -1,0 +1,22 @@
+---
+
+{{ if .Vars.ubtu24stig_cat1 }}
+  {{ if .Vars.ubtu24stig_300022 }}
+file:
+  ssh_X11:
+    title: UBTU-24-300022 | Ubuntu 24.04 LTS must be configured so that remote X connections are disabled, unless to fulfill documented and validated mission requirements.
+    path: /etc/ssh/sshd_config
+    exists: true
+    contents:
+    - '/X11Forwarding no/'
+    - '!/X11Forwarding yes/'
+    meta:
+      Cat: 1
+      CCI: CCI-000366
+      Group_Title: SRG-OS-000480-GPOS-00227
+      NIST800-53R4: CM-6
+      Rule_ID: SV-270708r1066613_rule
+      STIG_ID: UBTU-24-300022
+      Vul_ID: V-270708
+  {{ end }}
+{{ end }}

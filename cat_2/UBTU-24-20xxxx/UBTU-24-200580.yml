@@ -1,0 +1,51 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_200580 }}
+command:
+  execve_module_cnf:
+    title: UBTU-24-200580 | Ubuntu 24.04 LTS must prevent all software from executing at higher privilege levels than users executing the software and the audit system must be configured to audit the execution of privileged functions. | Config
+    exec: grep execve /etc/audit/rules.d/*.rules
+    exit-status: 0
+    stdout:
+    - '/(.*:|)-a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -F key=execpriv/'
+    - '/(.*:|)-a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -F key=execpriv/'
+    - '/(.*:|)-a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -F key=execpriv/'
+    - '/(.*:|)-a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -F key=execpriv/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-002233
+      - CCI-002234
+      Group_Title:
+      - SRG-OS-000326-GPOS-00126
+      - SRG-OS-000327-GPOS-00127
+      NIST800-53R4:
+      - AC-6
+      Rule_ID: SV-270689r1066556_rule
+      STIG_ID: UBTU-24-200580
+      Vul_ID: V-270689
+  execve_module_live:
+    title: UBTU-24-200580 | Ubuntu 24.04 LTS must prevent all software from executing at higher privilege levels than users executing the software and the audit system must be configured to audit the execution of privileged functions. | Live
+    exec: auditctl -l | grep execve
+    exit-status: 0
+    stdout:
+    - '-a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -F key=execpriv'
+    - '-a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -F key=execpriv'
+    - '-a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -F key=execpriv'
+    - '-a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -F key=execpriv'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-002233
+      - CCI-002234
+      Group_Title:
+      - SRG-OS-000326-GPOS-00126
+      - SRG-OS-000327-GPOS-00127
+      NIST800-53R4:
+      - AC-6
+      Rule_ID: SV-270689r1066556_rule
+      STIG_ID: UBTU-24-200580
+      Vul_ID: V-270689
+  {{ end }}
+{{ end }}

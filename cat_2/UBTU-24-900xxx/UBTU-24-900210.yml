@@ -1,0 +1,39 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_900210 }}
+command:
+  chcon_module_cnf:
+    title: UBTU-24-900210 | Ubuntu 24.04 LTS must generate audit records for successful/unsuccessful uses of the chcon command. | Config
+    exec: grep chcon /etc/audit/rules.d/*.rules
+    exit-status: 0
+    stdout:
+    - '/(.*:|)-a always,exit -F path=/usr/bin/chcon -F perm=x -F auid>=1000 -F auid!=(unset|-1) -k perm_chng/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000172
+      Group_Title:
+      - SRG-OS-000064-GPOS-00033
+      NIST800-53R4: AU-12
+      Rule_ID: SV-270792r1066865_rule
+      STIG_ID: UBTU-24-900210
+      Vul_ID: V-270792
+  chcon_module_live:
+    title: UBTU-24-900210 | Ubuntu 24.04 LTS must generate audit records for successful/unsuccessful uses of the chcon command. | Live
+    exec: auditctl -l | grep chcon
+    exit-status: 0
+    stdout:
+    - '-a always,exit -S all -F path=/usr/bin/chcon -F perm=x -F auid>=1000 -F auid!=-1 -F key=perm_chng'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000172
+      Group_Title:
+      - SRG-OS-000064-GPOS-00033
+      NIST800-53R4: AU-12
+      Rule_ID: SV-270792r1066865_rule
+      STIG_ID: UBTU-24-900210
+      Vul_ID: V-270792
+  {{ end }}
+{{ end }}

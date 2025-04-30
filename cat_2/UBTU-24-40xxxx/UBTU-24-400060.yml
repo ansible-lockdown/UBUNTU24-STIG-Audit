@@ -1,0 +1,29 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_400060 }}
+    {{ if .Vars.ubtu24stig_use_sssd }}
+command:
+  ocsp_on_pki_required:
+    title: UBTU-24-400060 | Ubuntu 24.04 LTS must electronically verify personal identity verification (PIV) credentials.
+    exec: grep use_pkcs11_module /etc/pam_pkcs11/pam_pkcs11.conf | awk '/pkcs11_module opensc {/,/}/' /etc/pam_pkcs11/pam_pkcs11.conf | grep cert_policy | grep ocsp_on
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/^cert_policy = .*,ocsp_on;/'
+    - '!/^cert_policy\s*=\s*((?!ocsp_on).)*$/;'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-001954
+      Group_Title:
+      - SRG-OS-000377-GPOS-00162
+      NIST800-53R4: IA-2
+      Rule_ID: SV-270723r1066658_rule
+      STIG_ID: UBTU-24-400060
+      Vul_ID: V-270723
+    {{ end }}
+  {{ end }}
+{{ end }}

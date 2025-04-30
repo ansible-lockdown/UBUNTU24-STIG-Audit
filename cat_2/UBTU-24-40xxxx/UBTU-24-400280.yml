@@ -1,0 +1,23 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_400280 }}
+file:
+  passwd_number:
+    title: UBTU-24-400280 | Ubuntu 24.04 LTS must enforce password complexity by requiring that at least one numeric character be used.
+    path: /etc/security/pwquality.conf
+    exists: true
+    contents:
+    - '/^dcredit\s*=\s*-1$/'
+    meta:
+      Cat: 2
+      CCI: NA
+      Group_Title:
+      - SRG-OS-000071-GPOS-00039
+      - SRG-OS-000730-GPOS-00190
+      NIST800-53R4: NA
+      Rule_ID: SV-270728r1066673_rule
+      STIG_ID: UBTU-24-400280
+      Vul_ID: V-270728
+  {{ end }}
+{{ end }}

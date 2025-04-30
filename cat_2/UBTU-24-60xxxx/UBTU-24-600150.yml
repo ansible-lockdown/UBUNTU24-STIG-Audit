@@ -1,0 +1,25 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_600150 }}
+command:
+  sticky_bit_WW_dirs:
+    title: UBTU-24-600150 | Ubuntu 24.04 LTS must set a sticky bit on all public directories to prevent unauthorized and unintended information transferred via shared system resources.
+    exec: "df --local -P | awk '{if (NR!=1) print $7}' | xargs -I '{}' find '{}' -xdev -type d \\( -perm -0002 -a ! -perm -1000 \\) 2>/dev/null"
+    exit-status:
+      or:
+      - 0
+      - 1
+    timeout: {{ .Vars.timeout_ms }}
+    stdout:
+    - '!/.*/'
+    meta:
+      Cat: 2
+      CCI: CCI-001090
+      Group_Title: SRG-OS-000138-GPOS-00069
+      NIST800-53R4: SC-4
+      Rule_ID: SV-270750r1066739_rule
+      STIG_ID: UBTU-24-600150
+      Vul_ID: V-270750
+  {{ end }}
+{{ end }}

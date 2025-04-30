@@ -1,0 +1,35 @@
+---
+
+{{ if .Vars.ubtu24stig_cat3 }}
+  {{ if .Vars.ubtu24stig_600140 }}
+kernel-param:
+  kernel.dmesg_restrict:
+    title: UBTU-24-600140 | Ubuntu 24.04 LTS must restrict access to the kernel message buffer.
+    name: kernel.dmesg_restrict
+    value: 1
+    meta:
+      Cat: 3
+      CCI: CCI-001090
+      Group_Title: SRG-OS-000138-GPOS-00069
+      NIST800-53R4: SC-4
+      Rule_ID: SV-270749r1067179_rule
+      STIG_ID: UBTU-24-600140
+      Vul_ID: V-270749
+command:
+  dmesg_restrict_1:
+    title: UBTU-24-600140 | Ubuntu 24.04 LTS must restrict access to the kernel message buffer. | conf
+    exec: 'grep "kernel\.dmesg_restrict" /etc/sysctl.conf /etc/sysctl.d/*'
+    exit-status: 0
+    stdout:
+    - '/^*.conf:kernel.dmesg_restrict\s*=\s*1/'
+    - '!/^*.conf:kernel.dmesg_restrict\s*=\s*0/'
+    meta:
+      Cat: 3
+      CCI: CCI-001090
+      Group_Title: SRG-OS-000138-GPOS-00069
+      NIST800-53R4: SC-4
+      Rule_ID: SV-270749r1067179_rule
+      STIG_ID: UBTU-24-600140
+      Vul_ID: V-270749
+  {{ end }}
+{{ end }}

@@ -1,0 +1,55 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_200640 }}
+file:
+  check_login_banner:
+    title: UBTU-24-200640 | Ubuntu 24.04 LTS must display the Standard Mandatory DOD Notice and Consent Banner before granting access to via an SSH logon.
+    path: /etc/issue.net
+    exists: true
+    contents:
+    {{ range .Vars.ubtu24stig_logon_banner }}
+    - {{ . }}
+    {{ end }}
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000048
+      - CCI-001384
+      - CCI-001385
+      - CCI-001386
+      - CCI-001387
+      - CCI-001388
+      Group_Title:
+      - SRG-OS-000023-GPOS-00006
+      - SRG-OS-000228-GPOS-00088
+      NIST800-53R4:
+      - AC-8
+      Rule_ID: SV-270691r1066562_rule
+      STIG_ID: UBTU-24-200640
+      Vul_ID: V-270691
+  sshd_banner:
+    title: UBTU-24-200640 | Ubuntu 24.04 LTS must display the Standard Mandatory DOD Notice and Consent Banner before granting access to via an SSH logon.
+    path: /etc/ssh/sshd_config
+    exists: true
+    contents:
+    - 'Banner /etc/issue.net'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000048
+      - CCI-001384
+      - CCI-001385
+      - CCI-001386
+      - CCI-001387
+      - CCI-001388
+      Group_Title:
+      - SRG-OS-000023-GPOS-00006
+      - SRG-OS-000228-GPOS-00088
+      NIST800-53R4:
+      - AC-8
+      Rule_ID: SV-270691r1066562_rule
+      STIG_ID: UBTU-24-200640
+      Vul_ID: V-270691
+  {{ end }}
+{{ end }}

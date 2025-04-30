@@ -1,0 +1,19 @@
+---
+
+{{ if .Vars.ubtu24stig_cat3 }}
+  {{ if .Vars.ubtu24stig_100700 }}
+package:
+  chrony_installed:
+    title: UBTU-24-100700 | Ubuntu 24.04 LTS must have the "chrony" package installed.
+    name: chrony
+    installed: true
+    meta:
+      Cat: 3
+      CCI: CCI-000366
+      Group_Title: SRG-OS-000480-GPOS-00227
+      NIST800-53R4: CM-6
+      Rule_ID: SV-270664r1068359_rule
+      STIG_ID: UBTU-24-100700
+      Vul_ID: V-270664
+  {{ end }}
+{{ end }}

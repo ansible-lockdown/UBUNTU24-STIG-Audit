@@ -1,0 +1,27 @@
+---
+
+{{ if .Vars.ubtu24stig_cat3 }}
+  {{ if .Vars.ubtu24stig_600160 }}
+command:
+  chrony_servers:
+    title: UBTU-24-600160 | Ubuntu 24.04 LTS must compare internal information system clocks at least every 24 hours with an authoritative time server.
+    exec: grep maxpoll -ir /etc/chrony*
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    {{ range .Vars.ubtu24stig_time_synchronization_servers }}
+    - server {{ . }}
+    - '/maxpoll ([1-9]|1[0-6])$/'
+    {{ end }}
+    meta:
+      Cat: 3
+      CCI: CCI-000000
+      Group_Title: SRG-OS-000355-GPOS-00143
+      NIST800-53R4: NA
+      Rule_ID: SV-270751r1066742_rule
+      STIG_ID: UBTU-24-600160
+      Vul_ID: V-270751
+  {{ end }}
+{{ end }}

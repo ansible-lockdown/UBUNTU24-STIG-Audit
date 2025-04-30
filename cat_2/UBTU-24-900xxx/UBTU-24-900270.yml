@@ -1,0 +1,39 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_900270 }}
+command:
+  passwd_module_cnf:
+    title: UBTU-24-900270 | Ubuntu 24.04 LTS must generate audit records for successful/unsuccessful uses of the passwd command. | Config
+    exec: grep passwd /etc/audit/rules.d/*.rules
+    exit-status: 0
+    stdout:
+    - '/(.*:|)-a always,exit -F path=/usr/bin/passwd -F perm=x -F auid>=1000 -F auid!=(unset|-1) -k privileged-passwd/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000172
+      Group_Title:
+      - SRG-OS-000064-GPOS-00033
+      NIST800-53R4: AU-12
+      Rule_ID: SV-270798r1068382_rule
+      STIG_ID: UBTU-24-900270
+      Vul_ID: V-270798
+  passwd_module_live:
+    title: UBTU-24-900270 | Ubuntu 24.04 LTS must generate audit records for successful/unsuccessful uses of the passwd command. | Live
+    exec: auditctl -l | grep passwd
+    exit-status: 0
+    stdout:
+    - '-a always,exit -S all -F path=/usr/bin/passwd -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged-passwd'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000172
+      Group_Title:
+      - SRG-OS-000064-GPOS-00033
+      NIST800-53R4: AU-12
+      Rule_ID: SV-270798r1068382_rule
+      STIG_ID: UBTU-24-900270
+      Vul_ID: V-270798
+  {{ end }}
+{{ end }}

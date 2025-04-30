@@ -1,0 +1,45 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_900140 }}
+command:
+  chown_module_cnf:
+    title: UBTU-24-900140 | Ubuntu 24.04 LTS must generate audit records for successful/unsuccessful uses of the chown, fchown, fchownat, and lchown system calls. | Config
+    exec: grep chown /etc/audit/rules.d/*.rules
+    exit-status: 0
+    stdout:
+    - '/(.*:|)-a always,exit -F arch=b32 -S chown,fchown,fchownat,lchown -F auid>=1000 -F auid!=(unset|-1) -k perm_chng/'
+    - '/(.*:|)-a always,exit -F arch=b64 -S chown,fchown,fchownat,lchown -F auid>=1000 -F auid!=(unset|-1) -k perm_chng/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000172
+      Group_Title:
+      - SRG-OS-000064-GPOS-00033
+      - SRG-OS-000462-GPOS-00206
+      NIST800-53R4:
+      - AU-12
+      Rule_ID: SV-2270785r1068373_rule
+      STIG_ID: UBTU-24-900140
+      Vul_ID: V-270785
+  chown_module_live:
+    title: UBTU-24-900140 | Ubuntu 24.04 LTS must generate audit records for successful/unsuccessful uses of the chown, fchown, and fchownat system calls. | Live
+    exec: auditctl -l | grep chown
+    exit-status: 0
+    stdout:
+    - '-a always,exit -F arch=b32 -S lchown,fchown,chown,fchownat -F auid>=1000 -F auid!=-1 -F key=perm_chng'
+    - '-a always,exit -F arch=b64 -S chown,fchown,lchown,fchownat -F auid>=1000 -F auid!=-1 -F key=perm_chng'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000172
+      Group_Title:
+      - SRG-OS-000064-GPOS-00033
+      - SRG-OS-000462-GPOS-00206
+      NIST800-53R4:
+      - AU-12
+      Rule_ID: SV-270785r1068373_rule
+      STIG_ID: UBTU-24-900140
+      Vul_ID: V-270785
+  {{ end }}
+{{ end }}

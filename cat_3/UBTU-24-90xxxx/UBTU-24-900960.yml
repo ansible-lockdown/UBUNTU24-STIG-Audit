@@ -1,0 +1,22 @@
+---
+
+{{ if .Vars.ubtu24stig_cat3 }}
+  {{ if .Vars.ubtu24stig_900960 }}
+file:
+  audit_space_left:
+    title: UBTU-24-900960 | Ubuntu 24.04 LTS must immediately notify the system administrator (SA) and information system security officer (ISSO) (at a minimum) when allocated audit record storage volume reaches 75 percent of the repository maximum audit record storage capacity.
+    path: /etc/audit/auditd.conf
+    exists: true
+    contents:
+    - '/^space_left\s*=\s*(2[5-9]|[3-6][0-9])%/'
+    - '/(?i)^space_left_action\s*=\s*(email|exec)/'
+    meta:
+      Cat: 3
+      CCI: CCI-001855
+      Group_Title: SRG-OS-000343-GPOS-00134
+      NIST800-53R4: AU-5
+      Rule_ID: SV-270818r1066943_rule
+      STIG_ID: UBTU-24-900960
+      Vul_ID: V-270818
+  {{ end }}
+{{ end }}

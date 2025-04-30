@@ -1,0 +1,19 @@
+---
+
+{{ if .Vars.ubtu24stig_cat1 }}
+  {{ if .Vars.ubtu24stig_100030 }}
+package:
+  telnet_absent:
+    title: UBTU-24-100030 | Ubuntu 24.04 LTS must not have the "telnet" package installed.
+    name: telnetd
+    installed: false
+    meta:
+      Cat: 1
+      CCI: CCI-000197
+      Group_Title: SRG-OS-000074-GPOS-00042
+      NIST800-53R4: IA-5
+      Rule_ID: SV-270647r1066430_rule
+      STIG_ID: UBTU-24-100030
+      Vul_ID: V-270647
+  {{ end }}
+{{ end }}

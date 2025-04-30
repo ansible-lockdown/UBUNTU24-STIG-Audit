@@ -1,0 +1,32 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_600090 }}
+command:
+  disks_encrypted:
+    title: UBTU-24-600090 | Ubuntu 24.04 LTS handling data requiring "data at rest" protections must employ cryptographic mechanisms to prevent unauthorized disclosure and modification of the information at rest.
+    exec: for part in `lsblk -l -o NAME,TYPE -n | grep part | awk '{print $1}'`; do grep $part /etc/crypttab 2>&1 /dev/null; if [ "$echo $?" -eq '0' ]; then export ENCRYPTED="Partitions are Encrypted"; else export ENCRYPTED="UnEncrypted partition(s) found"; fi; done; echo $ENCRYPTED
+    exit-status:
+      or:
+      - 0
+      - 1
+      - 2
+    stdout:
+      - "Partitions are Encrypted"
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-001199
+      - CCI-002475
+      - CCI-002476
+      Group_Title:
+      - SRG-OS-000185-GPOS-00079
+      - SRG-OS-000404-GPOS-00183
+      - SRG-OS-000405-GPOS-00184
+      - SRG-OS-000780-GPOS-00240
+      NIST800-53R4: SC-28
+      Rule_ID: SV-270747r1066730_rule
+      STIG_ID: UBTU-24-600090
+      Vul_ID: V-270747
+  {{ end }}
+{{ end }}

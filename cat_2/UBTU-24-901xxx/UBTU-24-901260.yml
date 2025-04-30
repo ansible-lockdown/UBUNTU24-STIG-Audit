@@ -1,0 +1,26 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_901260 }}
+command:
+  sys_cmd_dirs_perms:
+    title: UBTU-24-901260 | Ubuntu 24.04 LTS must have directories that contain system commands set to a mode of "755" or less permissive.
+    exec: |
+      SYS_CMD_DIRS_PERM=$(find /bin /sbin /usr/bin /usr/sbin /usr/local/bin /usr/local/sbin -perm /022 -type d -printf '.' | wc -c); \
+      if [ "$SYS_CMD_DIRS_PERM" -eq 0 ]; \
+      then echo "OK - No files or Directories found"; \
+      else echo "FAIL - Files found"; \
+      fi
+    exit-status: 0
+    stdout:
+      - '/OK - No files or Directories found/'
+    meta:
+      Cat: 2
+      CCI: CCI-001495
+      Group_Title: SRG-OS-000258-GPOS-00099
+      NIST800-53R4: AU-9
+      Rule_ID: SV-270824r1066961_rule
+      STIG_ID: UBTU-24-901260
+      Vul_ID: V-270824
+  {{ end }}
+{{ end }}

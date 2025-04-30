@@ -1,0 +1,24 @@
+---
+
+{{ if .Vars.ubtu24stig_cat3 }}
+  {{ if .Vars.ubtu24stig_600180 }}
+command:
+  chrony_step:
+    title: UBTU-24-600180 | Ubuntu 24.04 LTS must synchronize internal information system clocks to the authoritative time source when the time difference is greater than one second.
+    exec: grep -ir makestep /etc/chrony*
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/.*:makestep 1 1/'
+    meta:
+      Cat: 3
+      CCI: CCI-000000
+      Group_Title: SRG-OS-000356-GPOS-00144
+      NIST800-53R4: NA
+      Rule_ID: SV-270752r1068365_rule
+      STIG_ID: UBTU-24-600180
+      Vul_ID: V-270752
+  {{ end }}
+{{ end }}

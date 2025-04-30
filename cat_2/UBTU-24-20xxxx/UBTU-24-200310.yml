@@ -1,0 +1,67 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_200310 }}
+command:
+  gshadow_module_cnf:
+    title: UBTU-24-200310 | Ubuntu 24.04 LTS must generate audit records for all account creations, modifications, disabling, and termination events that affect /etc/gshadow. | Config
+    exec: grep gshadow /etc/audit/rules.d/*.rules
+    exit-status: 0
+    stdout:
+    - '/(.*:|)-w /etc/gshadow -p wa -k usergroup_modification/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000018
+      - CCI-000172
+      - CCI-001403
+      - CCI-001404
+      - CCI-001405
+      - CCI-002130
+      Group_Title:
+      - SRG-OS-000004-GPOS-00004
+      - SRG-OS-000239-GPOS-00089
+      - SRG-OS-000240-GPOS-00090
+      - SRG-OS-000241-GPOS-00091
+      - SRG-OS-000303-GPOS-00120
+      - SRG-OS-000458-GPOS-00203
+      - SRG-OS-000463-GPOS-00207
+      - SRG-OS-000476-GPOS-00221
+      NIST800-53R4:
+      - AC-2
+      - AU-12
+      Rule_ID: SV-270687r1066550_rule
+      STIG_ID: UBTU-24-200310
+      Vul_ID: V-270687
+  gshadow_module_live:
+    title: UBTU-24-200310 | Ubuntu 24.04 LTS must generate audit records for all account creations, modifications, disabling, and termination events that affect /etc/gshadow. | Live
+    exec: auditctl -l | grep gshadow
+    exit-status: 0
+    stdout:
+    - '-w /etc/gshadow -p wa -k usergroup_modification'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000018
+      - CCI-000172
+      - CCI-001403
+      - CCI-001404
+      - CCI-001405
+      - CCI-002130
+      Group_Title:
+      - SRG-OS-000004-GPOS-00004
+      - SRG-OS-000239-GPOS-00089
+      - SRG-OS-000240-GPOS-00090
+      - SRG-OS-000241-GPOS-00091
+      - SRG-OS-000303-GPOS-00120
+      - SRG-OS-000458-GPOS-00203
+      - SRG-OS-000463-GPOS-00207
+      - SRG-OS-000476-GPOS-00221
+      NIST800-53R4:
+      - AC-2
+      - AU-12
+      Rule_ID: SV-270687r1066550_rule
+      STIG_ID: UBTU-24-200310
+      Vul_ID: V-270687
+  {{ end }}
+{{ end }}

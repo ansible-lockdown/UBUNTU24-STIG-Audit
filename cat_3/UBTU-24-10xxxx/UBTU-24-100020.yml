@@ -1,0 +1,19 @@
+---
+
+{{ if .Vars.ubtu24stig_cat3 }}
+  {{ if .Vars.ubtu24stig_100020 }}
+package:
+  ntp_not_installed:
+    title: UBTU-24-100020 | Ubuntu 24.04 LTS must not have the "ntp" package installed.
+    name: ntp
+    installed: false
+    meta:
+      Cat: 3
+      CCI: CCI-000366
+      Group_Title: SRG-OS-000480-GPOS-00227
+      NIST800-53R4: CM-6
+      Rule_ID: SV-270646r1068358_rule
+      STIG_ID: UBTU-24-100020
+      Vul_ID: V-270646
+  {{ end }}
+{{ end }}

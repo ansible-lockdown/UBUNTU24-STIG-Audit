@@ -1,0 +1,46 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_100110 }}
+    {{ if .Vars.ubtu24stig_allow_aide_check }}
+command:
+  aide_check:
+    title: UBTU-24-100110 | Ubuntu 24.04 LTS must configure AIDE to preform file integrity checking on the file system.
+    exec: aide -c /etc/aide/aide.conf --check
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '!/AIDE found differences between database and filesystem!!/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-002696
+      Group_Title:
+      - SRG-OS-000445-GPOS-00199
+      NIST800-53R4: SI-6
+      Rule_ID: SV-270650r1066439_rule
+      STIG_ID: UBTU-24-100110
+      Vul_ID: V-270650
+  {{ end }}
+  {{ if not .Vars.ubtu24stig_allow_aide_check }}
+  ubtu24stig_allow_aide_check:
+    title: UBTU-24-100110 | Ubuntu 24.04 LTS must use a file integrity tool to verify correct operation of all security functions.
+    exec: echo "Aide Check to be run manually due to system impact"
+    exit-status: 0
+    stdout:
+    - '!/Aide Check to be run manually due to system impact!!/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-002696
+      Group_Title:
+      - SRG-OS-000445-GPOS-00199
+      NIST800-53R4: SI-6
+      Rule_ID: SV-270650r1066439_rule
+      STIG_ID: UBTU-24-100110
+      Vul_ID: V-270650
+    {{ end }}
+  {{ end }}
+{{ end }}

@@ -1,0 +1,39 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_900240 }}
+command:
+  chacl_module_cnf:
+    title: UBTU-24-900240 | Ubuntu 24.04 LTS must generate audit records for successful/unsuccessful uses of the chacl command. | Config
+    exec: grep chacl /etc/audit/rules.d/*.rules
+    exit-status: 0
+    stdout:
+    - '/(.*:|)-a always,exit -F path=/usr/bin/chacl -F perm=x -F auid>=1000 -F auid!=(unset|-1) -k perm_chng/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000172
+      Group_Title:
+      - SRG-OS-000064-GPOS-00033
+      NIST800-53R4: AU-12
+      Rule_ID: SV-270795r1066874_rule
+      STIG_ID: UBTU-24-900240
+      Vul_ID: V-270795
+  chacl_module_live:
+    title: UBTU-24-900240 | Ubuntu 24.04 LTS must generate audit records for successful/unsuccessful uses of the chacl command. | Live
+    exec: auditctl -l | grep chacl
+    exit-status: 0
+    stdout:
+    - '-a always,exit -S all -F path=/usr/bin/chacl -F perm=x -F auid>=1000 -F auid!=-1 -F key=perm_chng'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000172
+      Group_Title:
+      - SRG-OS-000064-GPOS-00033
+      NIST800-53R4: AU-12
+      Rule_ID: SV-270795r1066874_rule
+      STIG_ID: UBTU-24-900240
+      Vul_ID: V-270795
+  {{ end }}
+{{ end }}

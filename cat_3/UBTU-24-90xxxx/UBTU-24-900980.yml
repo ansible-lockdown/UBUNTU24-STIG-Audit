@@ -1,0 +1,21 @@
+---
+
+{{ if .Vars.ubtu24stig_cat3 }}
+  {{ if .Vars.ubtu24stig_900980 }}
+file:
+  audit_mail_acct:
+    title: UBTU-24-900980 | Ubuntu 24.04 LTS must alert the information system security officer (ISSO) and system administrator (SA) in the event of an audit processing failure.
+    path: /etc/audit/auditd.conf
+    exists: true
+    contents:
+    - '/^action_mail_acct\s*=\s*{{ .Vars.ubtu24stig_auditd_email_acct }}/'
+    meta:
+      Cat: 3
+      CCI: CCI-000139
+      Group_Title: SRG-OS-000046-GPOS-00022
+      NIST800-53R4: AU-5
+      Rule_ID: SV-270819r1068390_rule
+      STIG_ID: UBTU-24-900980
+      Vul_ID: V-270819
+  {{ end }}
+{{ end }}

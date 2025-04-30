@@ -1,0 +1,26 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_300009 }}
+command:
+  library_files_group:
+    title: UBTU-24-300009 | Ubuntu 24.04 LTS library files must be group-owned by "root".
+    exec: |
+      LIB_FILE_GROUP=$(find /lib /usr/lib /lib64 -type f -uid +1000 -printf '.' | wc -c); \
+      if [ "$LIB_FILE_GROUP" -eq 0 ]; \
+      then echo "OK - No files or Directories found"; \
+      else echo "FAIL - Files found"; \
+      fi
+    exit-status: 0
+    stdout:
+      - '/OK - No files or Directories found/'
+    meta:
+      Cat: 2
+      CCI: CCI-001499
+      Group_Title: SRG-OS-000259-GPOS-00100
+      NIST800-53R4: CM-5
+      Rule_ID: SV-270699r1066586_rule
+      STIG_ID: UBTU-24-300009
+      Vul_ID: V-270699
+  {{ end }}
+{{ end }}

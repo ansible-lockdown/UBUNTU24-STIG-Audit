@@ -1,0 +1,27 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_400000 }}
+command:
+  unique_userID:
+    title: UBTU-24-400000 | Ubuntu 24.04 LTS must uniquely identify interactive users.
+    exec: awk -F ":" 'list[$3]++{print $1, $3}' /etc/passwd
+    exit-status: 0
+    stdout:
+    - '!/.*/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000764
+      - CCI-000804
+      Group_Title:
+      - SRG-OS-000104-GPOS-00051
+      - SRG-OS-000121-GPOS-00062
+      NIST800-53R4:
+      - IA-2
+      - IA-8
+      Rule_ID: SV-270720r1066649_rule
+      STIG_ID: UBTU-24-400000
+      Vul_ID: V-270720
+  {{ end }}
+{{ end }}

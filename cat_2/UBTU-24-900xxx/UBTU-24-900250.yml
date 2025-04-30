@@ -1,0 +1,45 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_900250 }}
+command:
+  faillog_module_cnf:
+    title: UBTU-24-900250 | Ubuntu 24.04 LTS must generate audit records for the use and modification of faillog file. | Config
+    exec: grep faillog /etc/audit/rules.d/*.rules
+    exit-status: 0
+    stdout:
+    - '/(.*:|)-w /var/log/faillog -p wa -k logins/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000172
+      Group_Title:
+      - SRG-OS-000064-GPOS-00033
+      - SRG-OS-000470-GPOS-00214
+      - SRG-OS-000473-GPOS-00218
+      NIST800-53R4:
+      - AU-12
+      Rule_ID: SV-270796r1066877_rule
+      STIG_ID: UBTU-24-900250
+      Vul_ID: V-270796
+  faillog_module_live:
+    title: UBTU-24-900250 | Ubuntu 24.04 LTS must generate audit records for the use and modification of faillog file. | Live
+    exec: auditctl -l | grep faillog
+    exit-status: 0
+    stdout:
+    - '-w /var/log/faillog -p wa -k logins'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000172
+      Group_Title:
+      - SRG-OS-000064-GPOS-00033
+      - SRG-OS-000470-GPOS-00214
+      - SRG-OS-000473-GPOS-00218
+      NIST800-53R4:
+      - AU-12
+      Rule_ID: SV-270796r1066877_rule
+      STIG_ID: UBTU-24-900250
+      Vul_ID: V-270796
+  {{ end }}
+{{ end }}

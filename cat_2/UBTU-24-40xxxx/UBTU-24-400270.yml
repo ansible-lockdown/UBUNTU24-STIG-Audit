@@ -1,0 +1,23 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_400270 }}
+file:
+  passwd_lowercase:
+    title: UBTU-24-400270 | Ubuntu 24.04 LTS must enforce password complexity by requiring at least one lowercase character be used.
+    path: /etc/security/pwquality.conf
+    exists: true
+    contents:
+    - '/^lcredit\s*=\s*-1$/'
+    meta:
+      Cat: 2
+      CCI: NA
+      Group_Title:
+      - SRG-OS-000070-GPOS-00038
+      - SRG-OS-000730-GPOS-00190
+      NIST800-53R4: NA
+      Rule_ID: SV-270727r1066670_rule
+      STIG_ID: UBTU-24-400270
+      Vul_ID: V-270727
+  {{ end }}
+{{ end }}

@@ -1,0 +1,39 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_900730 }}
+command:
+  modprobe_module_cnf:
+    title: UBTU-24-900730 | Ubuntu 24.04 LTS must generate audit records for successful/unsuccessful uses of the modprobe command. | Config
+    exec: grep modprobe /etc/audit/rules.d/*.rules
+    exit-status: 0
+    stdout:
+    - '/(.*:|)-w /sbin/modprobe -p x -k modules/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000172
+      Group_Title:
+      - SRG-OS-000477-GPOS-00222
+      NIST800-53R4: AU-12
+      Rule_ID: SV-270813r1066928_rule
+      STIG_ID: UBTU-24-900730
+      Vul_ID: V-270813
+  modprobe_module_live:
+    title: UBTU-24-900730 | Ubuntu 24.04 LTS must generate audit records for successful/unsuccessful uses of the modprobe command. | Live
+    exec: auditctl -l | grep modprobe
+    exit-status: 0
+    stdout:
+    - '-w /sbin/modprobe -p x -k modules'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000172
+      Group_Title:
+      - SRG-OS-000477-GPOS-00222
+      NIST800-53R4: AU-12
+      Rule_ID: SV-270813r1066928_rule
+      STIG_ID: UBTU-24-900730
+      Vul_ID: V-270813
+  {{ end }}
+{{ end }}

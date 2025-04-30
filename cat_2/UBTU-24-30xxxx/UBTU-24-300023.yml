@@ -1,0 +1,24 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_300023 }}
+file:
+  sshd_ciphers:
+    title: UBTU-24-300023 | Ubuntu 24.04 LTS SSH daemon must prevent remote hosts from connecting to the proxy display.
+    path: /etc/ssh/sshd_config
+    exists: true
+    contents:
+    - '/^X11UseLocalhost yes/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000366
+      Group_Title:
+      - SRG-OS-000480-GPOS-00227
+      NIST800-53R4:
+      - CM-6
+      Rule_ID: SV-270709r1066616_rule
+      STIG_ID: UBTU-24-300023
+      Vul_ID: V-270709
+  {{ end }}
+{{ end }}

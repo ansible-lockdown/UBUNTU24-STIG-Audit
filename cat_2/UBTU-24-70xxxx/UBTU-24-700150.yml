@@ -1,0 +1,24 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_700150 }}
+file:
+  var_log_syslog_perms:
+    title: UBTU-24-700150 | Ubuntu 24.04 LTS must configure /var/log/syslog file with mode "0" or less permissive.
+    path: /var/log/syslog
+    exists:
+      or:
+      - true
+      - false
+    filetype: file
+    mode: {le: 640}
+    meta:
+      Cat: 2
+      CCI: CCI-001314
+      Group_Title: SRG-OS-000206-GPOS-00084
+      NIST800-53R4: SI-11
+      Rule_ID: SV-270770r1066799_rule
+      STIG_ID: UBTU-24-700150
+      Vul_ID: V-270770
+  {{ end }}
+{{ end }}

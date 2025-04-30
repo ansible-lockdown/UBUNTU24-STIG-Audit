@@ -1,0 +1,45 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_900350 }}
+command:
+  delete_module_cnf:
+    title: UBTU-24-900350 | Ubuntu 24.04 LTS must generate audit records for successful/unsuccessful uses of the delete_module system call. | Config
+    exec: grep delete /etc/audit/rules.d/*.rules
+    exit-status: 0
+    stdout:
+    - '/(.*:|)-a always,exit -F arch=b32 -S delete_module -F auid>=1000 -F auid!=(unset|-1) -k module_chng/'
+    - '/(.*:|)-a always,exit -F arch=b64 -S delete_module -F auid>=1000 -F auid!=(unset|-1) -k module_chng/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000172
+      Group_Title:
+      - SRG-OS-000064-GPOS-00033
+      - SRG-OS-000477-GPOS-00222
+      NIST800-53R4:
+      - AU-12
+      Rule_ID: SV-270806r1068386_rule
+      STIG_ID: UBTU-24-900350
+      Vul_ID: V-270806
+  delete_module_live:
+    title: UBTU-24-900350 | Ubuntu 24.04 LTS must generate audit records for successful/unsuccessful uses of the delete_module system call. | Live
+    exec: auditctl -l | grep delete
+    exit-status: 0
+    stdout:
+    - '-a always,exit -F arch=b32 -S delete_module -F auid>=1000 -F auid!=-1 -F key=module_chng'
+    - '-a always,exit -F arch=b64 -S delete_module -F auid>=1000 -F auid!=-1 -F key=module_chng'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000172
+      Group_Title:
+      - SRG-OS-000064-GPOS-00033
+      - SRG-OS-000477-GPOS-00222
+      NIST800-53R4:
+      - AU-12
+      Rule_ID: SV-270806r1068386_rule
+      STIG_ID: UBTU-24-900350
+      Vul_ID: V-270806
+  {{ end }}
+{{ end }}

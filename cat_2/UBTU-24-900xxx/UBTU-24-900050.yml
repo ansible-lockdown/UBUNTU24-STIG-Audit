@@ -1,0 +1,23 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_900050 }}
+command:
+  auditd_conf_files_owner:
+    title: UBTU-24-900050 | Ubuntu 24.04 LTS must permit only authorized accounts to own the audit configuration files.
+    exec: find /etc/audit/ -type f ! -user root
+    exit-status: 0
+    stdout:
+    - '!/.*/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000171
+      Group_Title:
+      - SRG-OS-000063-GPOS-00032
+      NIST800-53R4: AU-12
+      Rule_ID: SV-270776r1066817_rule
+      STIG_ID: UBTU-24-900050
+      Vul_ID: V-270776
+  {{ end }}
+{{ end }}

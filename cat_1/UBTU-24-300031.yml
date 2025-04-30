@@ -1,0 +1,24 @@
+---
+
+{{ if .Vars.ubtu24stig_cat1 }}
+  {{ if .Vars.ubtu24stig_300031 }}
+file:
+  ssh_permit:
+    title: UBTU-24-300031 | Ubuntu 24.04 LTS must not allow unattended or automatic login via SSH.
+    path: /etc/ssh/sshd_config
+    exists: true
+    contents:
+    - '/PermitEmptyPasswords no/'
+    - '/PermitUserEnvironment no/'
+    - '!/PermitEmptyPasswords yes/'
+    - '!/PermitUserEnvironment yes/'
+    meta:
+      Cat: 1
+      CCI: CCI-000366
+      Group_Title: SRG-OS-000480-GPOS-00229
+      NIST800-53R4: CM-6
+      Rule_ID: SV-270717r1067177_rule
+      STIG_ID: UBTU-24-300031
+      Vul_ID: V-270717
+  {{ end }}
+{{ end }}

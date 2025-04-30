@@ -1,0 +1,48 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_400030 }}
+command:
+  ssh_pubkeyauth_live:
+    title: UBTU-24-400030 | Ubuntu 24.04 LTS must implement smart card logins for multifactor authentication for local and network access to privileged and nonprivileged accounts over SSH.
+    exec: sshd -T | grep -i pubkeyauthentication
+    exit-status: 0
+    stdout:
+    - '/^pubkeyauthentication yes/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000765
+      - CCI-000766
+      Group_Title:
+      - SRG-OS-000105-GPOS-00052
+      - SRG-OS-000106-GPOS-00053
+      - SRG-OS-000107-GPOS-00054
+      - SRG-OS-000108-GPOS-00055
+      NIST800-53R4: IA-2
+      Rule_ID: SV-270722r1067130_rule
+      STIG_ID: UBTU-22-400030
+      Vul_ID: V-270722
+file:
+  ssh_pubkeyauth:
+    title: UBTU-22-400030 | Ubuntu 24.04 LTS must implement smart card logins for multifactor authentication for local and network access to privileged and nonprivileged accounts over SSH.
+    path: /etc/ssh/sshd_config
+    exists: true
+    contents:
+    - '/^PubkeyAuthentication yes/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000765
+      - CCI-000766
+      Group_Title:
+      - SRG-OS-000105-GPOS-00052
+      - SRG-OS-000106-GPOS-00053
+      - SRG-OS-000107-GPOS-00054
+      - SRG-OS-000108-GPOS-00055
+      NIST800-53R4: IA-2
+      Rule_ID: SV-270722r1067130_rule
+      STIG_ID: UBTU-22-400030
+      Vul_ID: V-270722
+  {{ end }}
+{{ end }}

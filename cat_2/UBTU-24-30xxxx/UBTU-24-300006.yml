@@ -1,0 +1,26 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_300006 }}
+command:
+  library_file_perms:
+    title: UBTU-24-300006 | Ubuntu 24.04 LTS library files must have mode "755" or less permissive.
+    exec: |
+      LIB_FILE_PERM=$(find /lib /lib64 /usr/lib -perm /022 -type f -printf '.' | wc -c); \
+      if [ "$LIB_FILE_PERM" -eq 0 ]; \
+      then echo "OK - No files or Directories found"; \
+      else echo "FAIL - Files found"; \
+      fi
+    exit-status: 0
+    stdout:
+      - '/OK - No files or Directories found/'
+    meta:
+      Cat: 2
+      CCI: CCI-001499
+      Group_Title: SRG-OS-000259-GPOS-00100
+      NIST800-53R4: CM-5
+      Rule_ID: SV-270696r1066577_rule
+      STIG_ID: UBTU-24-300006
+      Vul_ID: V-270696
+  {{ end }}
+{{ end }}

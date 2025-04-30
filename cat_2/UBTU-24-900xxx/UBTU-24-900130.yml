@@ -1,0 +1,49 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_900130 }}
+command:
+  setxattr_module_cnf:
+    title: UBTU-24-900130 | Ubuntu 24.04 LTS must generate audit records for any use of the setxattr, fsetxattr, lsetxattr, removexattr, fremovexattr, and lremovexattr system calls. | Config
+    exec: grep setxattr /etc/audit/rules.d/*.rules
+    exit-status: 0
+    stdout:
+    - '/(.*:|)-a always,exit -F arch=b32 -S setxattr,fsetxattr,lsetxattr,removexattr,fremovexattr,lremovexattr -F auid>=1000 -F auid!=(unset|-1) -k perm_mod/'
+    - '/(.*:|)-a always,exit -F arch=b32 -S setxattr,fsetxattr,lsetxattr,removexattr,fremovexattr,lremovexattr -F auid=0 -k perm_mod/'
+    - '/(.*:|)-a always,exit -F arch=b64 -S setxattr,fsetxattr,lsetxattr,removexattr,fremovexattr,lremovexattr -F auid>=1000 -F auid!=(unset|-1) -k perm_mod/'
+    - '/(.*:|)-a always,exit -F arch=b64 -S setxattr,fsetxattr,lsetxattr,removexattr,fremovexattr,lremovexattr -F auid=0 -k perm_mod/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000172
+      Group_Title:
+      - SRG-OS-000064-GPOS-00033
+      - SRG-OS-000462-GPOS-00206
+      NIST800-53R4:
+      - AU-12
+      Rule_ID: SV-270784r1068371_rule
+      STIG_ID: UBTU-24-900130
+      Vul_ID: V-270784
+  setxattr_module_live:
+    title: UBTU-24-900130 | Ubuntu 24.04 LTS must generate audit records for any use of the setxattr, fsetxattr, lsetxattr, removexattr, fremovexattr, and lremovexattr system calls. | Live
+    exec: auditctl -l | grep setxattr
+    exit-status: 0
+    stdout:
+    - '-a always,exit -F arch=b32 -S setxattr,lsetxattr,fsetxattr,removexattr,lremovexattr,fremovexattr -F auid>=1000 -F auid!=-1 -F key=perm_mod'
+    - '-a always,exit -F arch=b32 -S setxattr,lsetxattr,fsetxattr,removexattr,lremovexattr,fremovexattr -F auid=0 -F key=perm_mod'
+    - '-a always,exit -F arch=b64 -S setxattr,lsetxattr,fsetxattr,removexattr,lremovexattr,fremovexattr -F auid>=1000 -F auid!=-1 -F key=perm_mod'
+    - '-a always,exit -F arch=b64 -S setxattr,lsetxattr,fsetxattr,removexattr,lremovexattr,fremovexattr -F auid=0 -F key=perm_mod'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000172
+      Group_Title:
+      - SRG-OS-000064-GPOS-00033
+      - SRG-OS-000462-GPOS-00206
+      NIST800-53R4:
+      - AU-12
+      Rule_ID: SV-270784r1068371_rule
+      STIG_ID: UBTU-24-900130
+      Vul_ID: V-270784
+  {{ end }}
+{{ end }}

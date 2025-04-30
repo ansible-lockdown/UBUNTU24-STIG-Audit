@@ -1,0 +1,35 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_700310 }}
+kernel-param:
+  kernel.randomize_va_space:
+    title: UBTU-24-700310 | Ubuntu 24.04 LTS must implement address space layout randomization to protect its memory from unauthorized code execution.
+    name: kernel.randomize_va_space
+    value: 2
+    meta:
+      Cat: 2
+      CCI: CCI-002824
+      Group_Title: SRG-OS-000433-GPOS-00193
+      NIST800-53R4: SI-16
+      Rule_ID: SV-270772r1066805_rule
+      STIG_ID: UBTU-24-700310
+      Vul_ID: V-270772
+command:
+  aslr_enabled_2:
+    title: UBTU-24-700310 | Ubuntu 24.04 LTS must implement address space layout randomization to protect its memory from unauthorized code execution. | conf
+    exit-status: 0
+    exec: 'grep "kernel\.randomize_va_space" /etc/sysctl.conf /etc/sysctl.d/*'
+    stdout:
+    - '/^*.conf:kernel.randomize_va_space\s*=\s*2/'
+    - '!/^*.conf:kernel.randomize_va_space\s*=\s*[0,1]/'
+    meta:
+      Cat: 2
+      CCI: CCI-002824
+      Group_Title: SRG-OS-000433-GPOS-00193
+      NIST800-53R4: SC-24
+      Rule_ID: SV-270772r1066805_rule
+      STIG_ID: UBTU-24-700310
+      Vul_ID: V-270772
+  {{ end }}
+{{ end }}

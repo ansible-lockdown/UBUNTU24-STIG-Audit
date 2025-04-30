@@ -1,0 +1,30 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_200680 }}
+file:
+  ssh_login_script:
+    title: UBTU-24-200680 | Ubuntu 24.04 LTS must be configured to enforce the acknowledgement of the Standard Mandatory DOD Notice and Consent Banner for all SSH connections.
+    path: /etc/profile.d/ssh_confirm.sh
+    exists: true
+    contents:
+    - '/#!/bin/bash/'
+    - '/if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then/'
+    - '/while true; do/'
+    - '/read -p "/'
+    {{ range .Vars.ubtu24stig_logon_banner }}
+    - '/{{ . }}/'
+    {{ end }}
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000050
+      Group_Title:
+      - SRG-OS-000024-GPOS-00007
+      NIST800-53R4:
+      - AC-8
+      Rule_ID: SV-270694r1066571_rule
+      STIG_ID: UBTU-24-200680
+      Vul_ID: V-270694
+  {{ end }}
+{{ end }}

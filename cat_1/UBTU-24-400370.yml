@@ -1,0 +1,26 @@
+---
+
+{{ if .Vars.ubtu24stig_cat1 }}
+  {{ if .Vars.ubtu24stig_400370 }}
+    {{ if .Vars.ubtu24stig_use_sssd }}
+command:
+  use_mappers:
+    title: UBTU-24-400370 | Ubuntu 24.04 LTS must map the authenticated identity to the user or group account for PKI-based authentication.
+    exec: grep -i use_mappers /etc/pam_pkcs11/pam_pkcs11.conf
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/use_mappers\s*=\s*.*pwent/'
+    meta:
+      Cat: 1
+      CCI: CCI-000187
+      Group_Title: SRG-OS-000068-GPOS-00036
+      NIST800-53R4: IA-5
+      Rule_ID: SV-270736r1066697_rule
+      STIG_ID: UBTU-24-400370
+      Vul_ID: V-270736
+    {{ end }}
+  {{ end }}
+{{ end }}

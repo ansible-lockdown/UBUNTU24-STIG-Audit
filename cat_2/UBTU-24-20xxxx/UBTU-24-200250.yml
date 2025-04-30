@@ -1,0 +1,25 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_200250 }}
+command:
+  Temp_accts:
+    title: UBTU-24-200250 | Ubuntu 24.04 LTS must automatically remove or disable emergency accounts after 72 hours | Manual
+    exec: echo "Manual! Test - Please check temporary accounts"
+    exit-status: 0
+    stdout:
+    - '!Manual'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000016
+      - CCI-001682
+      Group_Title:
+      - SRG-OS-000002-GPOS-00002
+      - SRG-OS-000123-GPOS-00064
+      NIST800-53R4: AC-2
+      Rule_ID: SV-270682r1066535_rule
+      STIG_ID: UBTU-24-200250
+      Vul_ID: V-270682
+  {{ end }}
+{{ end }}

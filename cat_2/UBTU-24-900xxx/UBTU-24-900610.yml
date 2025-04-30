@@ -1,0 +1,41 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_900610 }}
+command:
+  btmp_module_cnf:
+    title: UBTU-24-900610 | Ubuntu 24.04 LTS must generate audit records for the /var/log/btmp file. | Config
+    exec: grep btmp /etc/audit/rules.d/*.rules
+    exit-status: 0
+    stdout:
+    - '/(.*:|)-w /var/log/btmp -p wa -k logins/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000172
+      Group_Title:
+      - SRG-OS-000472-GPOS-00217
+      NIST800-53R4:
+      - AU-12
+      Rule_ID: SV-270812r1066925_rule
+      STIG_ID: UBTU-24-900610
+      Vul_ID: V-270812
+  btmp_module_live:
+    title: UBTU-24-900610 | Ubuntu 24.04 LTS must generate audit records for the /var/log/btmp file. | Live
+    exec: auditctl -l | grep btmp
+    exit-status: 0
+    stdout:
+    - '-w /var/log/btmp -p wa -k logins'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000172
+      Group_Title:
+      - SRG-OS-000472-GPOS-00217
+      NIST800-53R4:
+      - AU-12
+      Rule_ID: SV-270812r1066925_rule
+      STIG_ID: UBTU-24-900610
+      Vul_ID: V-270812
+  {{ end }}
+{{ end }}

@@ -1,0 +1,19 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_100300 }}
+package:
+  ufw_pkg:
+    title: UBTU-24-100300 | Ubuntu 24.04 LTS must have an application firewall installed in order to control remote access methods.
+    name: ufw
+    installed: true
+    meta:
+      Cat: 2
+      CCI: CCI-002314
+      Group_Title: SRG-OS-000297-GPOS-00115
+      NIST800-53R4: AC-17
+      Rule_ID: SV-270654r1067143_rule
+      STIG_ID: UBTU-24-100300
+      Vul_ID: V-270654
+  {{ end }}
+{{ end }}

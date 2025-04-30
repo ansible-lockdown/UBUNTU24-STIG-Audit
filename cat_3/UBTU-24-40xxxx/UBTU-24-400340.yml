@@ -1,0 +1,25 @@
+---
+
+{{ if .Vars.ubtu24stig_cat3 }}
+  {{ if .Vars.ubtu24stig_400340 }}
+command:
+  sssd_offline_cred_cache:
+    title: UBTU-24-400340 | Ubuntu 24.04 LTS must be configured such that Pluggable Authentication Module (PAM) prohibits the use of cached authentications after one day.
+    exec: grep -i '^\s*offline_credentials_expiration' /etc/sssd/sssd.conf /etc/sssd/conf.d/*.conf
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/^offline_credentials_expiration\s*=\s*1/'
+    - '!/^offline_credentials_expiration\s*=\s*[^1]/'
+    meta:
+      Cat: 3
+      CCI: CCI-002007
+      Group_Title: SRG-OS-000383-GPOS-00166
+      NIST800-53R4: IA-5
+      Rule_ID: SV-270734r1066691_rule
+      STIG_ID: UBTU-24-400340
+      Vul_ID: V-270734
+  {{ end }}
+{{ end }}

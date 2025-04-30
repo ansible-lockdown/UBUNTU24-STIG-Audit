@@ -1,0 +1,39 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_900090 }}
+command:
+  mount_module_cnf:
+    title: UBTU-24-900090 | Ubuntu 24.04 LTS must generate audit records for successful/unsuccessful uses of the mount command. | Config
+    exec: grep mount /etc/audit/rules.d/*.rules
+    exit-status: 0
+    stdout:
+    - '/(.*:|)-a always,exit -F path=/usr/bin/mount -F perm=x -F auid>=1000 -F auid!=(unset|-1) -k privileged-mount/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000172
+      Group_Title:
+      - SRG-OS-000064-GPOS-00033
+      NIST800-53R4: AU-12
+      Rule_ID: SV-270780r1066829_rule
+      STIG_ID: UBTU-24-900090
+      Vul_ID: V-270780
+  mount_module_live:
+    title: UBTU-24-900090 | Ubuntu 24.04 LTS must generate audit records for successful/unsuccessful uses of the mount command. | Live
+    exec: auditctl -l | grep mount
+    exit-status: 0
+    stdout:
+    - '-a always,exit -S all -F path=/usr/bin/mount -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged-mount'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000172
+      Group_Title:
+      - SRG-OS-000064-GPOS-00033
+      NIST800-53R4: AU-12
+      Rule_ID: SV-270780r1066829_rule
+      STIG_ID: UBTU-24-900090
+      Vul_ID: V-270780
+  {{ end }}
+{{ end }}

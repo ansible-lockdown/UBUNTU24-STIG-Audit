@@ -1,0 +1,39 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_900750 }}
+command:
+  fdisk_module_cnf:
+    title: UBTU-24-900750 | Ubuntu 24.04 LTS must generate audit records for successful/unsuccessful uses of the fdisk command. | Config
+    exec: grep fdisk /etc/audit/rules.d/*.rules
+    exit-status: 0
+    stdout:
+    - '/(.*:|)-w /usr/sbin/fdisk -p x -k fdisk/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000172
+      Group_Title:
+      - SRG-OS-000477-GPOS-00222
+      NIST800-53R4: AU-12
+      Rule_ID: SV-270815r1066934_rule
+      STIG_ID: UBTU-24-900750
+      Vul_ID: V-270815
+  fdisk_module_live:
+    title: UBTU-24-900750 | Ubuntu 24.04 LTS must generate audit records for successful/unsuccessful uses of the fdisk command. | Live
+    exec: auditctl -l | grep fdisk
+    exit-status: 0
+    stdout:
+    - '-w /usr/sbin/fdisk -p x -k fdisk'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000172
+      Group_Title:
+      - SRG-OS-000477-GPOS-00222
+      NIST800-53R4: AU-12
+      Rule_ID: SV-270815r1066934_rule
+      STIG_ID: UBTU-24-900750
+      Vul_ID: V-270815
+  {{ end }}
+{{ end }}

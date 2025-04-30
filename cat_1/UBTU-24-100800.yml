@@ -1,0 +1,25 @@
+---
+
+{{ if .Vars.ubtu24stig_cat1 }}
+  {{ if .Vars.ubtu24stig_100800 }}
+package:
+  ssh_present:
+    title: UBTU-24-100800 | Ubuntu 24.04 LTS must have SSH installed.
+    name: ssh
+    installed: true
+    meta:
+      Cat: 1
+      CCI:
+      - CCI-002418
+      - CCI-002420
+      - CCI-002422
+      Group_Title:
+      - SRG-OS-000423-GPOS-00187
+      - SRG-OS-000425-GPOS-00189
+      - SRG-OS-000426-GPOS-00190
+      NIST800-53R4: SC-8
+      Rule_ID: SV-270665r1067133_rule
+      STIG_ID: UBTU-24-100800
+      Vul_ID: V-270665
+  {{ end }}
+{{ end }}

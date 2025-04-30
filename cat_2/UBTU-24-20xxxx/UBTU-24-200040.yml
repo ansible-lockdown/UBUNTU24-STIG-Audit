@@ -1,0 +1,26 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_200040 }}
+    {{ if .Vars.ubtu24stig_gui }}
+command:
+  gsettings_lock_enabled:
+    title: UBTU-24-200040 | Ubuntu 24.04 LTS must retain a user's session lock until that user reestablishes access using established identification and authentication procedures.
+    exec: gsettings get org.gnome.desktop.screensaver lock-enabled
+    exit-status: 0
+    stdout:
+    - '/^true/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000056
+      Group_Title:
+      - SRG-OS-000028-GPOS-00009
+      NIST800-53R4:
+      - AC-11
+      Rule_ID: SV-270679r1066526_rule
+      STIG_ID: UBTU-24-200040
+      Vul_ID: V-270679
+    {{ end }}
+  {{ end }}
+{{ end }}

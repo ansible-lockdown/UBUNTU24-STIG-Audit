@@ -1,0 +1,26 @@
+---
+
+{{ if .Vars.ubtu24stig_cat1 }}
+  {{ if .Vars.ubtu24stig_300025 }}
+    {{ if .Vars.ubtu24stig_gui }}
+command:
+  dconf_logout:
+    title: UBTU-24-300025 | Ubuntu 24.04 LTS must disable the x86 Ctrl-Alt-Delete key sequence if a graphical user interface is installed.
+    exec: gsettings get org.gnome.settings-daemon.plugins.media-keys logout | grep '@as \[\]'
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '@as []'
+    meta:
+      Cat: 1
+      CCI: CCI-000366
+      Group_Title: SRG-OS-000480-GPOS-00227
+      NIST800-53R4: CM-6
+      Rule_ID: SV-270711r1066622_rule
+      STIG_ID: UBTU-24-300025
+      Vul_ID: V-270711
+    {{ end }}
+  {{ end }}
+{{ end }}

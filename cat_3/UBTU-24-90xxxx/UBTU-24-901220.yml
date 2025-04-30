@@ -1,0 +1,24 @@
+---
+
+{{ if .Vars.ubtu24stig_cat3 }}
+  {{ if .Vars.ubtu24stig_901220 }}
+command:
+  timezone:
+    title: UBTU-24-901220 | Ubuntu 24.04 LTS must record time stamps for audit records that can be mapped to Coordinated Universal Time (UTC) or Greenwich Mean Time (GMT).
+    exec: timedatectl status | grep -i "time zone"
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/^\s*Time zone: Etc\/UTC \(UTC, \+0000\)/'
+    meta:
+      Cat: 3
+      CCI: CCI-001890
+      Group_Title: SRG-OS-000359-GPOS-00146
+      NIST800-53R4: NA
+      Rule_ID: SV-270820r1066949_rule
+      STIG_ID: UBTU-24-901220
+      Vul_ID: V-270820
+  {{ end }}
+{{ end }}

@@ -1,0 +1,39 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_900220 }}
+command:
+  aa_parser_module_cnf:
+    title: UBTU-24-900220 | Ubuntu 24.04 LTS must generate audit records for successful/unsuccessful uses of the apparmor_parser command. | Config
+    exec: grep apparmor_parser /etc/audit/rules.d/*.rules
+    exit-status: 0
+    stdout:
+    - '/(.*:|)-a always,exit -F path=/sbin/apparmor_parser -F perm=x -F auid>=1000 -F auid!=(unset|-1) -k perm_chng/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000172
+      Group_Title:
+      - SRG-OS-000064-GPOS-00033
+      NIST800-53R4: AU-12
+      Rule_ID: SV-270793r1066868_rule
+      STIG_ID: UBTU-24-900220
+      Vul_ID: V-270793
+  aa_parser_module_live:
+    title: UBTU-24-900220 | Ubuntu 24.04 LTS must generate audit records for successful/unsuccessful uses of the apparmor_parser command. | Live
+    exec: auditctl -l | grep apparmor_parser
+    exit-status: 0
+    stdout:
+    - '-a always,exit -S all -F path=/sbin/apparmor_parser -F perm=x -F auid>=1000 -F auid!=-1 -F key=perm_chng'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000172
+      Group_Title:
+      - SRG-OS-000064-GPOS-00033
+      NIST800-53R4: AU-12
+      Rule_ID: SV-270793r1066868_rule
+      STIG_ID: UBTU-24-900220
+      Vul_ID: V-270793
+  {{ end }}
+{{ end }}

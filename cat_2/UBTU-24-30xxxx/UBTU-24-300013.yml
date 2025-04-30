@@ -1,0 +1,26 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_300013 }}
+command:
+  system_cmd_files_group:
+    title: UBTU-24-300013 | Ubuntu 24.04 LTS must have system commands group-owned by "root" or a system account.
+    exec: |
+      SYS_CMD_FILE_GROUP=$(find /bin /sbin /usr/bin /usr/sbin /usr/local/bin /usr/local/sbin -type f -uid +1000  -printf '.' | wc -c); \
+      if [ "$SYS_CMD_FILE_GROUP" -eq 0 ]; \
+      then echo "OK - No files or Directories found"; \
+      else echo "FAIL - Files found"; \
+      fi
+    exit-status: 0
+    stdout:
+      - '/OK - No files or Directories found/'
+    meta:
+      Cat: 2
+      CCI: CCI-001499
+      Group_Title: SRG-OS-000259-GPOS-00100
+      NIST800-53R4: CM-5
+      Rule_ID: SV-270703r1066598_rule
+      STIG_ID: UBTU-24-300013
+      Vul_ID: V-270703
+  {{ end }}
+{{ end }}

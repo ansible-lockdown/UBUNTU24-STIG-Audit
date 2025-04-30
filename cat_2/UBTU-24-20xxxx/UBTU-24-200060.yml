@@ -1,0 +1,27 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_200060 }}
+command:
+  TMOUT_setting:
+    title: UBTU-24-200060 | Ubuntu 24.04 LTS must automatically terminate a user session after inactivity timeouts have expired.
+    exec: grep -E "\bTMOUT=[0-9]+" /etc/bash.bashrc /etc/profile.d/*
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/^.*:TMOUT=600/'
+    - '!/^.*:TMOUT=([1-6][0-9]{2,}|[1-9][0-9]|[0-9])$/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-002361
+      Group_Title:
+      - SRG-OS-000279-GPOS-00109
+      NIST800-53R4: AC-12
+      Rule_ID: SV-270680r1066529_rule
+      STIG_ID: UBTU-24-200060
+      Vul_ID: V-270680
+  {{ end }}
+{{ end }}

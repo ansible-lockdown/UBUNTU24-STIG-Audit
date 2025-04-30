@@ -1,0 +1,22 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_400220 }}
+file:
+  common-password-sha:
+    title: UBTU-24-611045 | Ubuntu 24.04 LTS must store only encrypted representations of passwords.
+    path: /etc/pam.d/common-password
+    exists: true
+    contents:
+    - '/^password.*pam_unix.so.*{{ .Vars.ubtu24stig_passwd_hash_algo }}/'
+    meta:
+      Cat: 2
+      CCI: NA
+      Group_Title:
+      - SRG-OS-000073-GPOS-00041
+      NIST800-53R4: NA
+      Rule_ID: SV-270725r1066664_rule
+      STIG_ID: UBTU-24-400220
+      Vul_ID: V-270725
+  {{ end }}
+{{ end }}

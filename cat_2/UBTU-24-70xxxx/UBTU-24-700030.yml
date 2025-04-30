@@ -1,0 +1,20 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_700030 }}
+file:
+  journaldctl_perms:
+    title: UBTU-24-700030 | Ubuntu 24.04 LTS must be configured so that the "journalctl" command is not accessible by unauthorized users.
+    path: /usr/bin/journalctl
+    exists: true
+    mode: '0740'
+    meta:
+      Cat: 2
+      CCI: CCI-001312
+      Group_Title: SRG-OS-000205-GPOS-00083
+      NIST800-53R4: SI-11
+      Rule_ID: SV-270758r1066763_rule
+      STIG_ID: UBTU-24-700030
+      Vul_ID: V-270758
+  {{ end }}
+{{ end }}

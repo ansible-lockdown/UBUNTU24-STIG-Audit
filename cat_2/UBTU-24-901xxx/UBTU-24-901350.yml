@@ -1,0 +1,27 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_901350 }}
+file:
+  auditd_log_group:
+    title: UBTU-24-901350 | Ubuntu 24.04 LTS must permit only authorized groups ownership of the audit log files.
+    path: /etc/audit/auditd.conf
+    exists: true
+    contents:
+    - '/^log_group\s*=\s*{{ .Vars.ubtu24stig_auditd_log_group }}/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000162
+      - CCI-000163
+      - CCI-000164
+      Group_Title:
+      - SRG-OS-000057-GPOS-00027
+      - SRG-OS-000058-GPOS-00028
+      - SRG-OS-000059-GPOS-00029
+      NIST800-53R4: AU-9
+      Rule_ID: SV-270829r1066976_rule
+      STIG_ID: UBTU-24-901350
+      Vul_ID: V-270829
+  {{ end }}
+{{ end }}

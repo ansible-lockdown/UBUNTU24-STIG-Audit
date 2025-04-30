@@ -1,0 +1,45 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_900340 }}
+command:
+  init_module_cnf:
+    title: UBTU-24-900340 | Ubuntu 24.04 LTS must generate audit records for successful/unsuccessful uses of the init_module and finit_module syscalls. | Config
+    exec: grep init /etc/audit/rules.d/*.rules
+    exit-status: 0
+    stdout:
+    - '/(.*:|)-a always,exit -F arch=b32 -S init_module,finit_module -F auid>=1000 -F auid!=(unset|-1) -k module_chng/'
+    - '/(.*:|)-a always,exit -F arch=b64 -S init_module,finit_module -F auid>=1000 -F auid!=(unset|-1) -k module_chng/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000172
+      Group_Title:
+      - SRG-OS-000064-GPOS-00033
+      - SRG-OS-000471-GPOS-00216
+      NIST800-53R4:
+      - AU-12
+      Rule_ID: SV-270805r1068384_rule
+      STIG_ID: UBTU-24-900340
+      Vul_ID: V-270805
+  init_module_live:
+    title: UBTU-24-900340 | Ubuntu 24.04 LTS must generate audit records for successful/unsuccessful uses of the init_module and finit_module syscalls. | Live
+    exec: auditctl -l | grep init
+    exit-status: 0
+    stdout:
+    - '-a always,exit -F arch=b32 -S init_module,finit_module -F auid>=1000 -F auid!=-1 -F key=module_chng'
+    - '-a always,exit -F arch=b64 -S init_module,finit_module -F auid>=1000 -F auid!=-1 -F key=module_chng'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000172
+      Group_Title:
+      - SRG-OS-000064-GPOS-00033
+      - SRG-OS-000477-GPOS-00222
+      NIST800-53R4:
+      - AU-12
+      Rule_ID: SV-270805r1068384_rule
+      STIG_ID: UBTU-24-900340
+      Vul_ID: V-270805
+  {{ end }}
+{{ end }}

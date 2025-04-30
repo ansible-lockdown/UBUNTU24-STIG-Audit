@@ -1,0 +1,27 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_200650 }}
+    {{ if .Vars.ubtu24stig_gui }}
+file:
+  banner_enable_dconf_defaults:
+    title: UBTU-24-200650 | Ubuntu 24.04 LTS must enable the graphical user logon banner to display the Standard Mandatory DOD Notice and Consent Banner before granting local access to the system via a graphical user logon.
+    path: /etc/gdm3/greeter.dconf-defaults
+    exists: true
+    contents:
+    - '/^\[org/gnome/login-screen\]/'
+    - '/^banner-message-enable=true/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000048
+      Group_Title:
+      - SRG-OS-000023-GPOS-00006
+      NIST800-53R4:
+      - AC-8
+      Rule_ID: SV-270692r1066565_rule
+      STIG_ID: UBTU-24-200650
+      Vul_ID: V-270692
+    {{ end }}
+  {{ end }}
+{{ end }}

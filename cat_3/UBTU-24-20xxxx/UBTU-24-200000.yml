@@ -1,0 +1,24 @@
+---
+
+{{ if .Vars.ubtu24stig_cat3 }}
+  {{ if .Vars.ubtu24stig_200000 }}
+command:
+  maxlogins_security:
+    title: UBTU-24-200000 | Ubuntu 24.04 LTS must limit the number of concurrent sessions to 10 for all accounts and/or account types.
+    exec: grep -r -s '^[^#].*maxlogins' /etc/security/limits.conf /etc/security/limits.d/*.conf
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/^\* hard maxlogins (10|[1-9])/'
+    meta:
+      Cat: 3
+      CCI: CCI-000054
+      Group_Title: SRG-OS-000027-GPOS-00008
+      NIST800-53R4: AC-10
+      Rule_ID: SV-270677r1066520_rule
+      STIG_ID: UBTU-24-200000
+      Vul_ID: V-270677
+  {{ end }}
+{{ end }}

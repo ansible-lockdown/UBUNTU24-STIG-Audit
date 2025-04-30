@@ -1,0 +1,24 @@
+---
+
+{{ if .Vars.ubtu24stig_cat1 }}
+  {{ if .Vars.ubtu24stig_300027 }}
+command:
+  black_shadow_passwd:
+    title: UBTU-24-300027 | Ubuntu 24.04 LTS must not have accounts configured with blank or null passwords.
+    exec: "awk -F: '!$2 {print $1}' /etc/shadow"
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '!/.*/'
+    meta:
+      Cat: 1
+      CCI: CCI-000366
+      Group_Title: SRG-OS-000480-GPOS-00227
+      NIST800-53R4: CM-6
+      Rule_ID: SV-270713r1066628_rule
+      STIG_ID: UBTU-24-300027
+      Vul_ID: V-270713
+  {{ end }}
+{{ end }}

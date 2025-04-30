@@ -1,0 +1,23 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_300030 }}
+file:
+  umask_login_defs:
+    title: UBTU-24-300030 | Ubuntu 24.04 LTS default filesystem permissions must be defined in such a way that all authenticated users can read and modify only their own files.
+    path: /etc/login.defs
+    exists: true
+    contents:
+    - '/^UMASK 077$/'
+    - '!/^UMASK 0[1-6]{2;}'
+    meta:
+      Cat: 2
+      CCI: CCI-000366
+      Group_Title:
+      - SRG-OS-000480-GPOS-00228
+      NIST800-53R4: CM-6
+      Rule_ID: SV-270716r1066637_rule
+      STIG_ID: UBTU-24-300030
+      Vul_ID: V-270716
+  {{ end }}
+{{ end }}

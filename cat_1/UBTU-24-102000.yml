@@ -1,0 +1,22 @@
+---
+
+{{ if .Vars.ubtu24stig_cat1 }}
+  {{ if .Vars.ubtu24stig_102000 }}
+file:
+  grub_superuser:
+    title: UBTU-24-102000 | Ubuntu 24.04 LTS when booted must require authentication upon booting into single-user and maintenance modes.
+    path: /etc/grub.d/40_custom
+    exists: true
+    contents:
+    - '/set superusers="root"/'
+    - '/password_pbkdf2 root {{ .Vars.ubtu24stig_bootloader_password_hash }}/'
+    meta:
+      Cat: 1
+      CCI: CCI-000213
+      Group_Title: SRG-OS-000080-GPOS-00048
+      NIST800-53R4: AC-3
+      Rule_ID: SV-270675r1066514_rule
+      STIG_ID: UBTU-24-102000
+      Vul_ID: V-270675
+  {{ end }}
+{{ end }}

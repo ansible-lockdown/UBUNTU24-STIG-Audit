@@ -1,0 +1,41 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_700300 }}
+command:
+  NX_setting:
+    title: UBTU-24-700300 | Ubuntu 24.04 LTS must implement nonexecutable data to protect its memory from unauthorized code execution. | check NX setting
+    exec: dmesg | grep -i "execute disable"
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - 'NX (Execute Disable) protection: active'
+    meta:
+      Cat: 2
+      CCI: CCI-002824
+      Group_Title: SRG-OS-000433-GPOS-00192
+      NIST800-53R4: SI-16
+      Rule_ID: SV-270771r1066802_rule
+      STIG_ID: UBTU-24-700300
+      Vul_ID: V-270771
+  NX_cpu_capable:
+    title: UBTU-24-700300 | Ubuntu 24.04 LTS must implement nonexecutable data to protect its memory from unauthorized code execution. | CPU capable
+    exec: grep flags /proc/cpuinfo | grep -o nx | sort -u
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/nx/'
+    meta:
+      Cat: 2
+      CCI: CCI-002824
+      Group_Title: SRG-OS-000433-GPOS-00192
+      NIST800-53R4: SI-16
+      RRule_ID: SV-270771r1066802_rule
+      STIG_ID: UBTU-24-700300
+      Vul_ID: V-270771
+  {{ end }}
+{{ end }}

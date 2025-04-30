@@ -1,0 +1,23 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_900040 }}
+command:
+  auditd_conf_files_perms:
+    title: UBTU-24-900040 | Ubuntu 24.04 LTS must be configured so that audit configuration files are not write-accessible by unauthorized users.
+    exec: find /etc/audit/ -type f -perm -640 ! -perm 640
+    exit-status: 0
+    stdout:
+    - '!/.*/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000171
+      Group_Title:
+      - SRG-OS-000063-GPOS-00032
+      NIST800-53R4: AU-12
+      Rule_ID: SV-270775r1068369_rule
+      STIG_ID: UBTU-24-900040
+      Vul_ID: V-270775
+  {{ end }}
+{{ end }}

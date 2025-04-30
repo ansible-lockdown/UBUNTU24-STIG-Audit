@@ -1,0 +1,41 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_900600 }}
+command:
+  utmp_module_cnf:
+    title: UBTU-24-900600 | Ubuntu 24.04 LTS must generate audit records for the /var/log/utmp file. | Config
+    exec: grep utmp /etc/audit/rules.d/*.rules
+    exit-status: 0
+    stdout:
+    - '/(.*:|)-w /var/run/utmp -p wa -k logins/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000172
+      Group_Title:
+      - SRG-OS-000472-GPOS-00217
+      NIST800-53R4:
+      - AU-12
+      Rule_ID: SV-270811r1066922_rule
+      STIG_ID: UBTU-24-900600
+      Vul_ID: V-270811
+  utmp_module_live:
+    title: UBTU-24-900600 | Ubuntu 24.04 LTS must generate audit records for the /var/log/utmp file. | Live
+    exec: auditctl -l | grep utmp
+    exit-status: 0
+    stdout:
+    - '-w /var/run/utmp -p wa -k logins'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000172
+      Group_Title:
+      - SRG-OS-000472-GPOS-00217
+      NIST800-53R4:
+      - AU-12
+      Rule_ID: SV-270811r1066922_rule
+      STIG_ID: UBTU-24-900600
+      Vul_ID: V-270811
+  {{ end }}
+{{ end }}

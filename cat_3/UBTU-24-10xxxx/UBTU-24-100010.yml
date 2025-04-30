@@ -1,0 +1,19 @@
+---
+
+{{ if .Vars.ubtu24stig_cat3 }}
+  {{ if .Vars.ubtu24stig_100010 }}
+package:
+  timesyncd_not_installed:
+    title: UBTU-24-100010 | Ubuntu 24.04 LTS must not have the "systemd-timesyncd" package installed.
+    name: systemd-timesyncd
+    installed: false
+    meta:
+      Cat: 3
+      CCI: CCI-000366
+      Group_Title: SRG-OS-000480-GPOS-00227
+      NIST800-53R4: CM-6
+      Rule_ID: SV-270645r1068357_rule
+      STIG_ID: UBTU-24-100010
+      Vul_ID: V-270645
+  {{ end }}
+{{ end }}

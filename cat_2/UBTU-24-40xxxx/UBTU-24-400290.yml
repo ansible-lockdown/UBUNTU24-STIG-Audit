@@ -1,0 +1,23 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_400290 }}
+file:
+  passwd_difok:
+    title: UBTU-24-400290 | Ubuntu 24.04 LTS must require the change of at least eight characters when passwords are changed.
+    path: /etc/security/pwquality.conf
+    exists: true
+    contents:
+    - '/^difok\s*=\s*([8-9]|[1-5][0-9])/'
+    meta:
+      Cat: 2
+      CCI: NA
+      Group_Title:
+      - SRG-OS-000072-GPOS-00040
+      - SRG-OS-000730-GPOS-00190
+      NIST800-53R4: NA
+      Rule_ID: SV-270729r1066676_rule
+      STIG_ID: UBTU-24-400290
+      Vul_ID: V-270729
+  {{ end }}
+{{ end }}

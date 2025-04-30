@@ -1,0 +1,45 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_900150 }}
+command:
+  chmod_module_cnf:
+    title: UBTU-24-900150 | Ubuntu 24.04 LTS must generate audit records for successful/unsuccessful uses of the chmod, fchmod, and fchmodat system calls. | Config
+    exec: grep chmod /etc/audit/rules.d/*.rules
+    exit-status: 0
+    stdout:
+    - '/(.*:|)-a always,exit -F arch=b32 -S chmod,fchmod,fchmodat -F auid>=1000 -F auid!=(unset|-1) -k perm_chng/'
+    - '/(.*:|)-a always,exit -F arch=b64 -S chmod,fchmod,fchmodat -F auid>=1000 -F auid!=(unset|-1) -k perm_chng/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000172
+      Group_Title:
+      - SRG-OS-000064-GPOS-00033
+      - SRG-OS-000462-GPOS-00206
+      NIST800-53R4:
+      - AU-12
+      Rule_ID: SV-270786r1068375_rule
+      STIG_ID: UBTU-24-900150
+      Vul_ID: V-270786
+  chmod_module_live:
+    title: UBTU-24-900150 | Ubuntu 24.04 LTS must generate audit records for successful/unsuccessful uses of the chmod, fchmod, and fchmodat system calls. | Live
+    exec: auditctl -l | grep chmod
+    exit-status: 0
+    stdout:
+    - '-a always,exit -F arch=b32 -S chmod,fchmod,fchmodat -F auid>=1000 -F auid!=-1 -F key=perm_chng'
+    - '-a always,exit -F arch=b64 -S chmod,fchmod,fchmodat -F auid>=1000 -F auid!=-1 -F key=perm_chng'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000172
+      Group_Title:
+      - SRG-OS-000064-GPOS-00033
+      - SRG-OS-000462-GPOS-00206
+      NIST800-53R4:
+      - AU-12
+      Rule_ID: SV-270786r1068375_rule
+      STIG_ID: UBTU-24-900150
+      Vul_ID: V-270786
+  {{ end }}
+{{ end }}

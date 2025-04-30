@@ -1,0 +1,23 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_200260 }}
+file:
+  user_inactive:
+    title: UBTU-24-200260 | Ubuntu 24.04 LTS must disable account identifiers (individuals, groups, roles, and devices) after 35 days of inactivity.
+    path: /etc/default/useradd
+    exists: true
+    contents:
+    - '/^INACTIVE\s*=\s*(3[0-5]|[1-2][0-9])$/'
+    - '!INACTIVE\s*=\s*-1'
+    meta:
+      Cat: 2
+      CCI: NA
+      Group_Title:
+      - SRG-OS-000118-GPOS-00060
+      NIST800-53R4: NA
+      Rule_ID: SV-270683r1066538_rule
+      STIG_ID: UBTU-24-200260
+      Vul_ID: V-270683
+  {{ end }}
+{{ end }}

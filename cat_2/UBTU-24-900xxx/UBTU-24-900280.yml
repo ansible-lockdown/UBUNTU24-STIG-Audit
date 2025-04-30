@@ -1,0 +1,39 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_900280 }}
+command:
+  unix_update_module_cnf:
+    title: UBTU-24-900280 | Ubuntu 24.04 LTS must generate audit records for successful/unsuccessful uses of the unix_update command. | Config
+    exec: grep unix_update /etc/audit/rules.d/*.rules
+    exit-status: 0
+    stdout:
+    - '/(.*:|)-a always,exit -F path=/sbin/unix_update -F perm=x -F auid>=1000 -F auid!=(unset|-1) -k privileged-unix-update/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000172
+      Group_Title:
+      - SRG-OS-000064-GPOS-00033
+      NIST800-53R4: AU-12
+      Rule_ID: SV-270799r1066886_rule
+      STIG_ID: UBTU-24-900280
+      Vul_ID: V-270799
+  unix_update_module_live:
+    title: UBTU-24-900280 | Ubuntu 24.04 LTS must generate audit records for successful/unsuccessful uses of the unix_update command. | Live
+    exec: auditctl -l | grep unix_update
+    exit-status: 0
+    stdout:
+    - '-a always,exit -S all -F path=/sbin/unix_update -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged-unix-update'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000172
+      Group_Title:
+      - SRG-OS-000064-GPOS-00033
+      NIST800-53R4: AU-12
+      Rule_ID: SV-270799r1066886_rule
+      STIG_ID: UBTU-24-900280
+      Vul_ID: V-270799
+  {{ end }}
+{{ end }}

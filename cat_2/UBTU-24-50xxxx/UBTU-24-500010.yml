@@ -1,0 +1,47 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_500010 }}
+command:
+  sudo.log_module_cnf:
+    title: UBTU-24-500010 | Ubuntu 24.04 LTS must generate audit records for privileged activities, nonlocal maintenance, diagnostic sessions and other system-level access. | Config
+    exec: grep sudo.log /etc/audit/rules.d/*.rules
+    exit-status: 0
+    stdout:
+    - '/(.*:|)-w /var/log/sudo.log -p wa -k maintenance/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000172
+      - CCI-002884
+      Group_Title:
+      - SRG-OS-000392-GPOS-00172
+      - SRG-OS-000471-GPOS-00215
+      NIST800-53R4:
+      - AU-12
+      - MA-4
+      Rule_ID: SV-270740r1066709_rule
+      STIG_ID: UBTU-24-500010
+      Vul_ID: V-270740
+  sudo.log_module_live:
+    title: UBTU-24-500010 | Ubuntu 24.04 LTS must generate audit records for privileged activities, nonlocal maintenance, diagnostic sessions and other system-level access. | Live
+    exec: auditctl -l | grep sudo.log
+    exit-status: 0
+    stdout:
+    - '-w /var/log/sudo.log -p wa -k maintenance'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000172
+      - CCI-002884
+      Group_Title:
+      - SRG-OS-000392-GPOS-00172
+      - SRG-OS-000471-GPOS-00215
+      NIST800-53R4:
+      - AU-12
+      - MA-4
+      Rule_ID: SV-270740r1066709_rule
+      STIG_ID: UBTU-24-500010
+      Vul_ID: V-270740
+  {{ end }}
+{{ end }}

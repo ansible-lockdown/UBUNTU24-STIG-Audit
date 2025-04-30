@@ -1,0 +1,42 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_500050 }}
+file:
+  sshd_pam_conf:
+    title: UBTU-24-500050 | Ubuntu 24.04 LTS must use strong authenticators in establishing nonlocal maintenance and diagnostic sessions. | conf
+    path: /etc/ssh/sshd_config
+    exists: true
+    contents:
+    - '/^UsePAM yes/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000877
+      Group_Title:
+      - SRG-OS-000125-GPOS-00065
+      NIST800-53R4:
+      - MA-4
+      Rule_ID: SV-270741r1066712_rule
+      STIG_ID: UBTU-24-500050
+      Vul_ID: V-270741
+command:
+  sshd_pam_running:
+    title: UBTU-24-500050 | Ubuntu 24.04 LTS must use strong authenticators in establishing nonlocal maintenance and diagnostic sessions. | running
+    exec: sshd -T | grep -i usepam
+    exit-status: 0
+    stdout:
+    - '/^usepam yes/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000877
+      Group_Title:
+      - SRG-OS-000125-GPOS-00065
+      NIST800-53R4:
+      - MA-4
+      Rule_ID: SV-270741r1066712_rule
+      STIG_ID: UBTU-24-500050
+      Vul_ID: V-270741
+  {{ end }}
+{{ end }}

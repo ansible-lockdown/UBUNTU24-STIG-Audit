@@ -1,0 +1,21 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_700120 }}
+file:
+  var_log_dir_perms:
+    title: UBTU-24-700120 | Ubuntu 24.04 LTS must configure the /var/log directory to have mode "0755" or less permissive.
+    path: /var/log
+    exists: true
+    filetype: directory
+    mode: {le: 755}
+    meta:
+      Cat: 2
+      CCI: CCI-001314
+      Group_Title: SRG-OS-000206-GPOS-00084
+      NIST800-53R4: SI-11
+      Rule_ID: SV-270767r1066790_rule
+      STIG_ID: UBTU-24-700120
+      Vul_ID: V-270767
+  {{ end }}
+{{ end }}

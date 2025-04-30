@@ -1,0 +1,26 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_700140 }}
+file:
+  var_log_syslog_owner:
+    title: UBTU-24-700140 | Ubuntu 24.04 LTS must configure /var/log/syslog file to be owned by syslog.
+    path: /var/log/syslog
+    exists:
+      or:
+      - true
+      - false
+    owner:
+      or:
+      - root
+      - syslog
+    meta:
+      Cat: 2
+      CCI: CCI-001314
+      Group_Title: SRG-OS-000206-GPOS-00084
+      NIST800-53R4: SI-11
+      Rule_ID: SV-270769r1066796_rule
+      STIG_ID: UBTU-24-700140
+      Vul_ID: V-270769
+  {{ end }}
+{{ end }}

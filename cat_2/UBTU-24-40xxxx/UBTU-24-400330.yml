@@ -1,0 +1,23 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_400330 }}
+file:
+  passwd_special:
+    title: UBTU-24-400330 | Ubuntu 24.04 LTS must enforce password complexity by requiring that at least one special character be used.
+    path: /etc/security/pwquality.conf
+    exists: true
+    contents:
+    - '/^ocredit\s*=\s*-1$/'
+    meta:
+      Cat: 2
+      CCI: NA
+      Group_Title:
+      - SRG-OS-000266-GPOS-00101
+      - SRG-OS-000730-GPOS-00190
+      NIST800-53R4: NA
+      Rule_ID: SV-270733r1066688_rule
+      STIG_ID: UBTU-24-400330
+      Vul_ID: V-270733
+  {{ end }}
+{{ end }}

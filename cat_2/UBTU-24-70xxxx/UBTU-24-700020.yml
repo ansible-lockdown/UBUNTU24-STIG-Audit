@@ -1,0 +1,45 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_700020 }}
+command:
+  journal_file_perms:
+    title: UBTU-24-700020 | Ubuntu 24.04 LTS must generate system journal entries without revealing information that could be exploited by adversaries.
+    exec: |
+      JOURNAL_FILE_PERM=$(find /run/log/journal /var/log/journal -type d -perm /137 -printf '.' | wc -c); \
+      if [ "$JOURNAL_FILE_PERM" -eq 0 ]; \
+      then echo "OK - No files or Directories found"; \
+      else echo "FAIL - Files found"; \
+      fi
+    exit-status: 0
+    stdout:
+      - '/OK - No files or Directories found/'
+    meta:
+      Cat: 2
+      CCI: CCI-001312
+      Group_Title: SRG-OS-000205-GPOS-00083
+      NIST800-53R4: SI-11
+      Rule_ID: SV-270757r1066760_rule
+      STIG_ID: UBTU-24-700020
+      Vul_ID: V-270757
+file:
+  journal_file_perms_conf:
+    title: UBTU-24-700020 | Ubuntu 24.04 LTS must generate system journal entries without revealing information that could be exploited by adversaries.
+    path: /usr/lib/tmpfiles.d/systemd.conf
+    exists: true
+    contents:
+    - 'z /run/log/journal 2640 root systemd-journal - -'
+    - 'Z /run/log/journal/%m ~2640 root systemd-journal - -'
+    - 'z /var/log/journal 2640 root systemd-journal - -'
+    - 'z /var/log/journal/%m 2640 root systemd-journal - -'
+    - 'z /var/log/journal/%m/system.journal 0640 root systemd-journal - -'
+    meta:
+      Cat: 2
+      CCI: CCI-001312
+      Group_Title: SRG-OS-000205-GPOS-00083
+      NIST800-53R4: SI-11
+      Rule_ID: SV-270757r1066760_rule
+      STIG_ID: UBTU-24-700020
+      Vul_ID: V-270757
+  {{ end }}
+{{ end }}

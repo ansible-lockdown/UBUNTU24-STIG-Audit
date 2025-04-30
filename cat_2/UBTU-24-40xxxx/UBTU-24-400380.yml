@@ -1,0 +1,29 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_400380 }}
+    {{ if .Vars.ubtu24stig_use_sssd }}
+command:
+  crl_pki_required:
+    title: UBTU-24-400380 | Ubuntu 24.04 LTS for PKI-based authentication, must implement a local cache of revocation data in case of the inability to access revocation information via the network.
+    exec: grep cert_policy /etc/pam_pkcs11/pam_pkcs11.conf | grep -E -- 'crl_auto|crl_offline'
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/^cert_policy = .*crl_(auto|offline);/'
+    - '!/^cert_policy\s*=\s*((?!crl_(auto|offline)).)*$/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000000
+      Group_Title:
+      - SRG-OS-000384-GPOS-00167
+      NIST800-53R4: NA
+      Rule_ID: SV-270738r1066703_rule
+      STIG_ID: UBTU-24-400380
+      Vul_ID: V-270738
+    {{ end }}
+  {{ end }}
+{{ end }}

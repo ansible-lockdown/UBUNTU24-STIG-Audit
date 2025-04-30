@@ -1,0 +1,19 @@
+---
+
+{{ if .Vars.ubtu24stig_cat1 }}
+  {{ if .Vars.ubtu24stig_100040 }}
+package:
+  rsh-server_absent:
+    title: UBTU-24-100040 | Ubuntu 24.04 LTS must not have the "rsh-server" package installed.
+    name: rsh-server
+    installed: false
+    meta:
+      Cat: 1
+      CCI: CCI-000381
+      Group_Title: SRG-OS-000095-GPOS-00049
+      NIST800-53R4: CM-7
+      Rule_ID: SV-270648r1066433_rule
+      STIG_ID: UBTU-24-100040
+      Vul_ID: V-270648
+  {{ end }}
+{{ end }}

@@ -1,0 +1,27 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_100500 }}
+package:
+  apparmor:
+    title: UBTU-24-100500 | Ubuntu 24.04 LTS must have AppArmor installed.
+    name: apparmor
+    installed: true
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-001764
+      - CCI-001774
+      - CCI-002165
+      Group_Title:
+      - SRG-OS-000312-GPOS-00124
+      - SRG-OS-000368-GPOS-00154
+      - SRG-OS-000370-GPOS-00155
+      NIST800-53R4:
+      - CM-7
+      - AC-3
+      Rule_ID: SV-270659r1066466_rule
+      STIG_ID: UBTU-24-100500
+      Vul_ID: V-270659
+  {{ end }}
+{{ end }}

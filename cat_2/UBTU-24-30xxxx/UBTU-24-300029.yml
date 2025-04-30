@@ -1,0 +1,41 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_300029 }}
+command:
+  journal_module_cnf:
+    title: UBTU-24-300029 | Ubuntu 24.04 LTS must generate audit records for all events that affect the systemd journal files. | Config
+    exec: grep journal /etc/audit/rules.d/*.rules
+    exit-status: 0
+    stdout:
+    - '/(.*:|)-w /var/log/journal -p wa -k systemd_journal/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000366
+      Group_Title:
+      - SRG-OS-000480-GPOS-00227
+      NIST800-53R4:
+      - CM-6
+      Rule_ID: SV-270715r1066634_rule
+      STIG_ID: UBTU-24-300029
+      Vul_ID: V-270715
+  journal_module_live:
+    title: UBTU-24-300029 | Ubuntu 24.04 LTS must generate audit records for all events that affect the systemd journal files. | Live
+    exec: auditctl -l | grep journal
+    exit-status: 0
+    stdout:
+    - '-w /var/log/journal -p wa -k systemd_journal'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000366
+      Group_Title:
+      - SRG-OS-000480-GPOS-00227
+      NIST800-53R4:
+      - CM-6
+      Rule_ID: SV-270715r1066634_rule
+      STIG_ID: UBTU-24-300029
+      Vul_ID: V-270715
+  {{ end }}
+{{ end }}

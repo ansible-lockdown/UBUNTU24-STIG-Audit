@@ -1,0 +1,30 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_400375 }}
+    {{ if .Vars.ubtu24stig_use_sssd }}
+command:
+  ca_pki_required:
+    title: UBTU-24-400375 | Ubuntu 24.04 LTS, for PKI-based authentication, Privileged Access Management (PAM) must validate certificates by constructing a certification path (which includes status information) to an accepted trust anchor.
+    exec: grep use_pkcs11_module /etc/pam_pkcs11/pam_pkcs11.conf | awk '/pkcs11_module opensc {/,/}/' /etc/pam_pkcs11/pam_pkcs11.conf | grep cert_policy | grep ca
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/^cert_policy = .*ca;/'
+    - '!/^cert_policy\s*=\s*((?!ca).)*$/;'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000185
+      Group_Title:
+      - SRG-OS-000066-GPOS-00034
+      - SRG-OS-000775-GPOS-00230
+      NIST800-53R4: IA-5
+      Rule_ID: SV-270737r1067178_rule
+      STIG_ID: UBTU-24-400375
+      Vul_ID: V-270737
+    {{ end }}
+  {{ end }}
+{{ end }}

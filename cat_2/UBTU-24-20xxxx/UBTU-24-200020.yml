@@ -1,0 +1,28 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_200020 }}
+    {{ if .Vars.ubtu24stig_gui }}
+command:
+  gsettings_lock_inactivity:
+    title: UBTU-24-200020 | Ubuntu 24.04 LTS must initiate a graphical session lock after 10 minutes of inactivity.
+    exec: gsettings get org.gnome.desktop.screensaver lock-enabled && gsettings get org.gnome.desktop.screensaver lock-delay && gsettings get org.gnome.desktop.session idle-delay
+    exit-status: 0
+    stdout:
+    - '/^true/'
+    - '/^uint32 0/'
+    - '/^uint32 600'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000057
+      Group_Title:
+      - SRG-OS-000029-GPOS-00010
+      NIST800-53R4:
+      - AC-11
+      Rule_ID: SV-270678r1066523_rule
+      STIG_ID: UBTU-24-200020
+      Vul_ID: V-270678
+    {{ end }}
+  {{ end }}
+{{ end }}

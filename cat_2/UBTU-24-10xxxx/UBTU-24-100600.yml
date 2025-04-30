@@ -1,0 +1,21 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_use_sssd }}
+    {{ if .Vars.ubtu24stig_100600 }}
+package:
+  pam_pwquality_pkg:
+    title: UBTU-24-100600 | Ubuntu 24.04 LTS must have the "libpam-pwquality" package installed.
+    name: libpam-pwquality
+    installed: true
+    meta:
+      Cat: 2
+      CCI: CCI-000366
+      Group_Title: SRG-OS-000480-GPOS-00225
+      NIST800-53R4: CM-6
+      Rule_ID: SV-270661r1067175_rule
+      STIG_ID: UBTU-24-100600
+      Vul_ID: V-270661
+    {{ end }}
+  {{ end }}
+{{ end }}

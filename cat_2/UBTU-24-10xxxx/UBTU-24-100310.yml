@@ -1,0 +1,20 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_100310 }}
+service:
+  ufw_service:
+    title: UBTU-24-100310 | Ubuntu 24.04 LTS must enable and run the Uncomplicated Firewall (ufw).
+    name: ufw
+    running: true
+    enabled: true
+    meta:
+      Cat: 2
+      CCI: CCI-002314
+      Group_Title: SRG-OS-000297-GPOS-00115
+      NIST800-53R4: AC-17
+      Rule_ID: SV-270655r1067145_rule
+      STIG_ID: UBTU-24-100310
+      Vul_ID: V-270655
+  {{ end }}
+{{ end }}

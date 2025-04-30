@@ -1,0 +1,24 @@
+---
+
+{{ if .Vars.ubtu24stig_cat1 }}
+  {{ if .Vars.ubtu24stig_600130 }}
+command:
+  sudo_group_users:
+    title: UBTU-24-600130 | Ubuntu 24.04 LTS must ensure only users who need access to security functions are part of sudo group.
+    exec: "grep sudo /etc/group | awk -F: '{print $NF}'"
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - ''
+    meta:
+      Cat: 1
+      CCI: CCI-001084
+      Group_Title: SRG-OS-000134-GPOS-00068
+      NIST800-53R4: SC-3
+      Rule_ID: SV-270748r1066733_rule
+      STIG_ID: UBTU-24-600130
+      Vul_ID: V-270748
+  {{ end }}
+{{ end }}

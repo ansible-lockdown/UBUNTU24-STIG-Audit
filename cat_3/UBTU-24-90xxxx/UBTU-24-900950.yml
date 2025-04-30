@@ -1,0 +1,19 @@
+---
+
+{{ if .Vars.ubtu24stig_cat3 }}
+  {{ if .Vars.ubtu24stig_900950 }}
+command:
+  crontab_offload_audit_logs:
+    title: UBTU-24-900950 | Ubuntu 24.04 LTS must have a crontab script running weekly to offload audit events of standalone systems.
+    exec: 'grep -i audit /etc/cron.weekly/*'
+    exit-status: 0
+    meta:
+      Cat: 3
+      CCI: CCI-001851
+      Group_Title: SRG-OS-000479-GPOS-00224
+      NIST800-53R4: AU-4
+      Rule_ID: SV-270817r1066940_rule
+      STIG_ID: UBTU-24-900950
+      Vul_ID: V-270817
+  {{ end }}
+{{ end }}

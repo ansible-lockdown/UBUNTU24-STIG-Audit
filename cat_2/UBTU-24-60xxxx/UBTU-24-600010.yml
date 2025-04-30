@@ -1,0 +1,24 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_600010 }}
+file:
+  sshd_aliveinterval:
+    title: UBTU-24-600010 | Ubuntu 24.04 LTS must immediately terminate all network connections associated with SSH traffic at the end of the session or after 10 minutes of inactivity.
+    path: /etc/ssh/sshd_config
+    exists: true
+    contents:
+    - '/^ClientAliveInterval (600|[1-5][0-9]{2,}|[3-9][0-9])$/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-001133
+      Group_Title:
+      - SRG-OS-000163-GPOS-00072
+      NIST800-53R4:
+      - SC-10
+      Rule_ID: SV-270743r1066718_rule
+      STIG_ID: UBTU-24-600010
+      Vul_ID: V-270743
+  {{ end }}
+{{ end }}

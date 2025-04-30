@@ -1,0 +1,28 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_use_sssd }}
+    {{ if .Vars.ubtu24stig_100650 }}
+package:
+{{- range mkSlice "sssd" "libpam-sss" "libnss-sss"}}
+  {{ . }}:
+    title: UBTU-24-100650 | Ubuntu 24.04 LTS must have the "SSSD" package installed | package {{ . }}.
+    name:
+    - {{ . }}
+    installed: true
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000765
+      - CCI-000766
+      Group_Title:
+      - SRG-OS-000705-GPOS-00150
+      NIST800-53R4:
+      - IA-2
+      Rule_ID: SV-270662r1067156_rule
+      STIG_ID: UBTU-24-100650
+      Vul_ID: V-270662
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}

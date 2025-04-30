@@ -1,0 +1,37 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_102010 }}
+file:
+  grub_audit_enabled:
+    title: UBTU-24-102010 | Ubuntu 24.04 LTS must initiate session audits at system startup.
+    path:  /boot/grub/grub.cfg
+    exists: true
+    contents:
+    - '/^\s*linux\s*\/vmlinuz-.*root=/dev/mapper.*audit=1.*/'
+    - '!/^\s*linux\s*\/vmlinuz-.*root=/dev/mapper.*audit=0.*/'
+    meta:
+      Cat: 2
+      CCI: CCI-001464
+      Group_Title: SRG-OS-000254-GPOS-00095
+      NIST800-53R4: AU-14
+      Rule_ID: SV-270676r1068360_rule
+      STIG_ID: UBTU-24-102010
+      Vul_ID: V-270676
+  default_grub_audit:
+    title: UBTU-24-102010 | Ubuntu 24.04 LTS must initiate session audits at system startup.
+    path:  /etc/default/grub
+    exists: true
+    contents:
+    - '/^GRUB_CMDLINE_LINUX=".*audit=1.*"/'
+    - '!/^GRUB_CMDLINE_LINUX=".*audit=(0|[2-9]$|[1-9]\d+)"/'
+    meta:
+      Cat: 2
+      CCI: CCI-001464
+      Group_Title: SRG-OS-000254-GPOS-00095
+      NIST800-53R4: AU-14
+      Rule_ID: SV-270676r1068360_rule
+      STIG_ID: UBTU-24-102010
+      Vul_ID: V-270676
+  {{ end }}
+{{ end }}

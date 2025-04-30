@@ -1,0 +1,37 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_100200 }}
+package:
+  rsyslog_installed:
+    title: UBTU-24-100200 | Ubuntu 24.04 LTS must be configured to preserve log records from failure events.
+    name: rsyslog
+    installed: true
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-001665
+      Group_Title:
+      - SRG-OS-000269-GPOS-00103
+      NIST800-53R4: SC-24
+      Rule_ID: SV-270653r1067141_rule
+      STIG_ID: UBTU-24-100200
+      Vul_ID: V-270653
+service:
+  rsyslog_running:
+    title: UBTU-24-100200 | Ubuntu 24.04 LTS must be configured to preserve log records from failure events.
+    name: rsyslog
+    running: true
+    enabled: true
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-001665
+      Group_Title:
+      - SRG-OS-000269-GPOS-00103
+      NIST800-53R4: SC-24
+      Rule_ID: SV-270653r1067141_rule
+      STIG_ID: UBTU-24-100200
+      Vul_ID: V-270653
+  {{ end }}
+{{ end }}

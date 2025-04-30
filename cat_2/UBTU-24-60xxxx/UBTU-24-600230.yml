@@ -1,0 +1,27 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_600230 }}
+command:
+  wireless_disabled:
+    title: UBTU-24-600230 | Ubuntu 24.04 LTS must disable all wireless network adapters.
+    exec: if [ `find /sys/class/net/*/ -type d -name wireless -printf '.' | wc -c` -eq 0 ]; then echo "PASS - No Wireless adapters"; else echo "Manual Test - Plese check wireless adapters are disabled"; fi
+    exit-status:
+      or:
+      - 0
+      - 2
+    stdout:
+    - 'PASS'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-002418
+      Group_Title:
+      - SRG-OS-000481-GPOS-00481
+      NIST800-53R4:
+      - SC-8
+      Rule_ID: SV-270755r1066754_rule
+      STIG_ID: UBTU-24-600230
+      Vul_ID: V-2270755
+  {{ end }}
+{{ end }}

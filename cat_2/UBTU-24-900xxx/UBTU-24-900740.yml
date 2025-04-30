@@ -1,0 +1,39 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_900740 }}
+command:
+  kmod_module_cnf:
+    title: UBTU-24-900740 | Ubuntu 24.04 LTS must generate audit records for successful/unsuccessful uses of the kmod command. | Config
+    exec: grep kmod /etc/audit/rules.d/*.rules
+    exit-status: 0
+    stdout:
+    - '/(.*:|)-w /bin/kmod -p x -k modules/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000172
+      Group_Title:
+      - SRG-OS-000477-GPOS-00222
+      NIST800-53R4: AU-12
+      Rule_ID: SV-270814r1066931_rule
+      STIG_ID: UBTU-24-900740
+      Vul_ID: V-270814
+  kmod_module_live:
+    title: UBTU-24-900740 | Ubuntu 24.04 LTS must generate audit records for successful/unsuccessful uses of the kmod command. | Live
+    exec: auditctl -l | grep kmod
+    exit-status: 0
+    stdout:
+    - '-w /bin/kmod -p x -k module'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000172
+      Group_Title:
+      - SRG-OS-000477-GPOS-00222
+      NIST800-53R4: AU-12
+      Rule_ID: SV-270814r1066931_rule
+      STIG_ID: UBTU-24-900740
+      Vul_ID: V-270814
+  {{ end }}
+{{ end }}

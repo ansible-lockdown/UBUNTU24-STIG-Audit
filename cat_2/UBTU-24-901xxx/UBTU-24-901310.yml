@@ -1,0 +1,31 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_901310 }}
+command:
+  audit_logs_owner:
+    title: UBTU-24-901310 | Ubuntu 24.04 LTS must be configured to permit only authorized users ownership of the audit log files.
+    exec: stat -c "%U" /var/log/audit/* | grep -v root
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+      - '!/^.*/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000162
+      - CCI-000163
+      - CCI-000164
+      Group_Title:
+      - SRG-OS-000057-GPOS-00027
+      - SRG-OS-000058-GPOS-00028
+      - SRG-OS-000059-GPOS-00029
+      NIST800-53R4: AU-9
+      Rule_ID: SV-270828r1066973_rule
+      STIG_ID: UBTU-24-901310
+      Vul_ID: V-270828
+  {{ end }}
+{{ end }}
+

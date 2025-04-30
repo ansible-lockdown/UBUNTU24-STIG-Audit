@@ -1,0 +1,26 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_901270 }}
+command:
+  system_cmd_dirs_owner:
+    title: UBTU-24-901270 | Ubuntu 24.04 LTS must have directories that contain system commands owned by "root".
+    exec: |
+      SYS_CMD_DIR_OWNER=$(find /bin /sbin /usr/bin /usr/sbin /usr/local/bin /usr/local/sbin ! -user root -type d -printf '.' | wc -c); \
+      if [ "$SYS_CMD_DIR_OWNER" -eq 0 ]; \
+      then echo "OK - No files or Directories found"; \
+      else echo "FAIL - Files found"; \
+      fi
+    exit-status: 0
+    stdout:
+      - '/OK - No files or Directories found/'
+    meta:
+      Cat: 2
+      CCI: CCI-001495
+      Group_Title: SRG-OS-000258-GPOS-00099
+      NIST800-53R4: AU-9
+      Rule_ID: SV-270825r1066964_rule
+      STIG_ID: UBTU-24-901270
+      Vul_ID: V-270825
+  {{ end }}
+{{ end }}

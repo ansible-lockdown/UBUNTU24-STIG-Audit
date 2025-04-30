@@ -1,0 +1,29 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_400020 }}
+    {{ if .Vars.ubtu24stig_uses_smartcard }}
+file:
+  common-password-pkcs:
+    title: UBTU-24-400020 | Ubuntu 24.04 LTS must implement smart card logins for multifactor authentication for local and network access to privileged and nonprivileged accounts.
+    path: /etc/pam.d/common-auth
+    exists: true
+    contents:
+    - '/^auth\s*[success=2 default=ignore]\s*pam_pkcs11.so/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000765
+      - CCI-000766
+      Group_Title:
+      - SRG-OS-000105-GPOS-00052
+      - SRG-OS-000106-GPOS-00053
+      - SRG-OS-000107-GPOS-00054
+      - SRG-OS-000108-GPOS-00055
+      NIST800-53R4: IA-2
+      Rule_ID: SV-270721r1066652_rule
+      STIG_ID: UBTU-24-611045
+      Vul_ID: V-270721
+    {{ end }}
+  {{ end }}
+{{ end }}

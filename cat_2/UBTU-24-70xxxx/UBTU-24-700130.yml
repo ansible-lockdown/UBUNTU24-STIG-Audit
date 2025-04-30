@@ -1,0 +1,26 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_700130 }}
+file:
+  var_log_syslog_group:
+    title: UBTU-24-700130 | Ubuntu 24.04 LTS must configure the /var/log/syslog file to be group-owned by adm.
+    path: /var/log/syslog
+    exists:
+      or:
+      - true
+      - false
+    group:
+      or:
+      - root
+      - adm
+    meta:
+      Cat: 2
+      CCI: CCI-001314
+      Group_Title: SRG-OS-000206-GPOS-00084
+      NIST800-53R4: SI-11
+      Rule_ID: SV-270769r1066796_rule
+      STIG_ID: UBTU-24-700130
+      Vul_ID: V-270769
+  {{ end }}
+{{ end }}

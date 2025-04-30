@@ -1,0 +1,42 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_100840 }}
+file:
+  sshd_kex_conf:
+    title: UBTU-24-100840 | Ubuntu 24.04 LTS SSH server must be configured to use only FIPS 140-3 validated key exchange algorithms. | conf
+    path: /etc/ssh/sshd_config
+    exists: true
+    contents:
+    - '/^KexAlgorithms {{ .Vars.ubtu24stig_sshd_config_kex }}/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000068
+      Group_Title:
+      - SRG-OS-000033-GPOS-00014
+      NIST800-53R4:
+      - AC-17
+      Rule_ID: SV-270669r1067112_rule
+      STIG_ID: UBTU-24-100840
+      Vul_ID: V-270669
+command:
+  sshd_kex_running:
+    title: UBTU-24-100840 | Ubuntu 24.04 LTS SSH server must be configured to use only FIPS 140-3 validated key exchange algorithms. | running
+    exec: sshd -T | grep -i KexAlgorithms
+    exit-status: 0
+    stdout:
+    - '/^kexalgorithms {{ .Vars.ubtu24stig_sshd_config_kex }}/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000068
+      Group_Title:
+      - SRG-OS-000033-GPOS-00014
+      NIST800-53R4:
+      - AC-17
+      Rule_ID: SV-270669r1067112_rule
+      STIG_ID: UBTU-24-100840
+      Vul_ID: V-270669
+  {{ end }}
+{{ end }}

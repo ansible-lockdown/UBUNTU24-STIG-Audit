@@ -1,0 +1,23 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_101000 }}
+package:
+  vlock:
+    title: UBTU-24-101000 | Ubuntu 24.04 LTS must allow users to directly initiate a session lock for all connection types.
+    name: vlock
+    installed: true
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000057
+      - CCI-000060
+      Group_Title:
+      - SRG-OS-000030-GPOS-00011
+      - SRG-OS-000031-GPOS-00012
+      NIST800-53R4: AC-11
+      Rule_ID: SV-270674r1067167_rule
+      STIG_ID: UBTU-24-101000
+      Vul_ID: V-270674
+  {{ end }}
+{{ end }}

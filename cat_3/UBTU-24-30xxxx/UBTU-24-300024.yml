@@ -1,0 +1,21 @@
+---
+
+{{ if .Vars.ubtu24stig_cat3 }}
+  {{ if .Vars.ubtu24stig_300024 }}
+file:
+  pam_login_lastlog:
+    title: UBTU-24-300024 | Ubuntu 24.04 LTS must display the date and time of the last successful account logon upon logon.
+    path: /etc/pam.d/login
+    exists: true
+    contents:
+    - '/^session\s+required\s+pam_lastlog.so.*showfailed/'
+    meta:
+      Cat: 3
+      CCI: CCI-000366
+      Group_Title: SRG-OS-000480-GPOS-00227
+      NIST800-53R4: CM-6
+      Rule_ID: SV-270710r1066619_rule
+      STIG_ID: UBTU-24-300024
+      Vul_ID: V-270710
+  {{ end }}
+{{ end }}

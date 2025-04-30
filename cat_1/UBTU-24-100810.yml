@@ -1,0 +1,26 @@
+---
+
+{{ if .Vars.ubtu24stig_cat1 }}
+  {{ if .Vars.ubtu24stig_100810 }}
+service:
+  ssh_enabled:
+    title: UBTU-24-100810 | Ubuntu 24.04 LTS must use SSH to protect the confidentiality and integrity of transmitted information.
+    name: ssh
+    running: true
+    enabled: true
+    meta:
+      Cat: 1
+      CCI:
+      - CCI-002418
+      - CCI-002420
+      - CCI-002422
+      Group_Title:
+      - SRG-OS-000423-GPOS-00187
+      - SRG-OS-000423-GPOS-00189
+      - SRG-OS-000423-GPOS-00190
+      NIST800-53R4: SC-8
+      Rule_ID: SV-260524r958908_rule
+      STIG_ID: UBTU-24-100810
+      Vul_ID: V-260524
+  {{ end }}
+{{ end }}

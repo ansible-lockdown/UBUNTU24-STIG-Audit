@@ -1,0 +1,29 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_901300 }}
+command:
+  audit_logs_perms:
+    title: UBTU-24-901300 | Ubuntu 24.04 LTS must be configured so that audit log files are not read or write-accessible by unauthorized users.
+    exec: stat -c "%a" /var/log/audit/*
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/(4|6)00/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000162
+      - CCI-000163
+      Group_Title:
+      - SRG-OS-000057-GPOS-00027
+      - SRG-OS-000058-GPOS-00028
+      NIST800-53R4: AU-9
+      Rule_ID: SV-270827r1066970_rule
+      STIG_ID: UBTU-24-901300
+      Vul_ID: V-270827
+  {{ end }}
+{{ end }}
+

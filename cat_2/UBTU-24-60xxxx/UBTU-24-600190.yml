@@ -1,0 +1,35 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_600190 }}
+kernel-param:
+  net.ipv4.tcp_syncookies:
+    title: UBTU-24-600190 | Ubuntu 24.04 LTS must be configured to use TCP syncookies.
+    name: net.ipv4.tcp_syncookies
+    value: 1
+    meta:
+      Cat: 2
+      CCI: CCI-002824
+      Group_Title: SRG-OS-000142-GPOS-00071
+      NIST800-53R4: SC-5
+      Rule_ID: SV-270753r1066748_rule
+      STIG_ID: UBTU-24-600190
+      Vul_ID: V-270753
+command:
+  syncookies_enabled_1:
+    title: UBTU-24-600190 | Ubuntu 24.04 LTS must be configured to use TCP syncookies. | conf
+    exit-status: 0
+    exec: 'grep "net\.ipv4\.tcp_syncookies" /etc/sysctl.conf /etc/sysctl.d/*'
+    stdout:
+    - '/^*.conf:net.ipv4.tcp_syncookies\s*=\s*1/'
+    - '!/^*.conf:net.ipv4.tcp_syncookies\s*=\s*0/'
+    meta:
+      Cat: 2
+      CCI: CCI-002824
+      Group_Title: SRG-OS-000142-GPOS-00071
+      NIST800-53R4: SC-5
+      Rule_ID: SV-270753r1066748_rule
+      STIG_ID: UBTU-24-600190
+      Vul_ID: V-270753
+  {{ end }}
+{{ end }}

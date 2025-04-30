@@ -1,0 +1,23 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_901380 }}
+file:
+  auditd_log_dir_perms:
+    title: UBTU-24-901380 | Ubuntu 24.04 LTS must be configured so that the audit log directory is not write-accessible by unauthorized users.
+    path: /var/log/audit
+    exists: true
+    mode:
+      le: 750
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000164
+      Group_Title:
+      - SRG-OS-000059-GPOS-00029
+      NIST800-53R4: AU-9
+      Rule_ID: SV-270830r1068397_rule
+      STIG_ID: UBTU-24-901380
+      Vul_ID: V-270830
+  {{ end }}
+{{ end }}

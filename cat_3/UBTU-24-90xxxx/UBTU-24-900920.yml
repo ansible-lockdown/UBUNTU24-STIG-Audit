@@ -1,0 +1,22 @@
+---
+
+{{ if .Vars.ubtu24stig_900920 }}
+command:
+  audit_disk_space_adequate_manual:
+    title: UBTU-24-900920 | Ubuntu 24.04 LTS must allocate audit record storage capacity to store at least one week's worth of audit records, when audit records are not immediately sent to a central audit record storage facility. | Manual
+    exec: echo -e "MANUAL - Ensure the disk space is sufficient for 1 week of audit logs\n`df -h {{ .Vars.ubtu24stig_audit_log_filesystem }}`"
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '!/^.*/'
+    meta:
+      Cat: 2
+      CCI: CCI-001849
+      Group_Title: SRG-OS-000341-GPOS-00132
+      NIST800-53R4: AU-4
+      Rule_ID: SV-270816r1066937_rule
+      STIG_ID: UBTU-24-900920
+      Vul_ID: V-270816
+{{ end }}

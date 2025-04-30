@@ -1,0 +1,21 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_100910 }}
+package:
+  libpam-pkcs11:
+    title: UBTU-24-100910 |  Ubuntu 24.04 LTS must accept Personal Identity Verification (PIV) credentials managed through the Privileged Access Management (PAM) framework
+    name: libpam-pkcs11
+    installed: true
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-001953
+      Group_Title:
+      -  SRG-OS-000376-GPOS-00161
+      NIST800-53R4: IA-2
+      Rule_ID: SV-270673r1067164_rule
+      STIG_ID: UBTU-24-100910
+      Vul_ID: V-270673
+  {{ end }}
+{{ end }}
