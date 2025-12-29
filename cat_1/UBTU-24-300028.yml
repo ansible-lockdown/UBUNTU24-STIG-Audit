@@ -5,7 +5,7 @@
 command:
   nullok_commn-password:
     title: UBTU-24-300028 | Ubuntu 24.04 LTS must not allow accounts configured in Pluggable Authentication Modules (PAM) with blank or null passwords.
-    exec: grep nullok /etc/pam.d/common-password
+    exec: grep nullok /etc/pam.d/common-password  /etc/pam.d/common-auth
     exit-status:
       or:
       - 0
@@ -17,7 +17,7 @@ command:
       CCI: CCI-000366
       Group_Title: SRG-OS-000480-GPOS-00227
       NIST800-53R4: CM-6
-      Rule_ID: SV-270714r1067119_rule
+      Rule_ID: SV-270714r1134808_rule
       STIG_ID: UBTU-24-300028
       Vul_ID: V-270714
   {{ end }}

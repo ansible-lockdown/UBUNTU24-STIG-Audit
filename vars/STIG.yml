@@ -37,6 +37,7 @@ ubtu24stig_300031: true
 ubtu24stig_400370: true
 ubtu24stig_600030: true
 ubtu24stig_600130: true
+ubtu24stig_700040: true
 
 #### CAT 2
 ## 10XXXX
@@ -140,7 +141,6 @@ ubtu24stig_600230: true
 ubtu24stig_700010: true
 ubtu24stig_700020: true
 ubtu24stig_700030: true
-ubtu24stig_700040: true
 ubtu24stig_700050: true
 ubtu24stig_700060: true
 ubtu24stig_700070: true
