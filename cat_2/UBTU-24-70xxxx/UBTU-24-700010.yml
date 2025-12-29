@@ -6,7 +6,7 @@ command:
   var_log_file_perms:
     title: UBTU-24-700010 | Ubuntu 24.04 LTS must generate error messages that provide information necessary for corrective actions without revealing information that could be exploited by adversaries.
     exec: |
-      LOG_FILE_PERM=$(find /var/log -perm /137 ! -name '*[bw]tmp' ! -name '*lastlog' ! -name 'history' ! -name 'eipp.log.xz' -type f | wc -l); \
+      LOG_FILE_PERM=$(find /var/log -perm /137 ! -name '*[bw]tmp' ! -name '*lastlog' ! -name 'history.log' ! -name 'eipp.log.xz' -type f | wc -l); \
       if [ "$LOG_FILE_PERM" -eq 0 ]; \
       then echo "OK - No files or Directories found"; \
       else echo "FAIL - Files found"; \
