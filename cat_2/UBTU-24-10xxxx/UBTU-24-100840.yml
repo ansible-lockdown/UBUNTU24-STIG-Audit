@@ -17,7 +17,7 @@ file:
       - SRG-OS-000033-GPOS-00014
       NIST800-53R4:
       - AC-17
-      Rule_ID: SV-270669r1067112_rule
+      Rule_ID: SV-270669r1134804_rule
       STIG_ID: UBTU-24-100840
       Vul_ID: V-270669
 command:
@@ -35,7 +35,7 @@ command:
       - SRG-OS-000033-GPOS-00014
       NIST800-53R4:
       - AC-17
-      Rule_ID: SV-270669r1067112_rule
+      Rule_ID: SV-270669r1134804_rule
       STIG_ID: UBTU-24-100840
       Vul_ID: V-270669
   {{ end }}

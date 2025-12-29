@@ -1,0 +1,29 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_200041 }}
+    {{ if .Vars.ubtu24stig_gui }}
+command:
+  gsettings_autorun_override:
+    title: UBTU-24-200041 | Ubuntu 24.04 LTS must prevent a user from overriding the disabling of the graphical user interface autorun function.
+    exec: gsettings writable org.gnome.desktop.media-handling autorun-never
+    exit-status: 0
+    stdout:
+    - '/^false/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000778
+      - CCI-001958
+      Group_Title:
+      - SRG-OS-000114-GPOS-00059
+      - SRG-OS-000378-GPOS-00163
+      - SRG-OS-000480-GPOS-00227
+      NIST800-53R4:
+      - IA-3
+      Rule_ID: SV-274872r1107297_rule
+      STIG_ID: UBTU-24-200041
+      Vul_ID: V-274872
+    {{ end }}
+  {{ end }}
+{{ end }}

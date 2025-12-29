@@ -1,0 +1,26 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_200043 }}
+    {{ if .Vars.ubtu24stig_gui }}
+command:
+  gsettings_blank_only_screensaver:
+    title: UBTU-24-200043 | Ubuntu 24.04 LTS must conceal, via the session lock, information previously visible on the display with a publicly viewable image.
+    exec: gsettings writable org.gnome.desktop.screensaver picture-uri
+    exit-status: 0
+    stdout:
+    - '/^false/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000060
+      Group_Title:
+      - SRG-OS-000031-GPOS-00012
+      NIST800-53R4:
+      - AC-11
+      Rule_ID: SV-274871r1107302_rule
+      STIG_ID: UBTU-24-200043
+      Vul_ID: V-274871
+    {{ end }}
+  {{ end }}
+{{ end }}

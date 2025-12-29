@@ -6,7 +6,7 @@ command:
   library_files_owner:
     title: UBTU-24-300007 | Ubuntu 24.04 LTS library files must be owned by "root".
     exec: |
-      LIB_FILE_OWNER=$(find /lib /usr/lib /lib64 ! -user root -type f -printf '.' | wc -c); \
+      LIB_FILE_OWNER=$(find /lib /usr/lib /lib64 /usr/lib64 ! -user root -type f -printf '.' | wc -c); \
       if [ "$LIB_FILE_OWNER" -eq 0 ]; \
       then echo "OK - No files or Directories found"; \
       else echo "FAIL - Files found"; \
@@ -19,7 +19,7 @@ command:
       CCI: CCI-001499
       Group_Title: SRG-OS-000259-GPOS-00100
       NIST800-53R4: CM-5
-      Rule_ID: SV-270697r1066580_rule
+      Rule_ID: SV-270697r1107308_rule
       STIG_ID: UBTU-24-300007
       Vul_ID: V-270697
   {{ end }}

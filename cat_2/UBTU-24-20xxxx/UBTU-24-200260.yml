@@ -15,6 +15,7 @@ file:
       CCI: NA
       Group_Title:
       - SRG-OS-000118-GPOS-00060
+      - SRG-OS-000590-GPOS-00110
       NIST800-53R4: NA
       Rule_ID: SV-270683r1066538_rule
       STIG_ID: UBTU-24-200260

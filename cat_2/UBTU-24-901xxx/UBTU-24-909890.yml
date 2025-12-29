@@ -1,10 +1,10 @@
 ---
 
 {{ if .Vars.ubtu24stig_cat2 }}
-  {{ if .Vars.ubtu24stig_901890 }}
+  {{ if .Vars.ubtu24stig_909890 }}
 command:
   audit_bin_crypto:
-    title: UBTU-24-901890 | Ubuntu 24.04 LTS must use cryptographic mechanisms to protect the integrity of audit tools.
+    title: UBTU-24-909890 | Ubuntu 24.04 LTS must use cryptographic mechanisms to protect the integrity of audit tools.
     exec: grep -E '(\/sbin\/(audit|au))' /etc/aide/aide.conf
     exit-status: 0
     stdout:
@@ -13,7 +13,6 @@ command:
     - '/sbin/ausearch p+i+n+u+g+s+b+acl+xattrs+sha512'
     - '/sbin/aureport p+i+n+u+g+s+b+acl+xattrs+sha512'
     - '/sbin/autrace p+i+n+u+g+s+b+acl+xattrs+sha512'
-    - '/sbin/audispd p+i+n+u+g+s+b+acl+xattrs+sha512'
     - '/sbin/augenrules p+i+n+u+g+s+b+acl+xattrs+sha512'
     meta:
       Cat: 2
@@ -23,8 +22,8 @@ command:
       - SRG-OS-000278-GPOS-00108
       NIST800-53R4:
       - AU-9
-      Rule_ID: SV-270831r1066982_rule
-      STIG_ID: UBTU-24-901890
+      Rule_ID: SV-270831r1135002_rule
+      STIG_ID: UBTU-24-909890
       Vul_ID: V-270831
   {{ end }}
 {{ end }}

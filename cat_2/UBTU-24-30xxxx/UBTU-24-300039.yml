@@ -18,10 +18,11 @@ command:
       CCI:
       - CCI-001958
       Group_Title:
+      - SRG-OS-000690-GPOS-00140
       - SRG-OS-000378-GPOS-00163
       NIST800-53R4:
       - IA-3
-      Rule_ID: SV-270718r1067128_rule
+      Rule_ID: SV-270718r1134811_rule
       STIG_ID: UBTU-24-300039
       Vul_ID: V-270718
   {{ end }}

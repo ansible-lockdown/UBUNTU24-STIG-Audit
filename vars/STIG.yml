@@ -1,5 +1,5 @@
 ## metadata for Audit benchmark
-benchmark_version: '1.1.0'
+benchmark_version: '1.3.0'
 benchmark: UBUNTU24-STIG
 
 # turn the categories on/off
@@ -9,7 +9,6 @@ ubtu24stig_cat3: true
 
 # Some tests may need to scan every filesystem or have an impact on a system
 # these may need be scheduled to minimise impact
-run_heavy_tests: true
 timeout_ms: 120000
 
 # If using the supplied graphical interface
@@ -68,10 +67,14 @@ ubtu24stig_102010: true
 ## 20XXXX
 ubtu24stig_200020: true
 ubtu24stig_200040: true
+ubtu24stig_200041: true
+ubtu24stig_200042: true
+ubtu24stig_200043: true
 ubtu24stig_200060: true
 ubtu24stig_200090: true
 ubtu24stig_200250: true
 ubtu24stig_200260: true
+ubtu24stig_200270: true
 ubtu24stig_200280: true
 ubtu24stig_200290: true
 ubtu24stig_200300: true
@@ -212,10 +215,10 @@ ubtu24stig_901300: true
 ubtu24stig_901310: true
 ubtu24stig_901350: true
 ubtu24stig_901380: true
-ubtu24stig_901890: true
 
 ## 909XXX
 ubtu24stig_909000: true
+ubtu24stig_909890: true
 
 #### CAT 3
 ubtu24stig_100010: true

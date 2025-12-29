@@ -5,7 +5,7 @@
 command:
   audit_bin_owner:
     title: UBTU-24-901240 | Ubuntu 24.04 LTS must configure audit tools to be owned by root.
-    exec: AUDIT_BINS_OWNER="OK - No files or Directories found"; for audit_bin in /sbin/audispd-zos-remote /sbin/auditctl /sbin/aureport /sbin/ausearch /sbin/autrace /sbin/auditd /sbin/augenrules; do find $audit_bin ! -user root -exec export AUDIT_BINS_OWNER="FAIL - Audit Binaries Permissions" {} \;; done; echo $AUDIT_BINS_OWNER
+    exec: AUDIT_BINS_OWNER="OK - No files or Directories found"; for audit_bin in /sbin/auditctl /sbin/aureport /sbin/ausearch /sbin/autrace /sbin/auditd /sbin/augenrules; do find $audit_bin ! -user root -exec export AUDIT_BINS_OWNER="FAIL - Audit Binaries Permissions" {} \;; done; echo $AUDIT_BINS_OWNER
     exit-status: 0
     stdout:
       - '/OK - No files or Directories found/'
@@ -18,7 +18,7 @@ command:
       - SRG-OS-000257-GPOS-00098
       - SRG-OS-000256-GPOS-00097
       NIST800-53R4: AU-9
-      Rule_ID: SV-270822r1068392_rule
+      Rule_ID: SV-270822r1134821_rule
       STIG_ID: UBTU-24-901240
       Vul_ID: V-270822
   {{ end }}

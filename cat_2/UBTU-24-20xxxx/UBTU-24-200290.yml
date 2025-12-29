@@ -30,7 +30,7 @@ command:
       NIST800-53R4:
       - AC-2
       - AU-12
-      Rule_ID: SV-270685r1066544_rul
+      Rule_ID: SV-270685r1066544_rule
       STIG_ID: UBTU-24-200290
       Vul_ID: V-270685
   group_module_live:
@@ -60,7 +60,7 @@ command:
       NIST800-53R4:
       - AC-2
       - AU-12
-      Rule_ID: SV-270685r1066544_rul
+      Rule_ID: SV-270685r1066544_rule
       STIG_ID: UBTU-24-200290
       Vul_ID: V-270685
   {{ end }}

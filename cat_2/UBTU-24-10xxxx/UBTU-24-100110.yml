@@ -20,7 +20,7 @@ command:
       Group_Title:
       - SRG-OS-000445-GPOS-00199
       NIST800-53R4: SI-6
-      Rule_ID: SV-270650r1066439_rule
+      Rule_ID: SV-270650r1134802_rule
       STIG_ID: UBTU-24-100110
       Vul_ID: V-270650
   {{ end }}
@@ -38,7 +38,7 @@ command:
       Group_Title:
       - SRG-OS-000445-GPOS-00199
       NIST800-53R4: SI-6
-      Rule_ID: SV-270650r1066439_rule
+      Rule_ID: SV-270650r1134802_rule
       STIG_ID: UBTU-24-100110
       Vul_ID: V-270650
     {{ end }}

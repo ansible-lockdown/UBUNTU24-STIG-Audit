@@ -20,8 +20,8 @@ command:
       Group_Title:
       - SRG-OS-000032-GPOS-00013
       NIST800-53R4: AC-17
-      Rule_ID: SV-270681r1066532_rule
+      Rule_ID: SV-270681r1134806_rule
       STIG_ID: UBTU-24-200090
-      Vul_ID: V-270681
+      Vul_ID: V-270688
   {{ end }}
 {{ end }}
