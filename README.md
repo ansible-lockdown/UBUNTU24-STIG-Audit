@@ -12,7 +12,7 @@ This is:
 - lightweight
 - self contained
 
-It works using a set of configuration files and directories to audit STIG of Ubuntu22 servers. These files/directories correlate to the STIG Level and STIG_ID
+It works using a set of configuration files and directories to audit STIG of Ubuntu 24.04 servers. These files/directories correlate to the STIG Level and STIG_ID
 
 feedback on any differences between OSs please raise an issue
 
