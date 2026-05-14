@@ -19,7 +19,7 @@ file:
       CCI: CCI-001314
       Group_Title: SRG-OS-000206-GPOS-00084
       NIST800-53R4: SI-11
-      Rule_ID: SV-270769r1066796_rule
+      Rule_ID: SV-270768r1066793_rule
       STIG_ID: UBTU-24-700130
       Vul_ID: V-270769
   {{ end }}

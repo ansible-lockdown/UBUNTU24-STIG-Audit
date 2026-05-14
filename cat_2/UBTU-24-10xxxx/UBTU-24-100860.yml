@@ -17,7 +17,7 @@ file:
       - SRG-OS-000250-GPOS-00093
       NIST800-53R4:
       - AC-17
-      Rule_ID: SV-270671r1067118_rule
+      Rule_ID: SV-270671r1155244_rule
       STIG_ID: UBTU-24-100860
       Vul_ID: V-270671
   {{ end }}

@@ -16,7 +16,7 @@ command:
       Group_Title:
       - SRG-OS-000064-GPOS-00033
       NIST800-53R4: AU-12
-      Rule_ID: SV-270782r1066835_rule
+      Rule_ID: SV-270832r1068399_rule
       STIG_ID: UBTU-24-909000
       Vul_ID: V-270782
   protect_rules_module_live:
@@ -32,7 +32,7 @@ command:
       Group_Title:
       - SRG-OS-000064-GPOS-00033
       NIST800-53R4: AU-12
-      Rule_ID: SV-270782r1066835_rule
+      Rule_ID: SV-270832r1068399_rule
       STIG_ID: UBTU-24-909000
       Vul_ID: V-270782
   {{ end }}

@@ -19,7 +19,7 @@ command:
       - SRG-OS-000462-GPOS-00206
       NIST800-53R4:
       - AU-12
-      Rule_ID: SV-2270785r1068373_rule
+      Rule_ID: SV-270785r1068373_rule
       STIG_ID: UBTU-24-900140
       Vul_ID: V-270785
   chown_module_live:

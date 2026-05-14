@@ -16,7 +16,7 @@ file:
       Group_Title:
       - SRG-OS-000471-GPOS-00215
       NIST800-53R4: AU-12
-      Rule_ID: SV-274870r1107304_rule
+      Rule_ID: SV-274870r1155243_rule
       STIG_ID: UBTU-24-200270
       Vul_ID: V-274870
 command:
@@ -36,7 +36,7 @@ command:
       Group_Title:
       - SRG-OS-000471-GPOS-00215
       NIST800-53R4: AU-12
-      Rule_ID: SV-274870r1107304_rule
+      Rule_ID: SV-274870r1155243_rule
       STIG_ID: UBTU-24-200270
       Vul_ID: V-274870
   {{ end }}
