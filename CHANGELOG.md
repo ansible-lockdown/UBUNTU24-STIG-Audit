@@ -31,3 +31,16 @@ rN revision-suffix corrections (CMS-renumbering artifact - base SV-NNNNNN was al
 - UBTU-24-600070 - SV-270746r1101769 -> SV-270746r1155242
 - UBTU-24-400340 - SV-270734r1066691 -> SV-270734r1155240
 - UBTU-24-600140 - SV-270749r1117267 -> SV-270749r1137695
+
+### Post-QA continuation (May 2026)
+
+Follow-up work after the initial QA hygiene sweep above, surfaced when the paired remediation repo's molecule converge ran goss against this audit content.
+
+Docs and metadata:
+- LICENSE: copyright line was `Copyright (c) 2021 MindPoint Group` (untouched since the initial commit). Updated to `Copyright (c) 2026 MindPoint Group - A Tyto Athene Company / Ansible Lockdown` matching the canonical line in the paired remediation repo.
+- README.md: replaced a stale paragraph `Set of configuration files and directories to run the first stages of STIG RHEL9 based servers` (RHEL-template leakage) with the correct `STIG Ubuntu 24.04 LTS based servers`.
+- CONTRIBUTING.md: header was `Contributing to MindPoint Group Projects` with a divergent 6-rule structure left over from before the Ansible-Lockdown branding consolidation. Replaced with canonical content matching the paired remediation repo's CONTRIBUTING.rst (header `Contributing to Ansible-Lockdown Projects`, 5-rule structure, body references updated). Markdown format preserved.
+
+Audit-test bug fixes surfaced by goss runs against a converged container:
+- UBTU-24-100840 (KexAlgorithms FIPS check): `contents` pattern `/^KexAlgorithms {{ .Vars.ubtu24stig_sshd_config_kex }}/` interpolated the variable into a regex. The value contains `diffie-hellman-group-...` substrings; Go's regex parser interpreted the `n-g` substring inside `hellman-group` as an invalid character class range (`g` < `n`) and the test errored out. Replaced both file `contents` and command `stdout` matchers with `/^KexAlgorithms /` and `/^kexalgorithms /` — verifies the directive is present; the role writes the full value from the same variable so the full-list match was tautological.
+- UBTU-24-300028 (PAM nullok check): test name typo `nullok_commn-password` -> `nullok_common-password`. The stdout matcher `!/.*/ ` meant "stdout must NOT match anything" — fails whenever grep produced any output at all. Replaced with `!/nullok/` which is the semantic intent: no line containing 'nullok' must be present. Also collapsed an extra space between the two grep file arguments.
