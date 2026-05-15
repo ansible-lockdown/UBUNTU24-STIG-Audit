@@ -41,7 +41,7 @@ Which will:
 
 On our [Discord Server](https://www.lockdownenterprise.com/discord) to ask questions, discuss features, or just chat with other Ansible-Lockdown users
 
-Set of configuration files and directories to run the first stages of STIG RHEL9 based servers
+Set of configuration files and directories to run the first stages of STIG Ubuntu 24.04 LTS based servers
 
 This is configured in a directory structure level.
 
