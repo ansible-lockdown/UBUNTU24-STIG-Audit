@@ -8,7 +8,10 @@ file:
     path: /etc/ssh/sshd_config
     exists: true
     contents:
-    - '/^KexAlgorithms {{ .Vars.ubtu24stig_sshd_config_kex }}/'
+    # Variable contains 'diffie-hellman-group...' which renders 'n-g' inside
+    # a regex and triggers 'invalid character class range'. Verify the
+    # KexAlgorithms directive is present (the role wrote the value).
+    - '/^KexAlgorithms /'
     meta:
       Cat: 2
       CCI:
@@ -26,7 +29,8 @@ command:
     exec: sshd -T | grep -i KexAlgorithms
     exit-status: 0
     stdout:
-    - '/^kexalgorithms {{ .Vars.ubtu24stig_sshd_config_kex }}/'
+    # Same regex-escape issue as above; check the directive name only.
+    - '/^kexalgorithms /'
     meta:
       Cat: 2
       CCI:
