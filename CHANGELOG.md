@@ -47,3 +47,7 @@ Audit-test bug fixes surfaced by goss runs against a converged container:
 
 Dead toggle removed:
 - `ubtu24stig_900500` removed from `vars/STIG.yml`. Not in V1R3 SCAP, not in V1R5 manual XCCDF — pure placeholder with no audit test referencing it. Paired removal in the remediation repo's `defaults/main.yml` and goss vars template.
+
+run_audit.sh hardening:
+- Removed `grep -w VERSION_ID=` (fragile on non-GNU greps; macOS/busybox silently miss quoted values); replaced with anchored `grep "^VERSION_ID="`.
+- Added BENCHMARK_OS fallback for empty `os_vendor` / `os_maj_ver` (lesson #41): when OS detection produces empty results on minimal containers or stripped `/etc/os-release`, derive vendor/version from `BENCHMARK_OS=UBUNTU24` (-> UBUNTU + 24) instead of silently building a wrong audit path.
