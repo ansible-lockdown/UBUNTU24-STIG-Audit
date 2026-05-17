@@ -1,5 +1,5 @@
 ## metadata for Audit benchmark
-benchmark_version: 'v1.3.0'
+benchmark_version: 'v1.5.0'
 benchmark: UBUNTU24-STIG
 
 # turn the categories on/off
@@ -24,6 +24,7 @@ ubtu24stig_allow_aide_check: false
 
 ubtu24stig_100030: true
 ubtu24stig_100040: true
+ubtu24stig_100050: true
 ubtu24stig_100800: true
 ubtu24stig_100810: true
 ubtu24stig_102000: true
@@ -36,7 +37,7 @@ ubtu24stig_300031: true
 ubtu24stig_400370: true
 ubtu24stig_600030: true
 ubtu24stig_600130: true
-ubtu24stig_700040: true
+ubtu24stig_700400: true
 
 #### CAT 2
 ## 10XXXX
@@ -144,6 +145,7 @@ ubtu24stig_600230: true
 ubtu24stig_700010: true
 ubtu24stig_700020: true
 ubtu24stig_700030: true
+ubtu24stig_700040: true
 ubtu24stig_700050: true
 ubtu24stig_700060: true
 ubtu24stig_700070: true
@@ -158,7 +160,6 @@ ubtu24stig_700150: true
 ubtu24stig_700300: true
 ubtu24stig_700310: true
 ubtu24stig_700320: true
-ubtu24stig_700400: true
 
 ## 900XXX
 ubtu24stig_900040: true
@@ -228,7 +229,6 @@ ubtu24stig_200000: true
 ubtu24stig_200610: true
 ubtu24stig_300001: true
 ubtu24stig_300017: true
-ubtu24stig_300024: true
 ubtu24stig_400340: true
 ubtu24stig_600140: true
 ubtu24stig_600160: true
