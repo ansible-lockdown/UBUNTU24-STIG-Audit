@@ -1,0 +1,28 @@
+---
+
+{{ if .Vars.ubtu24stig_cat1 }}
+  {{ if .Vars.ubtu24stig_700400 }}
+command:
+  vendor_supported_release:
+    title: UBTU-24-700400 | Ubuntu 24.04 LTS must be a vendor-supported release.
+    exec: |
+      end_of_standard_support=$(date -d '2029-06-01' '+%s')
+      now=$(date '+%s')
+      if [ "$now" -lt "$end_of_standard_support" ]; then
+        echo "OK - Ubuntu 24.04 LTS is within Canonical standard support window"
+      else
+        echo "FAIL - Ubuntu 24.04 LTS standard support has ended"
+      fi
+    exit-status: 0
+    stdout:
+    - '/^OK/'
+    meta:
+      Cat: 1
+      CCI: CCI-002605
+      Group_Title: SRG-OS-000480-GPOS-00227
+      NIST800-53R4: CM-6
+      Rule_ID: SV-278917r1155246_rule
+      STIG_ID: UBTU-24-700400
+      Vul_ID: V-278917
+  {{ end }}
+{{ end }}
