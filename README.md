@@ -2,7 +2,7 @@
 
 ## Overview
 
-### Based on STIG Ubuntu Linux 24.04 LTS Benchmark v1.3.0 [Release](https://dl.dod.cyber.mil/wp-content/uploads/stigs/zip/U_CAN_Ubuntu_24-04_LTS_V1R3_STIG.zip)
+### Based on STIG Ubuntu Linux 24.04 LTS Benchmark v1.5.0 [Release](https://dl.dod.cyber.mil/wp-content/uploads/stigs/zip/U_CAN_Ubuntu_24-04_LTS_V1R5_STIG.zip)
 
 Ability to audit a system using a lightweight binary to check the current state.
 
