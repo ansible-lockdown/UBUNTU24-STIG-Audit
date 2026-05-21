@@ -19,8 +19,8 @@ service:
       - SRG-OS-000423-GPOS-00189
       - SRG-OS-000423-GPOS-00190
       NIST800-53R4: SC-8
-      Rule_ID: SV-260524r958908_rule
+      Rule_ID: SV-270666r1066487_rule
       STIG_ID: UBTU-24-100810
-      Vul_ID: V-260524
+      Vul_ID: V-270666
   {{ end }}
 {{ end }}

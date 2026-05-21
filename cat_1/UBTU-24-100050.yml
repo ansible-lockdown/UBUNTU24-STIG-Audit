@@ -1,0 +1,31 @@
+---
+
+{{ if .Vars.ubtu24stig_cat1 }}
+  {{ if .Vars.ubtu24stig_100050 }}
+package:
+  nfs-common_absent:
+    title: UBTU-24-100050 | Ubuntu 24.04 LTS must not have the nfs-kernel-server package installed.
+    name: nfs-common
+    installed: false
+    meta:
+      Cat: 1
+      CCI: CCI-000381
+      Group_Title: SRG-OS-000095-GPOS-00049
+      NIST800-53R4: CM-7
+      Rule_ID: SV-279938r1156367_rule
+      STIG_ID: UBTU-24-100050
+      Vul_ID: V-279938
+  nfs-kernel-server_absent:
+    title: UBTU-24-100050 | Ubuntu 24.04 LTS must not have the nfs-kernel-server package installed.
+    name: nfs-kernel-server
+    installed: false
+    meta:
+      Cat: 1
+      CCI: CCI-000381
+      Group_Title: SRG-OS-000095-GPOS-00049
+      NIST800-53R4: CM-7
+      Rule_ID: SV-279938r1156367_rule
+      STIG_ID: UBTU-24-100050
+      Vul_ID: V-279938
+  {{ end }}
+{{ end }}

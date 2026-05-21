@@ -12,7 +12,7 @@ package:
       CCI:
       - CCI-001953
       Group_Title:
-      -  SRG-OS-000376-GPOS-00161
+      - SRG-OS-000376-GPOS-00161
       NIST800-53R4: IA-2
       Rule_ID: SV-270673r1067164_rule
       STIG_ID: UBTU-24-100910

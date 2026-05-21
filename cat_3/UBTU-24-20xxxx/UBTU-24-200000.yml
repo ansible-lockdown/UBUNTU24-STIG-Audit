@@ -17,7 +17,7 @@ command:
       CCI: CCI-000054
       Group_Title: SRG-OS-000027-GPOS-00008
       NIST800-53R4: AC-10
-      Rule_ID: SV-270677r1066520_rule
+      Rule_ID: SV-270677r1101774_rule
       STIG_ID: UBTU-24-200000
       Vul_ID: V-270677
   {{ end }}

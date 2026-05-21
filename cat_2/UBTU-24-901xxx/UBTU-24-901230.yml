@@ -5,7 +5,7 @@
 command:
   audit_bin_perms:
     title: UBTU-24-901230 | Ubuntu 24.04 LTS must configure audit tools with a mode of "0755" or less permissive.
-    exec: AUDIT_BINS_PERM="OK - No files or Directories found"; for audit_bin in /sbin/audispd-zos-remote /sbin/auditctl /sbin/aureport /sbin/ausearch /sbin/autrace /sbin/auditd /sbin/augenrules; do find $audit_bin -perm /022 -exec export AUDIT_BINS_PERM="FAIL - Audit Binaries Permissions" {} \;; done; echo $AUDIT_BINS_PERM
+    exec: AUDIT_BINS_PERM="OK - No files or Directories found"; for audit_bin in /sbin/auditctl /sbin/aureport /sbin/ausearch /sbin/autrace /sbin/auditd /sbin/augenrules; do find $audit_bin -perm /022 -exec export AUDIT_BINS_PERM="FAIL - Audit Binaries Permissions" {} \;; done; echo $AUDIT_BINS_PERM
     exit-status: 0
     stdout:
       - '/OK - No files or Directories found/'
@@ -18,7 +18,7 @@ command:
       - SRG-OS-000257-GPOS-00098
       - SRG-OS-000256-GPOS-00097
       NIST800-53R4: AU-9
-      Rule_ID: SV-270821r1068391_rule
+      Rule_ID: SV-270821r1134818_rule
       STIG_ID: UBTU-24-901230
       Vul_ID: V-270821
   {{ end }}

@@ -17,6 +17,11 @@ package:
       - CCI-000766
       Group_Title:
       - SRG-OS-000705-GPOS-00150
+      - SRG-OS-000105-GPOS-00052
+      - SRG-OS-000106-GPOS-00053
+      - SRG-OS-000107-GPOS-00054
+      - SRG-OS-000108-GPOS-00055
+      - SRG-OS-000375-GPOS-00160
       NIST800-53R4:
       - IA-2
       Rule_ID: SV-270662r1067156_rule

@@ -1,0 +1,31 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_400360 }}
+command:
+  sssd_pki_cert_path:
+    title: UBTU-24-400360 | Ubuntu 24.04 LTS, for PKI-based authentication, SSSD must validate certificates by constructing a certification path (which includes status information) to an accepted trust anchor.
+    exec: |
+      if [ -f /etc/sssd/sssd.conf ]; then
+        grep -Eq '^services\s*=.*pam' /etc/sssd/sssd.conf && \
+        grep -Eq '^pam_cert_auth\s*=\s*True' /etc/sssd/sssd.conf && \
+        echo "OK"
+      else
+        echo "OK - sssd.conf not present; PKI-via-SSSD not configured"
+      fi
+    exit-status: 0
+    stdout:
+    - '/^OK/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000185
+      - CCI-004909
+      Group_Title:
+      - SRG-OS-000066-GPOS-00034
+      NIST800-53R4: IA-5
+      Rule_ID: SV-270735r1066694_rule
+      STIG_ID: UBTU-24-400360
+      Vul_ID: V-270735
+  {{ end }}
+{{ end }}

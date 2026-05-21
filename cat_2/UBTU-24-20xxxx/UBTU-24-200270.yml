@@ -1,0 +1,43 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_200270 }}
+file:
+  auditctl_cron_jobs_conf:
+    title: UBTU-24-200270 | Ubuntu 24.04 LTS must audit any script or executable called by cron as root or by any privileged user. | conf
+    path: /etc/audit/rules.d/audit.rules
+    exists: true
+    contents:
+    - '/^auditctl -w /etc/cron.d/ -p wa -k cronjobs/'
+    - '/^auditctl -w /var/spool/cron/ -p wa -k cronjobs/'
+    meta:
+      Cat: 2
+      CCI: CCI-000172
+      Group_Title:
+      - SRG-OS-000471-GPOS-00215
+      NIST800-53R4: AU-12
+      Rule_ID: SV-274870r1155243_rule
+      STIG_ID: UBTU-24-200270
+      Vul_ID: V-274870
+command:
+  auditctl_cron_jobs_running:
+    title: UBTU-24-200270 | Ubuntu 24.04 LTS must audit any script or executable called by cron as root or by any privileged user. | running
+    exec: auditctl -l | grep cron
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/-w /etc/cron.d -p wa -k cronjobs/'
+    - '/-w /var/spool/cron -p wa -k cronjobs/'
+    meta:
+      Cat: 2
+      CCI: CCI-000172
+      Group_Title:
+      - SRG-OS-000471-GPOS-00215
+      NIST800-53R4: AU-12
+      Rule_ID: SV-274870r1155243_rule
+      STIG_ID: UBTU-24-200270
+      Vul_ID: V-274870
+  {{ end }}
+{{ end }}

@@ -1,0 +1,29 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_200042 }}
+    {{ if .Vars.ubtu24stig_gui }}
+command:
+  gsettings_override_smartcard:
+    title: UBTU-24-200042 | Ubuntu 24.04 LTS must prevent a user from overriding the disabling of the graphical user smart card removal action.
+    exec: gsettings writable org.gnome.settings-daemon.peripherals.smartcard removal-action
+    exit-status: 0
+    stdout:
+    - '/^false/'
+    meta:
+      Cat: 2
+      CCI:
+      - CCI-000056
+      - CCI-000057
+      - CCI-000058
+      Group_Title:
+      - SRG-OS-000028-GPOS-00009
+      - SRG-OS-000030-GPOS-00011
+      NIST800-53R4:
+      - AC-11
+      Rule_ID: SV-274873r1107300_rule
+      STIG_ID: UBTU-24-200042
+      Vul_ID: V-274873
+    {{ end }}
+  {{ end }}
+{{ end }}

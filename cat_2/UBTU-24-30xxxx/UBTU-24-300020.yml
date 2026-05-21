@@ -1,0 +1,27 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_300020 }}
+command:
+  sudo_nopasswd:
+    title: UBTU-24-300020 | Ubuntu 24.04 LTS must require users to provide a password for privilege escalation.
+    exec: grep -Ei 'nopasswd' /etc/sudoers /etc/sudoers.d/*
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '!/^.*/'
+    meta:
+      Cat: 2
+      CCI: 000366
+      Group_Title:
+      - SRG-OS-000373-GPOS-00156
+      - SRG-OS-000373-GPOS-00157
+      - SRG-OS-000373-GPOS-00158
+      NIST800-53R4: CM-6
+      Rule_ID: SV-274868r1107313_rule
+      STIG_ID: UBTU-24-300020
+      Vul_ID: V-274868
+  {{ end }}
+{{ end }}

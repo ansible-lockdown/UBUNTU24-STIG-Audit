@@ -22,7 +22,7 @@ file:
       - SRG-OS-000108-GPOS-00055
       NIST800-53R4: IA-2
       Rule_ID: SV-270721r1066652_rule
-      STIG_ID: UBTU-24-611045
+      STIG_ID: UBTU-24-400020
       Vul_ID: V-270721
     {{ end }}
   {{ end }}

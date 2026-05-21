@@ -1,6 +1,6 @@
 ---
 
-{{ if .Vars.ubtu24stig_cat2 }}
+{{ if .Vars.ubtu24stig_cat1 }}
   {{ if .Vars.ubtu24stig_700040 }}
 file:
   journaldctl_owner:
@@ -9,7 +9,7 @@ file:
     exists: true
     owner: root
     meta:
-      Cat: 2
+      Cat: 1
       CCI: CCI-001314
       Group_Title: SRG-OS-000206-GPOS-00084
       NIST800-53R4: SI-11

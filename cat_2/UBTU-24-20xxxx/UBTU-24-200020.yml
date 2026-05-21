@@ -20,7 +20,7 @@ command:
       - SRG-OS-000029-GPOS-00010
       NIST800-53R4:
       - AC-11
-      Rule_ID: SV-270678r1066523_rule
+      Rule_ID: SV-270678r1101791_rule
       STIG_ID: UBTU-24-200020
       Vul_ID: V-270678
     {{ end }}

@@ -8,14 +8,14 @@ file:
     path: /usr/lib/tmpfiles.d/systemd.conf
     exists: true
     contents:
-      - 'z /run/log/journal 2640 root systemd-journal - -'
-      - 'z /var/log/journal 2640 root systemd-journal - -'
+      - 'z /run/log/journal 0640 root systemd-journal - -'
+      - 'z /var/log/journal 0640 root systemd-journal - -'
     meta:
       Cat: 2
       CCI: CCI-001314
       Group_Title: SRG-OS-000206-GPOS-00084
       NIST800-53R4: SI-11
-      Rule_ID: SV-270761r1067180_rule
+      Rule_ID: SV-270761r1184074_rule
       STIG_ID: UBTU-24-700060
       Vul_ID: V-270761
   {{ end }}

@@ -1,0 +1,26 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_300019 }}
+command:
+  sudo_noALL:
+    title: UBTU-24-300019 | Ubuntu 24.04 LTS must restrict privilege elevation to authorized personnel.
+    exec:  grep -iwR 'ALL' /etc/sudoers /etc/sudoers.d/ | grep -v '#'
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '!/ALL ALL=(ALL) ALL/'
+    - '!/ALL ALL=(ALL:ALL) ALL/'
+    meta:
+      Cat: 2
+      CCI: 002038
+      Group_Title:
+      - SRG-OS-000373-GPOS-00156
+      NIST800-53R4: IA-11
+      Rule_ID: SV-274869r1107312_rule
+      STIG_ID: UBTU-24-300019
+      Vul_ID: V-27869
+  {{ end }}
+{{ end }}

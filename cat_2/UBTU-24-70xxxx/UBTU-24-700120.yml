@@ -8,7 +8,11 @@ file:
     path: /var/log
     exists: true
     filetype: directory
-    mode: {le: 755}
+    mode:
+      or:
+        - '0755'
+        - '0750'
+        - '0700'
     meta:
       Cat: 2
       CCI: CCI-001314

@@ -3,9 +3,9 @@
 {{ if .Vars.ubtu24stig_cat2 }}
   {{ if .Vars.ubtu24stig_300021 }}
 command:
-  sudo_nopasswd:
+  sudo_reauth:
     title: UBTU-24-300021 | Ubuntu 24.04 LTS must require users to reauthenticate for privilege escalation or when changing roles.
-    exec: grep -Ei '(nopasswd|!authenticate)' /etc/sudoers /etc/sudoers.d/*
+    exec: grep -Ei '!authenticate' /etc/sudoers /etc/sudoers.d/*
     exit-status:
       or:
       - 0
@@ -18,7 +18,7 @@ command:
       Group_Title:
       - SRG-OS-000480-GPOS-00227
       NIST800-53R4: CM-6
-      Rule_ID:  SV-270707r1066610_rule
+      Rule_ID: SV-270707r1101786_rule
       STIG_ID: UBTU-24-300021
       Vul_ID: V-270707
   {{ end }}

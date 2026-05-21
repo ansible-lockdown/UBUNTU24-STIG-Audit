@@ -16,7 +16,7 @@ command:
       Group_Title:
       - SRG-OS-000064-GPOS-00033
       NIST800-53R4: AU-12
-      Rule_ID: SV-2270782r1066835_rule
+      Rule_ID: SV-270782r1066835_rule
       STIG_ID: UBTU-24-900110
       Vul_ID: V-2270782
   ssh-agent_module_live:

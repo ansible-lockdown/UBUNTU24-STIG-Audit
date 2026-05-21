@@ -8,8 +8,8 @@ file:
     path: /etc/ssh/sshd_config
     exists: true
     contents:
-    - '/X11Forwarding no/'
-    - '!/X11Forwarding yes/'
+    - '/(?i)X11Forwarding no/'
+    - '!/(?i)X11Forwarding yes/'
     meta:
       Cat: 1
       CCI: CCI-000366

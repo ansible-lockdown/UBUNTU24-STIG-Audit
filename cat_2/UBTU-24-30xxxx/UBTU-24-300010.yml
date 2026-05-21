@@ -6,7 +6,7 @@ command:
   library_dirs_owner:
     title: UBTU-24-300010 | Ubuntu 24.04 LTS library directories must be group-owned by "root".
     exec: |
-      LIB_DIR_GROUP=$(find /lib /usr/lib /lib64 ! -group root -type d -printf '.' | wc -c); \
+      LIB_DIR_GROUP=$(find /lib /usr/lib /lib64 /usr/lib64 ! -group root -type d -printf '.' | wc -c); \
       if [ "$LIB_DIR_GROUP" -eq 0 ]; \
       then echo "OK - No files or Directories found"; \
       else echo "FAIL - Files found"; \
