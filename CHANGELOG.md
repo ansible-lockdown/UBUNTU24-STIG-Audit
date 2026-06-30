@@ -1,5 +1,12 @@
 # UBUNTU24-STIG-Audit
 
+## 1.5.0 - 2026 June QA
+
+QA pass at the existing V1R5 release (no benchmark version change):
+
+- Added `ubtu24stig_300019` and `ubtu24stig_300020` toggles to `vars/STIG.yml` (was 192 of 194). The goss tests already existed and gate on these toggles, so standalone `run_audit.sh` runs now evaluate both rules correctly.
+- `run_audit.sh`: derive the audit content directory directly from `BENCHMARK_OS` (`audit_content_version=$BENCHMARK_OS-$BENCHMARK-Audit`) instead of runtime OS detection (uname/hostnamectl/os-release greps), removing the now-redundant detection-fallback block. Resolves to the same `UBUNTU24-STIG-Audit` path but deterministically, avoiding wrong paths on minimal containers / non-GNU greps. Fixed two message typos.
+
 ## Based on STIG v1r5
 
 ## 1.5.0
