@@ -4,7 +4,7 @@
   {{ if .Vars.ubtu24stig_400220 }}
 file:
   common-password-sha:
-    title: UBTU-24-611045 | Ubuntu 24.04 LTS must store only encrypted representations of passwords.
+    title: UBTU-24-400220 | Ubuntu 24.04 LTS must store only encrypted representations of passwords.
     path: /etc/pam.d/common-password
     exists: true
     contents:
