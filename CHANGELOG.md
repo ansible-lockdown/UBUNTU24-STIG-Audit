@@ -1,5 +1,19 @@
 # UBUNTU24-STIG-Audit
 
+## 1.5.0 - 2026 July QA
+
+QA pass at the existing V1R5 release (no benchmark version change):
+
+- UBTU-24-200270: corrected the cron-audit goss file test to check `/etc/audit/rules.d/stig.rules` (the file the remediation writes) instead of `/etc/audit/rules.d/audit.rules`, and fixed the `contents` regex to match audit rule-file syntax (`-w /etc/cron.d/ ...`) rather than `auditctl -w ...` (which only appears in `auditctl -l` output). The companion `command:` subtest was already correct.
+- UBTU-24-400220: corrected the goss test `title:` identifier from `UBTU-24-611045` to `UBTU-24-400220`; the filename, `STIG_ID`, `Rule_ID`, and toggle were already correct, so this was a report-label fix only.
+
+## 1.5.0 - 2026 June QA
+
+QA pass at the existing V1R5 release (no benchmark version change):
+
+- Added `ubtu24stig_300019` and `ubtu24stig_300020` toggles to `vars/STIG.yml` (was 192 of 194). The goss tests already existed and gate on these toggles, so standalone `run_audit.sh` runs now evaluate both rules correctly.
+- `run_audit.sh`: derive the audit content directory directly from `BENCHMARK_OS` (`audit_content_version=$BENCHMARK_OS-$BENCHMARK-Audit`) instead of runtime OS detection (uname/hostnamectl/os-release greps), removing the now-redundant detection-fallback block. Resolves to the same `UBUNTU24-STIG-Audit` path but deterministically, avoiding wrong paths on minimal containers / non-GNU greps. Fixed two message typos.
+
 ## Based on STIG v1r5
 
 ## 1.5.0

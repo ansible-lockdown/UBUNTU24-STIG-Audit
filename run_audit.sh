@@ -21,6 +21,7 @@
 # January 2025  Added Suse OS discovery
 # May 2025      Added formation typos to help and fixed some typos
 # Sept25        Added Additional max concurrent process option
+# June 2026     Changed OS discovery to use BENCHMARK_OS variable to allow for future OS discovery and audit alignment
 # Variables in upper case tend to be able to be adjusted
 # lower case variables are discovered or built from other variables
 
@@ -79,40 +80,13 @@ done
 
 # check access need to run as root or privileges due to some configuration access
 if [ "$(/usr/bin/id -u)" -ne 0 ]; then
-  echo "Script need to run with root privileges"
+  echo "Script needs to run with root privileges"
   exit 1
 fi
 
 #### Main Script ####
 
-# Discover OS version aligning with audit
-# Define os_vendor variable
-if [ "$(uname -a | grep -c amzn)" -ge 1 ]; then
-    os_vendor="AMAZON"
-elif [ "$(grep -Ec "rhel|oracle" /etc/os-release)" != 0 ]; then
-  os_vendor="RHEL"
-else
-  os_vendor="$(hostnamectl | grep Oper | cut -d : -f2 | awk '{print toupper($1)}')"
-  if [ "${os_vendor}" = "OPENSUSE" ]; then
-   os_vendor="SUSE"
-  fi
-fi
-
-os_maj_ver="$(grep "^VERSION_ID=" /etc/os-release | awk -F\" '{print $2}' | cut -d '.' -f1)"
-
-# Fallback to BENCHMARK_OS when OS detection comes up empty (minimal containers,
-# stripped /etc/os-release, missing hostnamectl). Avoids silently building a
-# wrong audit path like '-UBUNTU24-STIG-Audit/goss.yml' (missing OS prefix).
-if [ -z "$os_vendor" ]; then
-  os_vendor="${BENCHMARK_OS//[0-9]/}"
-  echo "WARNING - OS vendor detection produced empty result; falling back to BENCHMARK_OS vendor=${os_vendor}"
-fi
-if [ -z "$os_maj_ver" ]; then
-  os_maj_ver="${BENCHMARK_OS//[A-Za-z]/}"
-  echo "WARNING - OS version detection produced empty result; falling back to BENCHMARK_OS version=${os_maj_ver}"
-fi
-
-audit_content_version=$os_vendor$os_maj_ver-$BENCHMARK-Audit
+audit_content_version=$BENCHMARK_OS-$BENCHMARK-Audit
 audit_content_dir=$AUDIT_CONTENT_LOCATION/$audit_content_version
 audit_vars=vars/${BENCHMARK}.yml
 
@@ -182,7 +156,7 @@ if [ -s "${AUDIT_BIN}" ]; then
   if [ "$goss_installed_version" = "$newer_version" ] || [ "$goss_installed_version" = "$AUDIT_BIN_MIN_VER" ]; then
     echo "OK - Goss is installed and version is ok ($goss_installed_version >= $AUDIT_BIN_MIN_VER)"
   else
-    echo "WARNING - Goss installed = ${goss_installed_version}, does not met minimum of ${AUDIT_BIN_MIN_VER}"
+    echo "WARNING - Goss installed = ${goss_installed_version}, does not meet minimum of ${AUDIT_BIN_MIN_VER}"
     export FAILURE=2
   fi
 else
