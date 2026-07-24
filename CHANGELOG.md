@@ -1,5 +1,20 @@
 # UBUNTU24-STIG-Audit
 
+## 1.6.0 - Based on DISA STIG Ubuntu 24.04 LTS V1R6 (01 July 2026) - benchmark_v1.6.0
+
+Benchmark bump V1R5 -> V1R6 (194 -> 194; 0 added/removed; 5 SV-rev bumps; all fixtext-only per the revision history, so goss check-content is unchanged and only Rule_ID metadata moves). Version strings: vars/STIG.yml v1.6.0, run_audit.sh BENCHMARK_VER 1.6.0, README banner + DISA zip V1R6.
+
+Rule_ID SV-rev bumps (goss meta only):
+- UBTU-24-300022 r1066613 -> r1208697
+- UBTU-24-300023 r1066616 -> r1208698
+- UBTU-24-300028 r1134808 -> r1208699 (goss already greps common-password + common-auth)
+- UBTU-24-300031 r1067177 -> r1208700
+- UBTU-24-600010 r1066718 -> r1208702
+
+New Alignment (krameff goss migration):
+- run_audit.sh: AUDIT_BIN_MIN_VER 0.4.4 -> 0.4.8; goss version parse awk '{print $NF}' -> awk 'NR==1{print $NF}' (krameff goss emits a 2-line banner).
+- README goss link goss-org -> github.com/krameff/goss.
+
 ## 1.5.0 - 2026 July QA
 
 QA pass at the existing V1R5 release (no benchmark version change):
