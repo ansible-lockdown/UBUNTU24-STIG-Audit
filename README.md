@@ -47,7 +47,7 @@ This is configured in a directory structure level.
 
 Goss is run based on the goss.yml file in the top level directory. This specifies the configuration.
 
-## further information
+## Further Information
 
 - [goss documentation](https://goss.readthedocs.io/en/stable/)
 - [STIG standards](https://public.cyber.mil/stigs/)

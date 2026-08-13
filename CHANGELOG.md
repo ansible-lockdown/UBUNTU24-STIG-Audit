@@ -1,5 +1,20 @@
 # UBUNTU24-STIG-Audit
 
+## 1.5.0 - 2026 August Alignment - goss regex corrections and documentation
+
+Alignment pass at the existing V1R5 release (no benchmark version change).
+
+Two checks could never pass, on any host, in any state:
+
+- UBTU-24-200610: the `authfail` expectation was written as `/^auth\s+[default=die]\s+pam_faillock.so\s+authfail/`. The PAM control flag is a literal `[default=die]`, but unescaped in a regex it is a character class matching exactly one character from that set, and the text at that position is `[`, which the class does not contain. The expectation therefore returned false against a correctly hardened host while the sibling `authsucc` expectation on the same resource passed, which is why the failure read as a partial rather than an obviously broken check. Brackets are now escaped.
+- UBTU-24-400020: the same defect in `/^auth\s*[success=2 default=ignore]\s*pam_pkcs11.so/`, with `\s*` where `\s+` is meant. Brackets escaped and the separators tightened. This check is gated behind `ubtu24stig_uses_smartcard` so it is inert by default, which is why it went unnoticed.
+
+The remaining bracket expressions in the suite were reviewed in the same pass and are genuine character classes over numeric ranges. `UBTU-24-200680` matches shell text containing `[ -n "$SSH_CLIENT" ]` and passes only because the `-` inside the brackets forms a range that happens to span the literal characters; it is fragile but correct, and is left alone rather than changed speculatively.
+
+Documentation:
+
+- README: corrected the case of the `Further Information` heading.
+
 ## 1.5.0 - 2026 July QA
 
 QA pass at the existing V1R5 release (no benchmark version change):

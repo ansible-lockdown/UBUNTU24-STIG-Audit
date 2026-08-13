@@ -8,7 +8,7 @@ file:
     path: /etc/pam.d/common-auth
     exists: true
     contents:
-    - '/^auth\s+[default=die]\s+pam_faillock.so\s+authfail/'
+    - '/^auth\s+\[default=die\]\s+pam_faillock.so\s+authfail/'
     - '/^auth\s+sufficient\s+pam_faillock.so\s+authsucc/'
     meta:
       Cat: 3
