@@ -1,5 +1,24 @@
 # UBUNTU24-STIG-Audit
 
+## 1.6.0 - 2026 August Alignment - goss regex corrections and documentation
+
+Alignment pass at the existing V1R6 release (no benchmark version change).
+
+Two checks could never pass, on any host, in any state:
+
+- UBTU-24-200610: the `authfail` expectation was written as `/^auth\s+[default=die]\s+pam_faillock.so\s+authfail/`. The PAM control flag is a literal `[default=die]`, but unescaped in a regex it is a character class matching exactly one character from that set, and the text at that position is `[`, which the class does not contain. The expectation therefore returned false against a correctly hardened host while the sibling `authsucc` expectation on the same resource passed, which is why the failure read as a partial rather than an obviously broken check. Brackets are now escaped. Confirmed against a remediated container: the resource went from one passing and one failing expectation to both passing, and the suite total moved from 22 failures to 21 with no other check changing.
+- UBTU-24-400020: the same defect in `/^auth\s*[success=2 default=ignore]\s*pam_pkcs11.so/`, with `\s*` where `\s+` is meant. Brackets escaped and the separators tightened. This check is gated behind `ubtu24stig_uses_smartcard` so it is inert by default, which is why it went unnoticed.
+
+The remaining bracket expressions in the suite were reviewed in the same pass and are genuine character classes over numeric ranges. `UBTU-24-200680` matches shell text containing `[ -n "$SSH_CLIENT" ]` and passes only because the `-` inside the brackets forms a range that happens to span the literal characters; it is fragile but correct, and is left alone rather than changed speculatively.
+
+Coverage:
+
+- UBTU-24-400220 now asserts `rounds` as well as the hashing algorithm. The check-content is a finding when `rounds` is set below 100000, but the test only matched the algorithm, so a host at the distribution default passed. Added `'/^password.*pam_unix\.so.*rounds=[1-9][0-9]{5,}/'`, which requires at least six digits with no leading zero and therefore any value of 100000 or greater. Written as a literal range rather than a `.Vars` reference deliberately: a new `.Vars` key hard-aborts the whole audit under `missingkey=error` when a newer audit branch is run against an older remediation that does not emit it. Confirmed against a converged container - the expectation passes at `rounds=100000` and fails at `rounds=50000`, moving the suite total from 21 failures to 22 and back.
+
+Documentation:
+
+- README: corrected the case of the `Further Information` heading.
+
 ## 1.6.0 - Based on DISA STIG Ubuntu 24.04 LTS V1R6 (01 July 2026) - benchmark_v1.6.0
 
 Benchmark bump V1R5 -> V1R6 (194 -> 194; 0 added/removed; 5 SV-rev bumps; all fixtext-only per the revision history, so goss check-content is unchanged and only Rule_ID metadata moves). Version strings: vars/STIG.yml v1.6.0, run_audit.sh BENCHMARK_VER 1.6.0, README banner + DISA zip V1R6.

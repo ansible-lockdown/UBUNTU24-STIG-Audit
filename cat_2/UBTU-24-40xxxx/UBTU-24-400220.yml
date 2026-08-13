@@ -9,6 +9,11 @@ file:
     exists: true
     contents:
     - '/^password.*pam_unix.so.*{{ .Vars.ubtu24stig_passwd_hash_algo }}/'
+    # The check-content fails when rounds is set below 100000, so anything with fewer than
+    # six digits is a finding. Written as a literal range rather than a .Vars reference on
+    # purpose: a new .Vars key would hard-abort this whole audit under missingkey=error when
+    # a newer audit branch is run against an older remediation that does not emit it.
+    - '/^password.*pam_unix\.so.*rounds=[1-9][0-9]{5,}/'
     meta:
       Cat: 2
       CCI: NA
