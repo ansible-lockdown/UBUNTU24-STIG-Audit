@@ -1,5 +1,10 @@
 # UBUNTU24-STIG-Audit
 
+## 1.6.0 - 2026 August - Company name updated to Quantum Sky
+
+- the parent company name changed from Tyto Athene to Quantum Sky. Renamed in `LICENSE`, the only place this repository carries it
+- deliberately not renamed: existing entries in this file, which record what was true when written
+
 ## 1.6.0 - 2026 August Alignment - goss regex corrections and documentation
 
 Alignment pass at the existing V1R6 release (no benchmark version change).
