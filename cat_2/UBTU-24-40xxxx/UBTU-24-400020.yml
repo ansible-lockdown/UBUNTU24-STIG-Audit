@@ -9,7 +9,7 @@ file:
     path: /etc/pam.d/common-auth
     exists: true
     contents:
-    - '/^auth\s*[success=2 default=ignore]\s*pam_pkcs11.so/'
+    - '/^auth\s+\[success=2 default=ignore\]\s+pam_pkcs11.so/'
     meta:
       Cat: 2
       CCI:
