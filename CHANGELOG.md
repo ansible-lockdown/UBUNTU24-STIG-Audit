@@ -1,5 +1,12 @@
 # UBUNTU24-STIG-Audit
 
+## 1.6.0 - 2026 October - Goss documentation link
+
+- **the goss documentation link pointed at the upstream read-the-docs site.** `README.md`
+  referenced `goss.readthedocs.io`, which documents the pre-fork project rather than the krameff
+  fork this content is built against. It now points at
+  `github.com/krameff/goss/blob/devel/docs/index.md`, matching the sibling audit content
+
 ## 1.6.0 - 2026 August - Company name updated to Quantum Sky
 
 - the parent company name changed from Tyto Athene to Quantum Sky. Renamed in `LICENSE`, the only place this repository carries it
