@@ -49,5 +49,5 @@ Goss is run based on the goss.yml file in the top level directory. This specifie
 
 ## Further Information
 
-- [goss documentation](https://goss.readthedocs.io/en/stable/)
+- [goss documentation](https://github.com/krameff/goss/blob/devel/docs/index.md)
 - [STIG standards](https://public.cyber.mil/stigs/)
