@@ -18,7 +18,8 @@ command:
     - '/^OK/'
     meta:
       Cat: 1
-      CCI: CCI-002605
+      CCI:
+      - CCI-000366
       Group_Title: SRG-OS-000480-GPOS-00227
       NIST800-53R4: CM-6
       Rule_ID: SV-278917r1155246_rule

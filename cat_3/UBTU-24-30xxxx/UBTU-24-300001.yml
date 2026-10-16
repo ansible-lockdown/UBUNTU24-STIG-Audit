@@ -4,7 +4,7 @@
   {{ if .Vars.ubtu24stig_300001 }}
 command:
   auth_apt:
-    title: UBTU-24-300001 | Ubuntu 24.04 LTS must be configured so that the Advance Package Tool (APT) prevents the installation of patches, service packs, device drivers, or operating system components without verification they have been digitally signed using a certificate that is recognized and approved by the organization.
+    title: UBTU-24-300001 | Ubuntu 24.04 LTS Advance Package Tool (APT) must be configured to prevent the installation of patches, service packs, device drivers, or Ubuntu 24.04 LTS components without verification they have been digitally signed using a certificate that is recognized and approved by the organization.
     exec: 'grep -i allowunauthenticated /etc/apt/apt.conf.d/* '
     exit-status: 0
     stdout:
@@ -12,7 +12,8 @@ command:
     - '!/(?i)^.*:APT::Get::AllowUnauthenticated "true"/'
     meta:
       Cat: 3
-      CCI: CCI-000000
+      CCI:
+      - CCI-003992
       Group_Title: SRG-OS-000366-GPOS-00153
       NIST800-53R4: NA
       Rule_ID: SV-270695r1066574_rule

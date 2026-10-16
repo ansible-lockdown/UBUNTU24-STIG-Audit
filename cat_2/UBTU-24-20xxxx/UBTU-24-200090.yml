@@ -22,6 +22,6 @@ command:
       NIST800-53R4: AC-17
       Rule_ID: SV-270681r1134806_rule
       STIG_ID: UBTU-24-200090
-      Vul_ID: V-270688
+      Vul_ID: V-270681
   {{ end }}
 {{ end }}

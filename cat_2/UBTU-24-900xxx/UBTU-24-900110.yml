@@ -18,7 +18,7 @@ command:
       NIST800-53R4: AU-12
       Rule_ID: SV-270782r1066835_rule
       STIG_ID: UBTU-24-900110
-      Vul_ID: V-2270782
+      Vul_ID: V-270782
   ssh-agent_module_live:
     title: UBTU-24-900110 | Ubuntu 24.04 LTS must generate audit records for successful/unsuccessful uses of the ssh-agent command. | Live
     exec: auditctl -l | grep ssh-agent

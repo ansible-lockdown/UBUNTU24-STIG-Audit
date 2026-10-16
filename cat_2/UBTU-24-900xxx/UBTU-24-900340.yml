@@ -35,7 +35,7 @@ command:
       - CCI-000172
       Group_Title:
       - SRG-OS-000064-GPOS-00033
-      - SRG-OS-000477-GPOS-00222
+      - SRG-OS-000471-GPOS-00216
       NIST800-53R4:
       - AU-12
       Rule_ID: SV-270805r1068384_rule

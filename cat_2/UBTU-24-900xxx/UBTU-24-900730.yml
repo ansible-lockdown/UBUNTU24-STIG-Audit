@@ -4,7 +4,7 @@
   {{ if .Vars.ubtu24stig_900730 }}
 command:
   modprobe_module_cnf:
-    title: UBTU-24-900730 | Ubuntu 24.04 LTS must generate audit records for successful/unsuccessful uses of the modprobe command. | Config
+    title: UBTU-24-900730 | Ubuntu 24.04 LTS must generate audit records when successful/unsuccessful attempts to use modprobe command. | Config
     exec: grep modprobe /etc/audit/rules.d/*.rules
     exit-status: 0
     stdout:
@@ -20,7 +20,7 @@ command:
       STIG_ID: UBTU-24-900730
       Vul_ID: V-270813
   modprobe_module_live:
-    title: UBTU-24-900730 | Ubuntu 24.04 LTS must generate audit records for successful/unsuccessful uses of the modprobe command. | Live
+    title: UBTU-24-900730 | Ubuntu 24.04 LTS must generate audit records when successful/unsuccessful attempts to use modprobe command. | Live
     exec: auditctl -l | grep modprobe
     exit-status: 0
     stdout:

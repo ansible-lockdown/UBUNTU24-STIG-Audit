@@ -4,7 +4,7 @@
   {{ if .Vars.ubtu24stig_900520 }}
 command:
   sudoers.d_module_cnf:
-    title: UBTU-24-900520 | Ubuntu 24.04 LTS must generate audit records when successful/unsuccessful attempts to modify the /etc/sudoers.d.d directory occur. | Config
+    title: UBTU-24-900520 | Ubuntu 24.04 LTS must generate audit records when successful/unsuccessful attempts to modify the /etc/sudoers.d directory occur. | Config
     exec: grep sudoers.d /etc/audit/rules.d/*.rules
     exit-status: 0
     stdout:
@@ -21,7 +21,7 @@ command:
       STIG_ID: UBTU-24-900520
       Vul_ID: V-270808
   sudoers.d_module_live:
-    title: UBTU-24-900520 | Ubuntu 24.04 LTS must generate audit records when successful/unsuccessful attempts to modify the /etc/sudoers.d.d directory occur. | Live
+    title: UBTU-24-900520 | Ubuntu 24.04 LTS must generate audit records when successful/unsuccessful attempts to modify the /etc/sudoers.d directory occur. | Live
     exec: auditctl -l | grep sudoers.d
     exit-status: 0
     stdout:

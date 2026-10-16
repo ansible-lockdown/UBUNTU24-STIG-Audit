@@ -4,7 +4,7 @@
   {{ if .Vars.ubtu24stig_900260 }}
 command:
   lastlog_module_cnf:
-    title: UBTU-24-900260 | Ubuntu 24.04 LTS must generate audit records for the use and modification of lastlog file. | Config
+    title: UBTU-24-900260 | Ubuntu 24.04 LTS must generate audit records for the use and modification of the lastlog file. | Config
     exec: grep lastlog /etc/audit/rules.d/*.rules
     exit-status: 0
     stdout:
@@ -23,7 +23,7 @@ command:
       STIG_ID: UBTU-24-900260
       Vul_ID: V-270797
   lastlog_module_live:
-    title: UBTU-24-900260 | Ubuntu 24.04 LTS must generate audit records for the use and modification of lastlog file. | Live
+    title: UBTU-24-900260 | Ubuntu 24.04 LTS must generate audit records for the use and modification of the lastlog file. | Live
     exec: auditctl -l | grep lastlog
     exit-status: 0
     stdout:

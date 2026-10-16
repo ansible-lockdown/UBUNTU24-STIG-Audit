@@ -11,10 +11,12 @@ file:
     - '/^PASS_MAX_DAYS (60|[1-5][0-9])$/'
     meta:
       Cat: 2
-      CCI: NA
+      CCI:
+      - CCI-004065
+      - CCI-004066
       Group_Title:
-      - SRG-OS-000076-GPOS-
-      - RG-OS-000730-GPOS-00190
+      - SRG-OS-000076-GPOS-00044
+      - SRG-OS-000730-GPOS-00190
       NIST800-53R4: NA
       Rule_ID: SV-270731r1066682_rule
       STIG_ID: UBTU-24-400310

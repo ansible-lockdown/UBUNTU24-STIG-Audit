@@ -15,12 +15,14 @@ command:
     - '!/ALL ALL=(ALL:ALL) ALL/'
     meta:
       Cat: 2
-      CCI: 002038
+      CCI:
+      - CCI-002038
+      - CCI-004895
       Group_Title:
       - SRG-OS-000373-GPOS-00156
       NIST800-53R4: IA-11
       Rule_ID: SV-274869r1107312_rule
       STIG_ID: UBTU-24-300019
-      Vul_ID: V-27869
+      Vul_ID: V-274869
   {{ end }}
 {{ end }}

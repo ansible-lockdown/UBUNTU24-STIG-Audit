@@ -3,16 +3,13 @@
 {{ if .Vars.ubtu24stig_cat1 }}
   {{ if .Vars.ubtu24stig_400370 }}
     {{ if .Vars.ubtu24stig_use_sssd }}
-command:
-  use_mappers:
+file:
+  sssd_ldap_user_certificate:
     title: UBTU-24-400370 | Ubuntu 24.04 LTS must map the authenticated identity to the user or group account for PKI-based authentication.
-    exec: grep -i use_mappers /etc/pam_pkcs11/pam_pkcs11.conf
-    exit-status:
-      or:
-      - 0
-      - 1
-    stdout:
-    - '/use_mappers\s*=\s*.*pwent/'
+    path: /etc/sssd/sssd.conf
+    exists: true
+    contents:
+    - '/^\s*ldap_user_certificate\s*=\s*userCertificate;binary\s*$/'
     meta:
       Cat: 1
       CCI: CCI-000187

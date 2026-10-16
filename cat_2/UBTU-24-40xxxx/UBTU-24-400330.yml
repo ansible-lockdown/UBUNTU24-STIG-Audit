@@ -11,7 +11,9 @@ file:
     - '/^ocredit\s*=\s*-1$/'
     meta:
       Cat: 2
-      CCI: NA
+      CCI:
+      - CCI-004065
+      - CCI-004066
       Group_Title:
       - SRG-OS-000266-GPOS-00101
       - SRG-OS-000730-GPOS-00190

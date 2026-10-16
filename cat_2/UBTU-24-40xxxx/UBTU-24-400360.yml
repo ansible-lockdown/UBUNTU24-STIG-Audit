@@ -23,6 +23,7 @@ command:
       - CCI-004909
       Group_Title:
       - SRG-OS-000066-GPOS-00034
+      - SRG-OS-000775-GPOS-00230
       NIST800-53R4: IA-5
       Rule_ID: SV-270735r1066694_rule
       STIG_ID: UBTU-24-400360

@@ -4,7 +4,7 @@
   {{ if .Vars.ubtu24stig_100830 }}
 file:
   sshd_macs_conf:
-    title: UBTU-24-100830 | Ubuntu 24.04 LTS must configure the SSH daemon to use Message Authentication Codes (MACs) employing FIPS 140-3-approved cryptographic hashes to prevent the unauthorized disclosure of information and/or detect changes to information during transmission. | conf
+    title: UBTU-24-100830 | Ubuntu 24.04 LTS must configure the SSH daemon to use Message Authentication Codes (MACs) employing FIPS 140-3 approved cryptographic hashes to prevent the unauthorized disclosure of information and/or detect changes to information during transmission. | conf
     path: /etc/ssh/sshd_config
     exists: true
     contents:
@@ -28,7 +28,7 @@ file:
       Vul_ID: V-270668
 command:
   sshd_macs_running:
-    title: UBTU-24-100830 | Ubuntu 24.04 LTS must configure the SSH daemon to use Message Authentication Codes (MACs) employing FIPS 140-3-approved cryptographic hashes to prevent the unauthorized disclosure of information and/or detect changes to information during transmission. | running
+    title: UBTU-24-100830 | Ubuntu 24.04 LTS must configure the SSH daemon to use Message Authentication Codes (MACs) employing FIPS 140-3 approved cryptographic hashes to prevent the unauthorized disclosure of information and/or detect changes to information during transmission. | running
     exec: sshd -T | grep -i macs
     exit-status: 0
     stdout:

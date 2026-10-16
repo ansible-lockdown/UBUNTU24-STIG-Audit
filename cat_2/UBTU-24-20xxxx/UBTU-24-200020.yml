@@ -6,12 +6,12 @@
 command:
   gsettings_lock_inactivity:
     title: UBTU-24-200020 | Ubuntu 24.04 LTS must initiate a graphical session lock after 10 minutes of inactivity.
-    exec: gsettings get org.gnome.desktop.screensaver lock-enabled && gsettings get org.gnome.desktop.screensaver lock-delay && gsettings get org.gnome.desktop.session idle-delay
+    exec: echo "lock-enabled $(gsettings get org.gnome.desktop.screensaver lock-enabled)"; echo "lock-delay $(gsettings get org.gnome.desktop.screensaver lock-delay)"; echo "idle-delay $(gsettings get org.gnome.desktop.session idle-delay)"
     exit-status: 0
     stdout:
-    - '/^true/'
-    - '/^uint32 0/'
-    - '/^uint32 600'
+    - '/^lock-enabled true$/'
+    - '/^lock-delay uint32 0$/'
+    - '/^idle-delay uint32 ([1-9]|[1-9][0-9]|[1-5][0-9]{2}|600)$/'
     meta:
       Cat: 2
       CCI:

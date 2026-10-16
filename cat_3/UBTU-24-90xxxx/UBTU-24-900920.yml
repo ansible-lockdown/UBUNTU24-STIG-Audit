@@ -12,7 +12,7 @@ command:
     stdout:
     - '!/^.*/'
     meta:
-      Cat: 2
+      Cat: 3
       CCI: CCI-001849
       Group_Title: SRG-OS-000341-GPOS-00132
       NIST800-53R4: AU-4

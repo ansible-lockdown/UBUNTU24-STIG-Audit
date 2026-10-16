@@ -1,4 +1,4 @@
-# Ubuntu 24.04 Goss config
+# Ubuntu 24.04 Syver config
 
 ## Overview
 
@@ -18,11 +18,11 @@ feedback on any differences between OSs please raise an issue
 
 ## Requirements
 
-You must have [goss](https://github.com/krameff/goss) available to your host you would like to test.
+You must have [syver](https://github.com/krameff/syver) >= 0.13.0 available to the host you would like to test. The audit content uses the goss file format, which syver reads unchanged.
 
 You must have sudo/root access to the system as some commands require privilege information.
 
-Assuming you have already clone this repository you can run goss from where you wish.
+Assuming you have already clone this repository you can run syver from where you wish.
 
 Please refer to the audit documentation for usage.
 
@@ -45,9 +45,10 @@ Set of configuration files and directories to run the first stages of STIG Ubunt
 
 This is configured in a directory structure level.
 
-Goss is run based on the goss.yml file in the top level directory. This specifies the configuration.
+Syver is run based on the goss.yml file in the top level directory. This specifies the configuration.
 
 ## Further Information
 
-- [goss documentation](https://github.com/krameff/goss/blob/devel/docs/index.md)
+- [Syver documentation](https://github.com/krameff/syver/blob/main/docs/index.md)
+- [goss vs Syver](https://github.com/krameff/syver/blob/main/docs/goss-vs-syver.md)
 - [STIG standards](https://public.cyber.mil/stigs/)

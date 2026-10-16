@@ -4,14 +4,15 @@
   {{ if .Vars.ubtu24stig_400400}}
 file:
   login_defs_encryption:
-    title: UBTU-24-400400 | Ubuntu 24.04 LTS must store only encrypted representations of passwords.
+    title: UBTU-24-400400 | Ubuntu 24.04 LTS must encrypt all stored passwords with a FIPS 140-3 approved cryptographic hashing algorithm.
     path: /etc/login.defs
     exists: true
     contents:
     - '/(?i)^ENCRYPT_METHOD {{ .Vars.ubtu24stig_passwd_hash_algo }}/'
     meta:
       Cat: 2
-      CCI: NA
+      CCI:
+      - CCI-000803
       Group_Title:
       - SRG-OS-000120-GPOS-00061
       NIST800-53R4: NA

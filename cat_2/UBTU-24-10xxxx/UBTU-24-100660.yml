@@ -14,6 +14,8 @@ service:
       CCI:
       - CCI-000765
       - CCI-000766
+      - CCI-004046
+      - CCI-004047
       Group_Title:
       - SRG-OS-000705-GPOS-00150
       - SRG-OS-000105-GPOS-00052

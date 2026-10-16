@@ -4,8 +4,8 @@
   {{ if .Vars.ubtu24stig_600070 }}
 service:
   kdump_disable:
-    title: UBTU-24-600070 | Ubuntu 24.04 LTS must disable kernel core dumps so that it can fail to a secure state if system initialization fails, shutdown fails or aborts fail.
-    name: kdump
+    title: UBTU-24-600070 | Ubuntu 24.04 LTS must disable kernel core dumps.
+    name: kdump-tools
     running: false
     enabled: false
     meta:
@@ -18,8 +18,8 @@ service:
       Vul_ID: V-270746
 file:
   kdump_masked:
-    title: UBTU-24-600070 | Ubuntu 24.04 LTS must disable kernel core dumps so that it can fail to a secure state if system initialization fails, shutdown fails or aborts fail.
-    path: /etc/systemd/system/kdump.service
+    title: UBTU-24-600070 | Ubuntu 24.04 LTS must disable kernel core dumps.
+    path: /etc/systemd/system/kdump-tools.service
     exists: true
     linked-to: /dev/null
     filetype: symlink

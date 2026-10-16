@@ -4,7 +4,7 @@
   {{ if .Vars.ubtu24stig_700150 }}
 file:
   var_log_syslog_perms:
-    title: UBTU-24-700150 | Ubuntu 24.04 LTS must configure /var/log/syslog file with mode "0" or less permissive.
+    title: UBTU-24-700150 | Ubuntu 24.04 LTS must configure /var/log/syslog file with mode "0640" or less permissive.
     path: /var/log/syslog
     exists:
       or:
