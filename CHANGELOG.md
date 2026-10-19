@@ -2,6 +2,42 @@
 
 ## 1.6.0 - 2026 October - Goss documentation link
 
+- **`run_audit.sh` now runs [syver](https://github.com/krameff/syver), replacing goss.** Syver is the
+  signed continuation of the krameff goss fork and reads this content unchanged. `AUDIT_BIN` defaults
+  to `/usr/local/bin/syver` and `AUDIT_BIN_MIN_VER` moves from `0.4.8` to `0.13.0`, so a goss binary
+  now fails the version pre-check. The paired remediation role installs syver v0.13.0 and passes it
+  as `AUDIT_BIN`; it must carry that change before this one is used. The README requirements and
+  links describe syver
+- **Nine checks failed compliant hosts.** UBTU-24-200020 lacked the closing `/` on its `idle-delay`
+  pattern, so it was matched as literal text and never passed; it now labels each `gsettings` value
+  and accepts an `idle-delay` of 1 to 600. UBTU-24-200000 anchored on `*` while `grep -r` prefixes
+  each match with its file name, and UBTU-24-200060 required `TMOUT=600` and then rejected the same
+  line, so neither ever passed. UBTU-24-300030 required a single space in `UMASK 077`, failing the
+  stock tab-separated `login.defs`, and UBTU-24-400060 and UBTU-24-400375 anchored `cert_policy` at
+  the start of the line, failing the indented `pkcs11_module` block. UBTU-24-400380 carried a `(?!`
+  lookahead, which RE2 rejects, so it errored on every host; it now fails when any `cert_policy` line
+  lacks `crl_auto` or `crl_offline`. UBTU-24-200260 accepted only an `INACTIVE` of 10 to 35 where the
+  check allows 1 to 35, and UBTU-24-600060 expected the literal text `^DOD_PKE_CA_chain.pem`, which
+  `ls` output never contains; it now passes when any file name contains `dod`, case-insensitively
+- **Three negated patterns never matched.** Those in UBTU-24-300030, UBTU-24-400060 and
+  UBTU-24-400375 were malformed (`{2;}`, a trailing `;`, and a `(?!` lookahead that RE2 rejects), so
+  they matched as literal text and rejected nothing. UBTU-24-300030 now rejects any `UMASK` whose
+  group or other digit is not `7`, and UBTU-24-400060 now fails when any `cert_policy` line lacks
+  `ocsp_on`, as the check text requires of every line
+- **Three checks tested the wrong setting.** UBTU-24-200040 tested the screensaver lock, not the
+  locked `automount-open` key the rule names. UBTU-24-400370 tested `use_mappers` in
+  `pam_pkcs11.conf` rather than `ldap_user_certificate` in `sssd.conf`. UBTU-24-600070 tested
+  `kdump.service`; Ubuntu ships `kdump-tools.service`, which is what the check text and the
+  remediation use
+- **Metadata now matches the V1R6 XCCDF.** 36 `CCI`, 11 `Vul_ID` and 11 `Group_Title` entries were
+  wrong, including placeholders (`NA`, `CCI-000000`), digit typos (`V-2270781`, `CCI-00496`) and IDs
+  copied from another control (UBTU-24-909000). UBTU-24-700300 carried `RRule_ID`, UBTU-24-900920
+  `Cat: 2` for a low-severity rule, and UBTU-24-700040, a medium rule, sat in `cat_1`; it moves to
+  `cat_2/UBTU-24-70xxxx`
+- **41 check titles now carry the V1R6 rule title.** Some were copied from another rule (UBTU-24-100820
+  carried the MACs title of UBTU-24-100830) or held typos (`preform`, `/etc/sudoers.d.d`,
+  `/var/log/utmp`, mode `"0"`); the rest predated wording changes in the benchmark
+
 - **the goss documentation link pointed at the upstream read-the-docs site.** `README.md`
   referenced `goss.readthedocs.io`, which documents the pre-fork project rather than the krameff
   fork this content is built against. It now points at

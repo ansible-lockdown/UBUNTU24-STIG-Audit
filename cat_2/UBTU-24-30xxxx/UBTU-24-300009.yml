@@ -4,7 +4,7 @@
   {{ if .Vars.ubtu24stig_300009 }}
 command:
   library_files_group:
-    title: UBTU-24-300009 | Ubuntu 24.04 LTS library files must be group-owned by "root".
+    title: UBTU-24-300009 | Ubuntu 24.04 LTS library files must be group-owned by root or a system account.
     exec: |
       LIB_FILE_GROUP=$(find /lib /usr/lib /lib64 /usr/lib64 -type f -uid +1000 -printf '.' | wc -c); \
       if [ "$LIB_FILE_GROUP" -eq 0 ]; \

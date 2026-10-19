@@ -4,7 +4,7 @@
   {{ if .Vars.ubtu24stig_300006 }}
 command:
   library_file_perms:
-    title: UBTU-24-300006 | Ubuntu 24.04 LTS library files must have mode "755" or less permissive.
+    title: UBTU-24-300006 | Ubuntu 24.04 LTS library files must have mode 0755 or less permissive.
     exec: |
       LIB_FILE_PERM=$(find /lib /lib64 /usr/lib /usr/lib64 -perm /022 -type f -printf '.' | wc -c); \
       if [ "$LIB_FILE_PERM" -eq 0 ]; \

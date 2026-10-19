@@ -4,7 +4,7 @@
   {{ if .Vars.ubtu24stig_600030 }}
 file:
   fips_enabled:
-    title: UBTU-24-600030 | Ubuntu 24.04 LTS must implement NIST FIPS-validated cryptography to protect classified information and for the following; To provision digital signatures, to generate cryptographic hashes, and to protect unclassified information requiring confidentiality and cryptographic protection in accordance with applicable federal laws, Executive Orders, directives, policies, regulations, and standards.
+    title: 'UBTU-24-600030 | Ubuntu 24.04 LTS must implement NIST FIPS-validated cryptography to protect classified information and for the following: To provision digital signatures, to generate cryptographic hashes, and to protect unclassified information requiring confidentiality and cryptographic protection in accordance with applicable federal laws, Executive Orders, directives, policies, regulations, and standards.'
     path: /proc/sys/crypto/fips_enabled
     exists: true
     contents:

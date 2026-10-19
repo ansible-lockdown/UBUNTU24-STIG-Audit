@@ -16,7 +16,8 @@ file:
     - '/^password.*pam_unix\.so.*rounds=[1-9][0-9]{5,}/'
     meta:
       Cat: 2
-      CCI: NA
+      CCI:
+      - CCI-004062
       Group_Title:
       - SRG-OS-000073-GPOS-00041
       NIST800-53R4: NA

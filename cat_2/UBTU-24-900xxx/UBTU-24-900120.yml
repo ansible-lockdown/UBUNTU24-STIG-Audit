@@ -18,7 +18,7 @@ command:
       NIST800-53R4: AU-12
       Rule_ID: SV-270783r1066838_rule
       STIG_ID: UBTU-24-900120
-      Vul_ID: V-270782
+      Vul_ID: V-270783
   ssh-keysign_module_live:
     title: UBTU-24-900120 | Ubuntu 24.04 LTS must generate audit records for successful/unsuccessful uses of the ssh-keysign command. | Live
     exec: auditctl -l | grep ssh-keysign
@@ -34,6 +34,6 @@ command:
       NIST800-53R4: AU-12
       Rule_ID: SV-270783r1066838_rule
       STIG_ID: UBTU-24-900120
-      Vul_ID: V-270782
+      Vul_ID: V-270783
   {{ end }}
 {{ end }}

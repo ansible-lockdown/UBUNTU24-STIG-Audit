@@ -23,7 +23,7 @@ command:
       STIG_ID: UBTU-24-900140
       Vul_ID: V-270785
   chown_module_live:
-    title: UBTU-24-900140 | Ubuntu 24.04 LTS must generate audit records for successful/unsuccessful uses of the chown, fchown, and fchownat system calls. | Live
+    title: UBTU-24-900140 | Ubuntu 24.04 LTS must generate audit records for successful/unsuccessful uses of the chown, fchown, fchownat, and lchown system calls. | Live
     exec: auditctl -l | grep chown
     exit-status: 0
     stdout:

@@ -17,7 +17,7 @@ command:
     meta:
       Cat: 2
       CCI:
-      - CCI-00496
+      - CCI-001496
       Group_Title:
       - SRG-OS-000278-GPOS-00108
       NIST800-53R4:

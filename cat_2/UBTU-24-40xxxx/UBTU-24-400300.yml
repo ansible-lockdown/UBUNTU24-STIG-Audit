@@ -4,14 +4,16 @@
   {{ if .Vars.ubtu24stig_400300 }}
 file:
   PASS_MIN_DAYS:
-    title: UBTU-24-400300 | Ubuntu 24.04 LTS must enforce 24 hours/one day as the minimum password lifetime. Passwords for new users must have a 24 hours/one day minimum password lifetime restriction.
+    title: UBTU-24-400300 | Ubuntu 24.04 LTS must enforce 24 hours/1 day as the minimum password lifetime. Passwords for new users must have a 24 hours/1 day minimum password lifetime restriction.
     path: /etc/login.defs
     exists: true
     contents:
     - '/^PASS_MIN_DAYS 1/'
     meta:
       Cat: 2
-      CCI: NA
+      CCI:
+      - CCI-004065
+      - CCI-004066
       Group_Title:
       - SRG-OS-000075-GPOS-00043
       - SRG-OS-000730-GPOS-00190

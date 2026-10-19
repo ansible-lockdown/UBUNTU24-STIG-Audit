@@ -16,6 +16,6 @@ package:
       NIST800-53R4: IA-2
       Rule_ID: SV-270672r1067161_rule
       STIG_ID: UBTU-24-100900
-      Vul_ID: V-260672
+      Vul_ID: V-270672
   {{ end }}
 {{ end }}

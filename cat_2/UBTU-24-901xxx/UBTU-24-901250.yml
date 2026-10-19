@@ -4,7 +4,7 @@
   {{ if .Vars.ubtu24stig_901250 }}
 command:
   audit_bin_group:
-    title: UBTU-24-901250 | Ubuntu 24.04 LTS must configure the audit tools to be group-owned by root.
+    title: UBTU-24-901250 | Ubuntu 24.04 LTS must configure the audit tools to be group owned by root.
     exec: AUDIT_BINS_GROUP="OK - No files or Directories found"; for audit_bin in /sbin/auditctl /sbin/aureport /sbin/ausearch /sbin/autrace /sbin/auditd /sbin/augenrules; do find $audit_bin ! -group root -exec export AUDIT_BINS_GROUP="FAIL - Audit Binaries Permissions" {} \;; done; echo $AUDIT_BINS_GROUP
     exit-status: 0
     stdout:

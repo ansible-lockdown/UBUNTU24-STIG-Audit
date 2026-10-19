@@ -4,7 +4,7 @@
   {{ if .Vars.ubtu24stig_300041 }}
 command:
   ufw_proto_svcs:
-    title: UBTU-24-300041 | Ubuntu 24.04 LTS must be configured to prohibit or restrict the use of functions, ports, protocols, and/or services, as defined in the PPSM CAL and vulnerability assessments. | Manual
+    title: UBTU-24-300041 | Ubuntu 24.04 LTS must be configured to prohibit or restrict the use of functions, ports, protocols, and/or services, as defined in the Ports, Protocols, and Services Management Category Assurance List (PPSM CAL) and vulnerability assessments. | Manual
     exec: echo "Manual - Please ensure ports, protocols and services are configured on UFW"
     exit-status: 0
     stdout:

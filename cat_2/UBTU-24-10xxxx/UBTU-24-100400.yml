@@ -29,6 +29,7 @@ package:
       - CCI-001881
       - CCI-001882
       - CCI-001914
+      - CCI-003938
       Group_Title:
       - SRG-OS-000037-GPOS-00015
       - SRG-OS-000038-GPOS-00016
@@ -36,6 +37,7 @@ package:
       - SRG-OS-000040-GPOS-00018
       - SRG-OS-000041-GPOS-00019
       - SRG-OS-000042-GPOS-00020
+      - SRG-OS-000042-GPOS-00021
       - SRG-OS-000051-GPOS-00024
       - SRG-OS-000054-GPOS-00025
       - SRG-OS-000062-GPOS-00031

@@ -17,6 +17,7 @@ command:
       Cat: 2
       CCI:
       - CCI-001958
+      - CCI-003959
       Group_Title:
       - SRG-OS-000690-GPOS-00140
       - SRG-OS-000378-GPOS-00163

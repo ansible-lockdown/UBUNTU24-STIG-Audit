@@ -8,8 +8,8 @@ file:
     path: /etc/login.defs
     exists: true
     contents:
-    - '/^UMASK 077$/'
-    - '!/^UMASK 0[1-6]{2;}'
+    - '/^\s*UMASK\s+0?077\s*$/'
+    - '!/^\s*UMASK\s+0?[0-7]([0-6][0-7]|[0-7][0-6])\s*$/'
     meta:
       Cat: 2
       CCI: CCI-000366
