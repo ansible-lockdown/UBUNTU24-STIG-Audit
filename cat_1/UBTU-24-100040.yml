@@ -4,7 +4,7 @@
   {{ if .Vars.ubtu24stig_100040 }}
 package:
   rsh-server_absent:
-    title: UBTU-24-100040 | Ubuntu 24.04 LTS must not have the "rsh-server" package installed.
+    title: UBTU-24-100040 | Ubuntu 24.04 LTS must not have the rsh-server package installed.
     name: rsh-server
     installed: false
     meta:

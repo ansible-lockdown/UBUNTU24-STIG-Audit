@@ -20,7 +20,7 @@ command:
       - SRG-OS-000107-GPOS-00054
       - SRG-OS-000108-GPOS-00055
       NIST800-53R4: IA-2
-      Rule_ID: SV-270722r1067130_rule
+      Rule_ID: SV-270722r1268228_rule
       STIG_ID: UBTU-24-400030
       Vul_ID: V-270722
 file:
@@ -41,7 +41,7 @@ file:
       - SRG-OS-000107-GPOS-00054
       - SRG-OS-000108-GPOS-00055
       NIST800-53R4: IA-2
-      Rule_ID: SV-270722r1067130_rule
+      Rule_ID: SV-270722r1268228_rule
       STIG_ID: UBTU-24-400030
       Vul_ID: V-270722
   {{ end }}

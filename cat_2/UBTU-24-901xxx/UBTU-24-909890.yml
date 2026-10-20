@@ -5,15 +5,24 @@
 command:
   audit_bin_crypto:
     title: UBTU-24-909890 | Ubuntu 24.04 LTS must use cryptographic mechanisms to protect the integrity of audit tools.
-    exec: grep -E '(\/sbin\/(audit|au))' /etc/aide/aide.conf
-    exit-status: 0
+    exec: find /etc/aide/aide.conf /etc/aide/aide.conf.d/ -type f -exec grep -h -E '^(/usr)?/sbin/au(ditctl|ditd|search|report|trace|genrules)[[:space:]]' {} +
+    exit-status:
+      or:
+      - 0
+      - 1
     stdout:
-    - '/sbin/auditctl p+i+n+u+g+s+b+acl+xattrs+sha512'
-    - '/sbin/auditd p+i+n+u+g+s+b+acl+xattrs+sha512'
-    - '/sbin/ausearch p+i+n+u+g+s+b+acl+xattrs+sha512'
-    - '/sbin/aureport p+i+n+u+g+s+b+acl+xattrs+sha512'
-    - '/sbin/autrace p+i+n+u+g+s+b+acl+xattrs+sha512'
-    - '/sbin/augenrules p+i+n+u+g+s+b+acl+xattrs+sha512'
+    - '/^/usr/sbin/auditctl\s+p\+i\+n\+u\+g\+s\+b\+acl\+xattrs\+sha512\s*$/'
+    - '/^/usr/sbin/auditd\s+p\+i\+n\+u\+g\+s\+b\+acl\+xattrs\+sha512\s*$/'
+    - '/^/usr/sbin/ausearch\s+p\+i\+n\+u\+g\+s\+b\+acl\+xattrs\+sha512\s*$/'
+    - '/^/usr/sbin/aureport\s+p\+i\+n\+u\+g\+s\+b\+acl\+xattrs\+sha512\s*$/'
+    - '/^/usr/sbin/autrace\s+p\+i\+n\+u\+g\+s\+b\+acl\+xattrs\+sha512\s*$/'
+    - '/^/usr/sbin/augenrules\s+p\+i\+n\+u\+g\+s\+b\+acl\+xattrs\+sha512\s*$/'
+    - '/^/sbin/auditctl\s+p\+i\+n\+u\+g\+s\+b\+acl\+xattrs\+sha512\s*$/'
+    - '/^/sbin/auditd\s+p\+i\+n\+u\+g\+s\+b\+acl\+xattrs\+sha512\s*$/'
+    - '/^/sbin/ausearch\s+p\+i\+n\+u\+g\+s\+b\+acl\+xattrs\+sha512\s*$/'
+    - '/^/sbin/aureport\s+p\+i\+n\+u\+g\+s\+b\+acl\+xattrs\+sha512\s*$/'
+    - '/^/sbin/autrace\s+p\+i\+n\+u\+g\+s\+b\+acl\+xattrs\+sha512\s*$/'
+    - '/^/sbin/augenrules\s+p\+i\+n\+u\+g\+s\+b\+acl\+xattrs\+sha512\s*$/'
     meta:
       Cat: 2
       CCI:
@@ -22,7 +31,7 @@ command:
       - SRG-OS-000278-GPOS-00108
       NIST800-53R4:
       - AU-9
-      Rule_ID: SV-270831r1135002_rule
+      Rule_ID: SV-270831r1261485_rule
       STIG_ID: UBTU-24-909890
       Vul_ID: V-270831
   {{ end }}

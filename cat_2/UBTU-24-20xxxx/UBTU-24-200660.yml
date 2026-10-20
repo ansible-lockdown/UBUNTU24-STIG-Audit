@@ -5,7 +5,7 @@
     {{ if .Vars.ubtu24stig_gui }}
 file:
   banner_dconf_defaults:
-    title: UBTU-24-200660 | Ubuntu 24.04 LTS must display the Standard Mandatory DOD Notice and Consent Banner before granting local access to the system via a graphical user logon.
+    title: UBTU-24-200660 | Ubuntu 24.04 LTS must display the Standard Mandatory DoW Notice and Consent Banner before granting local access to the system via a graphical user logon.
     path: /etc/gdm3/greeter.dconf-defaults
     exists: true
     contents:
@@ -18,7 +18,7 @@ file:
       - SRG-OS-000023-GPOS-00006
       NIST800-53R4:
       - AC-8
-      Rule_ID: SV-270693r1066568_rule
+      Rule_ID: SV-270693r1268215_rule
       STIG_ID: UBTU-24-200660
       Vul_ID: V-270693
     {{ end }}

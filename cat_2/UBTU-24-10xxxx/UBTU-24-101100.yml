@@ -1,0 +1,22 @@
+---
+
+{{ if .Vars.ubtu24stig_cat2 }}
+  {{ if .Vars.ubtu24stig_101100 }}
+command:
+  system_accts_no_interactive_shell:
+    title: UBTU-24-101100 | Ubuntu 24.04 LTS must not assign an interactive login shell for system accounts.
+    exec: |
+      awk -F: '(($3 > 0 && $3 < 1000) && $1 !~ /^(halt|sync|shutdown)$/ && $7 !~ /(nologin|false)$/) {print $1 ":" $3 ":" $7}' /etc/passwd
+    exit-status: 0
+    stdout:
+    - '!/./'
+    meta:
+      Cat: 2
+      CCI: CCI-002696
+      Group_Title: SRG-OS-000445-GPOS-00199
+      NIST800-53R4: SI-6
+      Rule_ID: SV-288819r1261505_rule
+      STIG_ID: UBTU-24-101100
+      Vul_ID: V-288819
+  {{ end }}
+{{ end }}

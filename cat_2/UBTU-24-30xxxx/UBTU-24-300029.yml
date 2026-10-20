@@ -17,7 +17,7 @@ command:
       - SRG-OS-000480-GPOS-00227
       NIST800-53R4:
       - CM-6
-      Rule_ID: SV-270715r1066634_rule
+      Rule_ID: SV-270715r1268251_rule
       STIG_ID: UBTU-24-300029
       Vul_ID: V-270715
   journal_module_live:
@@ -34,7 +34,7 @@ command:
       - SRG-OS-000480-GPOS-00227
       NIST800-53R4:
       - CM-6
-      Rule_ID: SV-270715r1066634_rule
+      Rule_ID: SV-270715r1268251_rule
       STIG_ID: UBTU-24-300029
       Vul_ID: V-270715
   {{ end }}

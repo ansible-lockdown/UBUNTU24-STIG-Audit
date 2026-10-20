@@ -12,12 +12,12 @@ service:
       CCI: CCI-000366
       Group_Title: SRG-OS-000480-GPOS-00227
       NIST800-53R4: CM-6
-      Rule_ID: SV-270712r1068363_rule
+      Rule_ID: SV-270712r1268251_rule
       STIG_ID: UBTU-24-300026
       Vul_ID: V-270712
 file:
   ctrl-alt-del_masked:
-    title: UBTU-24-300026 | Ubuntu 24.04 LTS must disable the x86 Ctrl-Alt-Delete key sequence.| masked
+    title: UBTU-24-300026 | Ubuntu 24.04 LTS must disable the x86 Ctrl-Alt-Delete key sequence. | masked
     path: /etc/systemd/system/ctrl-alt-del.target
     exists: true
     linked-to: /dev/null
@@ -27,7 +27,7 @@ file:
       CCI: CCI-000366
       Group_Title: SRG-OS-000480-GPOS-00227
       NIST800-53R4: CM-6
-      Rule_ID: SV-270712r1068363_rule
+      Rule_ID: SV-270712r1268251_rule
       STIG_ID: UBTU-24-300026
       Vul_ID: V-270712
   {{ end }}

@@ -4,7 +4,7 @@
   {{ if .Vars.ubtu24stig_200610 }}
 file:
   pam_auth_faillock:
-    title: UBTU-24-200610 | Ubuntu 24.04 LTS must automatically lock an account until the locked account is released by an administrator when three unsuccessful logon attempts have been made. |pam-common-auth
+    title: UBTU-24-200610 | Ubuntu 24.04 LTS must automatically lock an account until the locked account is released by an administrator when three unsuccessful logon attempts have been made. | pam-common-auth
     path: /etc/pam.d/common-auth
     exists: true
     contents:
