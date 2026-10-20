@@ -14,7 +14,7 @@ package:
       Group_Title:
       - SRG-OS-000376-GPOS-00161
       NIST800-53R4: IA-2
-      Rule_ID: SV-270672r1067161_rule
+      Rule_ID: SV-270672r1268243_rule
       STIG_ID: UBTU-24-100900
       Vul_ID: V-270672
   {{ end }}

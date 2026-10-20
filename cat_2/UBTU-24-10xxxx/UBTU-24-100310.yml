@@ -15,7 +15,7 @@ service:
       - SRG-OS-000297-GPOS-00115
       - SRG-OS-000480-GPOS-00232
       NIST800-53R4: AC-17
-      Rule_ID: SV-270655r1067145_rule
+      Rule_ID: SV-270655r1268238_rule
       STIG_ID: UBTU-24-100310
       Vul_ID: V-270655
   {{ end }}

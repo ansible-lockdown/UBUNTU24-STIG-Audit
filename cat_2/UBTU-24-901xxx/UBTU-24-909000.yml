@@ -5,10 +5,14 @@
 command:
   protect_rules_module_cnf:
     title: UBTU-24-909000 | Ubuntu 24.04 LTS audit system must protect auditing rules from unauthorized change. | Config
-    exec: grep "\e 2" /etc/audit/rules.d/*.rules
-    exit-status: 0
+    exec: grep -HE '^-e 2' /etc/audit/rules.d/*.rules
+    exit-status:
+      or:
+      - 0
+      - 1
+      - 2
     stdout:
-    - '/(.*:|)-e 2/'
+    - '/^/etc/audit/rules\.d/[^:]+\.rules:-e 2\s*$/'
     meta:
       Cat: 2
       CCI:
@@ -16,7 +20,7 @@ command:
       Group_Title:
       - SRG-OS-000058-GPOS-00028
       NIST800-53R4: AU-12
-      Rule_ID: SV-270832r1068399_rule
+      Rule_ID: SV-270832r1261488_rule
       STIG_ID: UBTU-24-909000
       Vul_ID: V-270832
   protect_rules_module_live:
@@ -24,7 +28,7 @@ command:
     exec: auditctl -s
     exit-status: 0
     stdout:
-    - 'enabled 2'
+    - '/^enabled 2$/'
     meta:
       Cat: 2
       CCI:
@@ -32,7 +36,7 @@ command:
       Group_Title:
       - SRG-OS-000058-GPOS-00028
       NIST800-53R4: AU-12
-      Rule_ID: SV-270832r1068399_rule
+      Rule_ID: SV-270832r1261488_rule
       STIG_ID: UBTU-24-909000
       Vul_ID: V-270832
   {{ end }}

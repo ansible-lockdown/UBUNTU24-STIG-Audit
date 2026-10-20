@@ -12,7 +12,7 @@ package:
       CCI: CCI-000366
       Group_Title: SRG-OS-000480-GPOS-00227
       NIST800-53R4: CM-6
-      Rule_ID: SV-270645r1068357_rule
+      Rule_ID: SV-270645r1268251_rule
       STIG_ID: UBTU-24-100010
       Vul_ID: V-270645
   {{ end }}

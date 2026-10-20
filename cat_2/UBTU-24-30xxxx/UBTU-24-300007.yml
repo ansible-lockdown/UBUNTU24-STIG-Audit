@@ -4,7 +4,7 @@
   {{ if .Vars.ubtu24stig_300007 }}
 command:
   library_files_owner:
-    title: UBTU-24-300007 | Ubuntu 24.04 LTS library files must be owned by "root".
+    title: UBTU-24-300007 | Ubuntu 24.04 LTS library files must be owned by root.
     exec: |
       LIB_FILE_OWNER=$(find /lib /usr/lib /lib64 /usr/lib64 ! -user root -type f -printf '.' | wc -c); \
       if [ "$LIB_FILE_OWNER" -eq 0 ]; \

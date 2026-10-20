@@ -2,20 +2,21 @@
 
 {{ if .Vars.ubtu24stig_cat2 }}
   {{ if .Vars.ubtu24stig_700060 }}
-file:
+command:
   journald_dirs_group_owned_conf:
     title: UBTU-24-700060 | Ubuntu 24.04 LTS must configure the directories used by the system journal to be group-owned by "systemd-journal".
-    path: /usr/lib/tmpfiles.d/systemd.conf
-    exists: true
-    contents:
-      - 'z /run/log/journal 0640 root systemd-journal - -'
-      - 'z /var/log/journal 0640 root systemd-journal - -'
+    exec: |
+      systemd-tmpfiles --cat-config 2>/dev/null | awk '$1 ~ /^[zZ]$/ && $2 ~ /^\/(run|var)\/log\/journal(\/%m(\/system\.journal)?)?$/ {l[$2]=$1" "$2" "$3" "$4" "$5} END {for (p in l) print l[p]}'
+    exit-status: 0
+    stdout:
+      - '/^z /run/log/journal 2755 \S+ systemd-journal$/'
+      - '/^z /var/log/journal 2755 \S+ systemd-journal$/'
     meta:
       Cat: 2
       CCI: CCI-001314
       Group_Title: SRG-OS-000206-GPOS-00084
       NIST800-53R4: SI-11
-      Rule_ID: SV-270761r1184074_rule
+      Rule_ID: SV-270761r1261495_rule
       STIG_ID: UBTU-24-700060
       Vul_ID: V-270761
   {{ end }}
