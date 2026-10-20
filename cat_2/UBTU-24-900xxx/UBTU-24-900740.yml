@@ -4,7 +4,7 @@
   {{ if .Vars.ubtu24stig_900740 }}
 command:
   kmod_module_cnf:
-    title: UBTU-24-900740 | Ubuntu 24.04 LTS must generate audit records for successful/unsuccessful uses of the kmod command. | Config
+    title: UBTU-24-900740 | Ubuntu 24.04 LTS must generate audit records when successful/unsuccessful attempts to use the kmod command. | Config
     exec: grep kmod /etc/audit/rules.d/*.rules
     exit-status: 0
     stdout:
@@ -20,7 +20,7 @@ command:
       STIG_ID: UBTU-24-900740
       Vul_ID: V-270814
   kmod_module_live:
-    title: UBTU-24-900740 | Ubuntu 24.04 LTS must generate audit records for successful/unsuccessful uses of the kmod command. | Live
+    title: UBTU-24-900740 | Ubuntu 24.04 LTS must generate audit records when successful/unsuccessful attempts to use the kmod command. | Live
     exec: auditctl -l | grep kmod
     exit-status: 0
     stdout:

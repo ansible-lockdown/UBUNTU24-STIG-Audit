@@ -9,7 +9,8 @@ kernel-param:
     value: 1
     meta:
       Cat: 2
-      CCI: CCI-002824
+      CCI:
+      - CCI-001095
       Group_Title: SRG-OS-000142-GPOS-00071
       NIST800-53R4: SC-5
       Rule_ID: SV-270753r1066748_rule
@@ -25,7 +26,8 @@ command:
     - '!/^*.conf:net.ipv4.tcp_syncookies\s*=\s*0/'
     meta:
       Cat: 2
-      CCI: CCI-002824
+      CCI:
+      - CCI-001095
       Group_Title: SRG-OS-000142-GPOS-00071
       NIST800-53R4: SC-5
       Rule_ID: SV-270753r1066748_rule

@@ -8,11 +8,13 @@ file:
     path: /etc/default/useradd
     exists: true
     contents:
-    - '/^INACTIVE\s*=\s*(3[0-5]|[1-2][0-9])$/'
-    - '!INACTIVE\s*=\s*-1'
+    - '/^INACTIVE\s*=\s*([1-9]|[1-2][0-9]|3[0-5])\s*$/'
+    - '!/^INACTIVE\s*=\s*(-1|0|0*(3[6-9]|[4-9][0-9]|[1-9][0-9]{2,}))\s*$/'
     meta:
       Cat: 2
-      CCI: NA
+      CCI:
+      - CCI-003627
+      - CCI-003628
       Group_Title:
       - SRG-OS-000118-GPOS-00060
       - SRG-OS-000590-GPOS-00110

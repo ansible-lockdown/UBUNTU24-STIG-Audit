@@ -6,18 +6,20 @@
 command:
   ca_pki_required:
     title: UBTU-24-400375 | Ubuntu 24.04 LTS, for PKI-based authentication, Privileged Access Management (PAM) must validate certificates by constructing a certification path (which includes status information) to an accepted trust anchor.
-    exec: grep use_pkcs11_module /etc/pam_pkcs11/pam_pkcs11.conf | awk '/pkcs11_module opensc {/,/}/' /etc/pam_pkcs11/pam_pkcs11.conf | grep cert_policy | grep ca
+    exec: >-
+      awk '/pkcs11_module opensc {/,/}/' /etc/pam_pkcs11/pam_pkcs11.conf | grep -E '^\s*cert_policy\s*=' | awk '{ print ($0 ~ /(=|,)[ \t]*ca[ \t]*(,|;|$)/ ? "ca_present " : "ca_missing ") $0 }'
     exit-status:
       or:
       - 0
       - 1
     stdout:
-    - '/^cert_policy = .*ca;/'
-    - '!/^cert_policy\s*=\s*((?!ca).)*$/;'
+    - '/^ca_present /'
+    - '!/^ca_missing /'
     meta:
       Cat: 2
       CCI:
       - CCI-000185
+      - CCI-004909
       Group_Title:
       - SRG-OS-000066-GPOS-00034
       - SRG-OS-000775-GPOS-00230

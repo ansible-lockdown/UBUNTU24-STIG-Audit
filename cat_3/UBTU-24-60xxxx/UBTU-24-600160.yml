@@ -17,8 +17,12 @@ command:
     {{ end }}
     meta:
       Cat: 3
-      CCI: CCI-000000
-      Group_Title: SRG-OS-000355-GPOS-00143
+      CCI:
+      - CCI-004922
+      - CCI-004923
+      Group_Title:
+      - SRG-OS-000355-GPOS-00143
+      - SRG-OS-000785-GPOS-00250
       NIST800-53R4: NA
       Rule_ID: SV-270751r1066742_rule
       STIG_ID: UBTU-24-600160

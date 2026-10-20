@@ -4,14 +4,14 @@
   {{ if .Vars.ubtu24stig_600060 }}
 command:
   dod_certs:
-    title: UBTU-24-600060 | Ubuntu 24.04 LTS must use DOD PKI-established certificate authorities for verification of the establishment of protected sessions.
+    title: UBTU-24-600060 | Ubuntu 24.04 LTS must use DOD PKI-established certificate authorities (CAs) for verification of the establishment of protected sessions.
     exec: ls /etc/ssl/certs | grep -i DOD
     exit-status:
       or:
       - 0
       - 1
     stdout:
-    - '^DOD_PKE_CA_chain.pem'
+    - '/(?i)dod/'
     meta:
       Cat: 2
       CCI:

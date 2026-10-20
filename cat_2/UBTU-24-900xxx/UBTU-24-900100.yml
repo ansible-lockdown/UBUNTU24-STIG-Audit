@@ -18,7 +18,7 @@ command:
       NIST800-53R4: AU-12
       Rule_ID: SV-270781r1066832_rule
       STIG_ID: UBTU-24-900100
-      Vul_ID: V-2270781
+      Vul_ID: V-270781
   umount_module_live:
     title: UBTU-24-900100 | Ubuntu 24.04 LTS must generate audit records for successful/unsuccessful uses of the umount command. | Live
     exec: auditctl -l | grep umount

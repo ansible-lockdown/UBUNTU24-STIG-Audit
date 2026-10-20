@@ -4,7 +4,7 @@
   {{ if .Vars.ubtu24stig_900350 }}
 command:
   delete_module_cnf:
-    title: UBTU-24-900350 | Ubuntu 24.04 LTS must generate audit records for successful/unsuccessful uses of the delete_module system call. | Config
+    title: UBTU-24-900350 | Ubuntu 24.04 LTS must generate audit records for successful/unsuccessful uses of the delete_module syscall. | Config
     exec: grep delete /etc/audit/rules.d/*.rules
     exit-status: 0
     stdout:
@@ -23,7 +23,7 @@ command:
       STIG_ID: UBTU-24-900350
       Vul_ID: V-270806
   delete_module_live:
-    title: UBTU-24-900350 | Ubuntu 24.04 LTS must generate audit records for successful/unsuccessful uses of the delete_module system call. | Live
+    title: UBTU-24-900350 | Ubuntu 24.04 LTS must generate audit records for successful/unsuccessful uses of the delete_module syscall. | Live
     exec: auditctl -l | grep delete
     exit-status: 0
     stdout:

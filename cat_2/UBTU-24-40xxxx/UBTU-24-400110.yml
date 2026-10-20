@@ -4,14 +4,15 @@
   {{ if .Vars.ubtu24stig_400110 }}
 command:
   root_acct_locked:
-    title: UBTU-24-400110 | Ubuntu 24.04 LTS must prevent direct login into the root account.
+    title: UBTU-24-400110 | Ubuntu 24.04 LTS must prevent direct login to the root account.
     exec: passwd -S root
     exit-status: 0
     stdout:
     - '/^root L/'
     meta:
       Cat: 2
-      CCI: NA
+      CCI:
+      - CCI-004045
       Group_Title:
       - SRG-OS-000109-GPOS-00056
       NIST800-53R4: NA

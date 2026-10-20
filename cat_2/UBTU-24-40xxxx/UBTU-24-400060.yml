@@ -6,14 +6,15 @@
 command:
   ocsp_on_pki_required:
     title: UBTU-24-400060 | Ubuntu 24.04 LTS must electronically verify personal identity verification (PIV) credentials.
-    exec: grep use_pkcs11_module /etc/pam_pkcs11/pam_pkcs11.conf | awk '/pkcs11_module opensc {/,/}/' /etc/pam_pkcs11/pam_pkcs11.conf | grep cert_policy | grep ocsp_on
+    exec: >-
+      awk '/pkcs11_module opensc {/,/}/' /etc/pam_pkcs11/pam_pkcs11.conf | grep -E '^\s*cert_policy\s*=' | awk '{ print ($0 ~ /ocsp_on/ ? "ocsp_on_present " : "ocsp_on_missing ") $0 }'
     exit-status:
       or:
       - 0
       - 1
     stdout:
-    - '/^cert_policy = .*,ocsp_on;/'
-    - '!/^cert_policy\s*=\s*((?!ocsp_on).)*$/;'
+    - '/^ocsp_on_present /'
+    - '!/^ocsp_on_missing /'
     meta:
       Cat: 2
       CCI:
