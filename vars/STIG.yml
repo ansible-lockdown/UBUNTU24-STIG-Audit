@@ -1,5 +1,5 @@
 ## metadata for Audit benchmark
-benchmark_version: 'v1.6.0'
+benchmark_version: 'v1.7.0'
 benchmark: UBUNTU24-STIG
 
 # turn the categories on/off
@@ -36,6 +36,7 @@ ubtu24stig_300028: true
 ubtu24stig_300031: true
 ubtu24stig_400370: true
 ubtu24stig_600030: true
+ubtu24stig_600090: true
 ubtu24stig_600130: true
 ubtu24stig_700400: true
 
@@ -63,6 +64,7 @@ ubtu24stig_100860: true
 ubtu24stig_100900: true
 ubtu24stig_100910: true
 ubtu24stig_101000: true
+ubtu24stig_101100: true
 ubtu24stig_102010: true
 
 ## 20XXXX
@@ -85,7 +87,6 @@ ubtu24stig_200580: true
 ubtu24stig_200640: true
 ubtu24stig_200650: true
 ubtu24stig_200660: true
-ubtu24stig_200680: true
 
 
 ## 30XXXX
@@ -137,7 +138,6 @@ ubtu24stig_600000: true
 ubtu24stig_600010: true
 ubtu24stig_600060: true
 ubtu24stig_600070: true
-ubtu24stig_600090: true
 ubtu24stig_600150: true
 ubtu24stig_600190: true
 ubtu24stig_600200: true
@@ -192,6 +192,7 @@ ubtu24stig_900280: true
 ubtu24stig_900290: true
 ubtu24stig_900300: true
 ubtu24stig_900310: true
+ubtu24stig_900315: true
 ubtu24stig_900320: true
 ubtu24stig_900330: true
 ubtu24stig_900340: true
@@ -294,7 +295,7 @@ ubtu24stig_dconf_db: local.d
 ### ACCOUNTS and AUTH ###
 ## PAM and password settings
 ubtu24stig_pass:
-  max_days: 60
+  max_days: 180
 
 # Path to set for users initialization files e.g. echo $PATH expected results
 ubtu24stig_env_path: '$PATH:$HOME/.local/bin:$HOME/bin'

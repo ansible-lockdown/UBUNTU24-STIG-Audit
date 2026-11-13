@@ -25,7 +25,7 @@ service:
       - SRG-OS-000375-GPOS-00160
       NIST800-53R4:
       - IA-2
-      Rule_ID: SV-270663r1066478_rule
+      Rule_ID: SV-270663r1261511_rule
       STIG_ID: UBTU-24-100660
       Vul_ID: V-270663
     {{ end }}

@@ -4,7 +4,7 @@
   {{ if .Vars.ubtu24stig_300012 }}
 command:
   system_cmd_files_owner:
-    title: UBTU-24-300012 | Ubuntu 24.04 LTS must have system commands owned by "root" or a system account.
+    title: UBTU-24-300012 | Ubuntu 24.04 LTS must have system commands owned by root or a system account.
     exec: |
       SYS_CMD_FILE_OWNER=$(find /bin /sbin /usr/bin /usr/sbin /usr/local/bin /usr/local/sbin ! -owner root -type f -printf '.' | wc -c); \
       if [ "$SYS_CMD_FILE_OWNER" -eq 0 ]; \

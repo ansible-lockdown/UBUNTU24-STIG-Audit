@@ -4,7 +4,7 @@
   {{ if .Vars.ubtu24stig_300013 }}
 command:
   system_cmd_files_group:
-    title: UBTU-24-300013 | Ubuntu 24.04 LTS must have system commands group-owned by "root" or a system account.
+    title: UBTU-24-300013 | Ubuntu 24.04 LTS must have system commands group-owned by root or a system account.
     exec: |
       SYS_CMD_FILE_GROUP=$(find /bin /sbin /usr/bin /usr/sbin /usr/local/bin /usr/local/sbin -type f -uid +1000  -printf '.' | wc -c); \
       if [ "$SYS_CMD_FILE_GROUP" -eq 0 ]; \

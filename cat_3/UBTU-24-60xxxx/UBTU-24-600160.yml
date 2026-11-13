@@ -24,7 +24,7 @@ command:
       - SRG-OS-000355-GPOS-00143
       - SRG-OS-000785-GPOS-00250
       NIST800-53R4: NA
-      Rule_ID: SV-270751r1066742_rule
+      Rule_ID: SV-270751r1261540_rule
       STIG_ID: UBTU-24-600160
       Vul_ID: V-270751
   {{ end }}

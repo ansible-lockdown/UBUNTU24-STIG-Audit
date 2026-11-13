@@ -4,7 +4,7 @@
   {{ if .Vars.ubtu24stig_901270 }}
 command:
   system_cmd_dirs_owner:
-    title: UBTU-24-901270 | Ubuntu 24.04 LTS must have directories that contain system commands owned by "root".
+    title: UBTU-24-901270 | Ubuntu 24.04 LTS must have directories that contain system commands owned by root.
     exec: |
       SYS_CMD_DIR_OWNER=$(find /bin /sbin /usr/bin /usr/sbin /usr/local/bin /usr/local/sbin ! -user root -type d -printf '.' | wc -c); \
       if [ "$SYS_CMD_DIR_OWNER" -eq 0 ]; \

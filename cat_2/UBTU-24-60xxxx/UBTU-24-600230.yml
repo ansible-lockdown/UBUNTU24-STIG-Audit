@@ -20,7 +20,7 @@ command:
       - SRG-OS-000481-GPOS-00481
       NIST800-53R4:
       - SC-8
-      Rule_ID: SV-270755r1066754_rule
+      Rule_ID: SV-270755r1268254_rule
       STIG_ID: UBTU-24-600230
       Vul_ID: V-270755
   {{ end }}

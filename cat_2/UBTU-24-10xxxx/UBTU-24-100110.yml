@@ -2,8 +2,8 @@
 
 {{ if .Vars.ubtu24stig_cat2 }}
   {{ if .Vars.ubtu24stig_100110 }}
-    {{ if .Vars.ubtu24stig_allow_aide_check }}
 command:
+    {{ if .Vars.ubtu24stig_allow_aide_check }}
   aide_check:
     title: UBTU-24-100110 | Ubuntu 24.04 LTS must configure AIDE to perform file integrity checking on the file system if installed.
     exec: aide -c /etc/aide/aide.conf --check

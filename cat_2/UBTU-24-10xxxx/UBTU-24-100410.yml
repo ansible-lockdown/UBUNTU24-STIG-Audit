@@ -4,7 +4,7 @@
   {{ if .Vars.ubtu24stig_100410 }}
 service:
   auditd_running:
-    title: UBTU-24-100410 | Ubuntu 24.04 LTS must produce audit records and reports containing information to establish when, where, what type, the source, and the outcome for all DOD-defined auditable events and actions in near real time.
+    title: UBTU-24-100410 | Ubuntu 24.04 LTS must produce audit records and reports containing information to establish when, where, what type, the source, and the outcome for all DoW-defined auditable events and actions in near real time.
     name: auditd
     running: true
     enabled: true
@@ -58,7 +58,7 @@ service:
       - AU-6
       - AU-7
       - AU-12
-      Rule_ID: SV-270657r1066460_rule
+      Rule_ID: SV-270657r1261509_rule
       STIG_ID: UBTU-24-100410
       Vul_ID: V-270657
   {{ end }}
